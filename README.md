@@ -1,2 +1,4 @@
 # BVO
-HOI4 mod/Bernard's Very Own
+Bernard's Very Own
+
+Featuring... nothing!
