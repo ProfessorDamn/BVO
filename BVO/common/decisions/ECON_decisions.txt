@@ -1,0 +1,92 @@
+ECON_decisions = {
+	# Factory allocation
+	ECON_decision_PU_civ_allocate_1 = {
+		visible = { always = yes }
+		available = { THIS = { check_variable = { ECON_var_nat_PU_total > 0 }
+							   check_variable = { ECON_arr_nat_PU_assignment^0 > 0 } } }
+
+		complete_effect = {
+			THIS = {
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^1 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^2 = 1 }
+
+				add_offsite_building = { type = industrial_complex level = 1 }
+			}
+		}
+	}
+	ECON_decision_PU_civ_disallocate_1 = {
+		visible = { THIS = { check_variable = { ECON_arr_nat_PU_assignment^2 > 0 } } }
+		available = { THIS = { check_variable = { ECON_arr_nat_PU_assignment^2 > 0 } } }
+
+		complete_effect = {
+			THIS = {
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^2 = 1 }
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^0 = 1 }
+
+				add_offsite_building = { type = industrial_complex level = -1 }
+			}
+		}
+	}
+	ECON_decision_PU_mil_allocate_1 = {
+		visible = { always = yes }
+		available = { THIS = { check_variable = { ECON_var_nat_PU_total > 0 }
+							   check_variable = { ECON_arr_nat_PU_assignment^0 > 0 } } }
+
+		complete_effect = {
+			THIS = {
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^1 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^3 = 1 }
+
+				add_offsite_building = { type = arms_factory level = 1 }
+			}
+		}
+	}
+	ECON_decision_PU_mil_disallocate_1 = {
+		visible = { THIS = { check_variable = { ECON_arr_nat_PU_assignment^3 > 0 } } }
+		available = { THIS = { check_variable = { ECON_arr_nat_PU_assignment^3 > 0 } } }
+
+		complete_effect = {
+			THIS = {
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^3 = 1 }
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^0 = 1 }
+
+				add_offsite_building = { type = arms_factory level = -1 }
+			}
+		}
+	}
+	ECON_decision_PU_docks_allocate_1 = {
+		visible = { always = yes }
+		available = { THIS = { check_variable = { ECON_var_nat_PU_total > 0 }
+							   check_variable = { ECON_arr_nat_PU_assignment^0 > 0 } 
+							   any_owned_state = { is_coastal = yes } } }
+
+		complete_effect = {
+			THIS = {
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^1 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^4 = 1 }
+
+				add_offsite_building = { type = dockyard level = 1 }
+			}
+		}
+	}
+	ECON_decision_PU_docks_disallocate_1 = {
+		visible = { THIS = { check_variable = { ECON_arr_nat_PU_assignment^4 > 0 }} }
+		available = { THIS = { check_variable = { ECON_arr_nat_PU_assignment^4 > 0 }
+							   any_owned_state = { is_coastal = yes } } }
+
+		complete_effect = {
+			THIS = {
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^4 = 1 }
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = 1 }
+				add_to_variable = { ECON_arr_nat_PU_assignment^0 = 1 }
+
+				add_offsite_building = { type = dockyard level = -1 }
+			}
+		}
+	}
+}

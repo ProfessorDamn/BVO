@@ -1,0 +1,588 @@
+ideas = {
+	political_advisor = { }	# no fucking idea how this worked in preventing ideas fuckup but okay
+	# POLICIES_cat_SEC
+		POLICIES_cat_SEC_police = { law = yes	use_list_view = yes
+			POLICIES_cat_SEC_police_neighbourhood_watch = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 0 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_10USD
+				}
+			}
+			POLICIES_cat_SEC_police_unarmed_civilian = { 	# hello Garda
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 1 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_25USD
+				}
+			}
+			POLICIES_cat_SEC_police_armed_civilian = {
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 2 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_35USD
+				}
+			}
+			POLICIES_cat_SEC_police_extralegal_approaches = {
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 3 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_50USD
+				}
+			}
+			POLICIES_cat_SEC_police_stasi = {
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 4 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_100USD
+				}
+			}
+		}
+
+		POLICIES_cat_SEC_prison = { law = yes	use_list_view = yes 
+			POLICIES_cat_SEC_prison_frontier_justice = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 0 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_5USD
+				}
+			}
+			POLICIES_cat_SEC_prison_forced_labour = {
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 1 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_20USD
+				}
+			}
+			POLICIES_cat_SEC_prison_work_programmes = {
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 2 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_40USD
+				}
+			}
+			POLICIES_cat_SEC_prison_selected_rehabilitation = {
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 3 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_50USD
+				}
+			}
+			POLICIES_cat_SEC_prison_comprehensive_rehabilitation = {
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 4 } }	# failsafe
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_100USD
+				}
+			}
+		}
+
+	# POLICIES_cat_SOCL
+		POLICIES_cat_SOCL_education = { law = yes	use_list_view = yes			
+			POLICIES_cat_SOCL_education_anarchic_self_education = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 0 } }	# failsafe
+				modifier = {
+					political_power_factor = 0.10
+					stability_factor = 0.125
+					research_speed_factor = -0.25
+
+					custom_modifier_tooltip = "tt_ECON_law_tax_modifier_gen_-0.25%"
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_5USD
+				}
+			}
+			POLICIES_cat_SOCL_education_literacy_training = {
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 1 } }
+				modifier = {
+					political_power_factor = 0.05
+					stability_factor = 0.05
+					research_speed_factor = -0.125
+
+					custom_modifier_tooltip = "tt_ECON_law_tax_modifier_gen_-0.15%"
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_10USD
+				}
+			}
+			POLICIES_cat_SOCL_education_public_grade_school_system = {
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 2 } }
+				modifier = {
+					stability_factor = 0.025
+					research_speed_factor = -0.075
+
+					custom_modifier_tooltip = "tt_ECON_law_tax_modifier_gen_-0.05%"
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_20USD
+				}
+			}
+			POLICIES_cat_SOCL_education_free_primary = {
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 3 } }
+				modifier = {
+					research_speed_factor = -0.025
+
+					custom_modifier_tooltip = "tt_ECON_law_tax_modifier_gen_0.05%"
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_50USD
+				}
+			}
+			POLICIES_cat_SOCL_education_free_secondary = {
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 4 } }
+				modifier = {
+					stability_factor = -0.025
+					research_speed_factor = 0.025
+
+					custom_modifier_tooltip = "tt_ECON_law_tax_modifier_gen_0.1%"
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_100USD
+				}
+			}
+			POLICIES_cat_SOCL_education_free_tertiary = {
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 5 } }
+				modifier = {
+					stability_factor = -0.05
+					research_speed_factor = 0.075
+
+					custom_modifier_tooltip = "tt_ECON_law_tax_modifier_gen_0.2%"
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_200USD
+				}
+			}
+			POLICIES_cat_SOCL_education_free_higher = {
+				level = 6
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 6 } }
+				modifier = {
+					stability_factor = -0.1
+					research_speed_factor = 0.15
+
+					custom_modifier_tooltip = "tt_ECON_law_tax_modifier_gen_0.25%"
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_500USD
+				}
+			}
+		}
+
+		POLICIES_cat_SOCL_healthcare = { law = yes	use_list_view = yes			
+			POLICIES_cat_SOCL_healthcare_no_coverage = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 0 } }
+				modifier = {
+					political_power_factor = -0.1
+					stability_factor = -0.15
+					monthly_population = -0.2
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_5USD
+				}
+			}
+			POLICIES_cat_SOCL_healthcare_negotiated_coverage = { 
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 1 } }
+				modifier = {
+					political_power_factor = -0.05
+					stability_factor = -0.1
+					monthly_population = -0.1
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_10USD
+				}
+			}
+			POLICIES_cat_SOCL_healthcare_emergency_coverage = { 
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 2 } }
+				modifier = {
+					political_power_factor = 0
+					stability_factor = -0.05
+					monthly_population = 0
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_20USD
+				}
+			}
+			POLICIES_cat_SOCL_healthcare_state_insurance = { 
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 3 } }
+				modifier = {
+					political_power_factor = 0.05
+					stability_factor = 0
+					monthly_population = 0.1
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_50USD
+				}
+			}
+			POLICIES_cat_SOCL_healthcare_free_public_coverage = { 
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 4 } }
+				modifier = {
+					political_power_factor = 0.1
+					stability_factor = 0.05
+					monthly_population = 0.15
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_100USD
+				}
+			}
+			POLICIES_cat_SOCL_healthcare_single_payer_system = { 
+				level = 6
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 5 } }
+				modifier = {
+					political_power_factor = 0.2
+					stability_factor = 0.1
+					monthly_population = 0.2
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_200USD
+				}
+			}
+		}
+
+		POLICIES_cat_SOCL_pension = { law = yes	use_list_view = yes			
+			POLICIES_cat_SOCL_pension_none = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 0 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_0USD
+				}
+			}
+			POLICIES_cat_SOCL_pension_piecemeal = { 
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 1 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_5USD
+				}
+			}
+			POLICIES_cat_SOCL_pension_low = { 
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 2 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_10USD
+				}
+			}
+			POLICIES_cat_SOCL_pension_moderate = { 
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 3 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_25USD
+				}
+			}
+			POLICIES_cat_SOCL_pension_high = { 
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 4 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_50USD
+				}
+			}
+			POLICIES_cat_SOCL_pension_generous = { 
+				level = 6
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 5 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_100USD
+				}
+			}
+		}
+
+		POLICIES_cat_SOCL_benefits = { law = yes	use_list_view = yes			
+			POLICIES_cat_SOCL_benefits_none = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 0 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_0%_GDPC
+				}
+			}
+			POLICIES_cat_SOCL_benefits_piecemeal = { 
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 1 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_0.1%_GDPC
+				}
+			}
+			POLICIES_cat_SOCL_benefits_low = { 
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 2 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_0.25%_GDPC
+				}
+			}
+			POLICIES_cat_SOCL_benefits_moderate = { 
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 3 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_0.5%_GDPC
+				}
+			}
+			POLICIES_cat_SOCL_benefits_high = { 
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 4 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_0.75%_GDPC
+				}
+			}
+			POLICIES_cat_SOCL_benefits_generous = { 
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 5 } }
+				modifier = {
+					custom_modifier_tooltip = tt_ECON_law_capita_cost_1%_GDPC
+				}
+			}
+		}
+	# POLICIES_cat_MIL
+		POLICIES_cat_MIL_maintenance = { law = yes	use_list_view = yes 	
+			POLICIES_cat_MIL_maintenance_scavenge_loot = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 0 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_-20%"
+				}
+			}	
+			POLICIES_cat_MIL_maintenance_meagre_provisions = {
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 1 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_-10%"
+				}
+			}	
+			POLICIES_cat_MIL_maintenance_decent_support = {
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 2 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+-0%"
+				}
+			}	
+			POLICIES_cat_MIL_maintenance_expanded_coverage = {
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 3 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+10%"
+				}
+			}	
+			POLICIES_cat_MIL_maintenance_comfort_focus = {
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 4 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+20%"
+				}
+			}
+		}
+
+		POLICIES_cat_MIL_training = { law = yes	use_list_view = yes 	
+			POLICIES_cat_MIL_training_by_fire = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 0 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_-10%"
+				}
+			}	
+			POLICIES_cat_MIL_training_boot_camp = {
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 1 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+-0%"
+				}
+			}	
+			POLICIES_cat_MIL_training_rigorious_drilling = {
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 2 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+10%"
+				}
+			}	
+			POLICIES_cat_MIL_training_combat_schooling = {
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 3 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+20%"
+				}
+			}	
+			POLICIES_cat_MIL_training_extreme_methods = {	# All hail the Aussie SAS!
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 4 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+30%"
+				}
+			}	
+		}
+		
+		POLICIES_cat_MIL_oversight = { law = yes	use_list_view = yes
+			POLICIES_cat_MIL_oversight_encouraged_brutality = { default = yes
+				level = 1
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 0 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_-20%"
+				}
+			}	
+			POLICIES_cat_MIL_oversight_local_discretion = {
+				level = 2
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 1 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_-10%"
+				}
+			}	
+			POLICIES_cat_MIL_oversight_rules_of_engagement = {
+				level = 3
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 2 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+-0%"
+				}
+			}	
+			POLICIES_cat_MIL_oversight_designated_reporters = {
+				level = 4
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 3 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+10%"
+				}
+			}	
+			POLICIES_cat_MIL_oversight_combat_watchdogs = {
+				level = 5
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 4 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+20%"
+				}
+			}	
+			POLICIES_cat_MIL_oversight_duty_to_disobey = {	# Bundeswehr
+				level = 6
+				cost = 0	removal_cost = -1
+				allowed_to_remove = { always = no }
+
+				on_add = { set_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 5 } }
+				modifier = {
+					custom_modifier_tooltip = "tt_ECON_law_MIL_spending_+30%"
+				}
+			}	
+		}
+}
