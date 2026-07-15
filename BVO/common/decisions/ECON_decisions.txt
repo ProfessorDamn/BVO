@@ -1,4 +1,7 @@
 ECON_decisions = {
+	# Localisation
+	ECON_decision_LOC_income = { visible = { always = yes }	available = { always = no } }
+	ECON_decision_LOC_expenditures = { visible = { always = yes }	available = { always = no } }
 	# Factory allocation
 	ECON_decision_PU_civ_allocate_1 = {
 		visible = { always = yes }
