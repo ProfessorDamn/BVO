@@ -2,6 +2,11 @@ ECON_decisions = {
 	# Localisation
 	ECON_decision_LOC_income = { visible = { always = yes }	available = { always = no } }
 	ECON_decision_LOC_expenditures = { visible = { always = yes }	available = { always = no } }
+
+	ECON_decision_DEBUG = { visible = { always = yes }	available = { always = yes }
+		complete_effect = { IF = { limit = { check_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct > 0 } } add_to_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct } }
+											 set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
+											 multiply_variable = { ECON_arr_nat_GDP_growth_pct^1 = 12 } } }
 	# Factory allocation
 	ECON_decision_PU_civ_allocate_1 = {
 		visible = { always = yes }

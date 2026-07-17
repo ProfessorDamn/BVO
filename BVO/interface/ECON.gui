@@ -1,0 +1,46 @@
+guiTypes = {
+	containerWindowType = { name = "MOD_cWT"
+		position = { x = -17 y = -43 }
+		size = { width = 280 height = 70 }
+		orientation = CENTER
+		origo = left
+		clipping = no
+
+		background = { name = "bg"
+			quadTextureSprite = "GFX_MOD_cWT_bg_cTST"
+		}
+
+		instantTextBoxType = { name = "MOD_cWT_GUI_mgr_text"
+			position = { x = 10 y = 5 }
+			origo = center
+
+			text = "SELECT MANAGER"
+			font = "hoi4_18mbs"
+		}
+		
+		containerWindowType = { name = "ECON_cWT_toggle"
+			position = { x = 10 y = 30 }
+
+			iconType = { name = "ECON_cWT_GUI_icon"
+				spriteType = "GFX_non_available_factory_icon"
+				position = { x = 0 y = 1 }
+			}
+			buttonType = { name = "ECON_cWT_GUI_toggle_button"
+				position = { x = 30 y = 0 }
+				spriteType = "GFX_generic_box_smallest"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Economic"
+			}
+		}
+
+			iconType = {
+				name = "icon_occupied_territories"
+				spriteType = "GFX_non_available_factory_icon"
+				hide = yes
+				position = { x = 0 y = 1 }
+			}
+
+	}
+}

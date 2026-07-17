@@ -1,0 +1,20 @@
+scripted_gui = {
+	MOD_cWT = {
+		window_name = "MOD_cWT"
+		context_type = player_context
+		parent_window_token = politics_tab
+
+		visible = { always = yes }
+
+		effects = {
+			ECON_cWT_GUI_toggle_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_ECON_menu_toggle = 0 } }	set_variable = { MOD_cWT_var_ECON_menu_toggle = 1 } }
+				ELSE = { set_variable = { MOD_cWT_var_ECON_menu_toggle = 0 } }
+			}
+		}
+
+		triggers = {
+			icon_occupied_territories_visible = { check_variable = { MOD_cWT_var_ECON_menu_toggle = 1 } }
+		}
+	}
+}

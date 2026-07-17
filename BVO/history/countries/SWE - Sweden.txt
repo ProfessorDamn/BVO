@@ -127,7 +127,7 @@ if = {
 
 # ECON STUFF
 SWE = {
-	set_variable = { ECON_arr_nat_GDP_growth_pct^1 = 0.1344 }
+	set_variable = { ECON_arr_nat_GDP_growth_pct^2 = 0.1344 }
 	set_variable = { ECON_var_nat_inflation_pct_monthly = 0.00585 }
 
 	set_variable = { ECON_var_nat_PU_threshold_B = 1 }
@@ -137,27 +137,29 @@ SWE = {
 		set_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0.2 }	# <20% GDPC
 	set_variable = { ECON_var_nat_MISC_pensioners_pct = 0.137 }	# much depends on national pension reg
 
-	# Taxes (percentage)
-		set_variable = { ECON_arr_nat_REV_tax_rates_pct^1 = 0.21 }	# income
-			set_variable = { ECON_arr_nat_REV_tax_weight_pct^1 = 1 }
-		set_variable = { ECON_arr_nat_REV_tax_rates_pct^2 = 0.1 }	# poor people income
-			set_variable = { ECON_arr_nat_REV_tax_weight_pct^2 = 1 }
-		set_variable = { ECON_arr_nat_REV_tax_rates_pct^3 = 0.9 }	# business
-		set_variable = { ECON_arr_nat_REV_tax_rates_pct^4 = 0 }	# tariff
+	
 	
 	# Policies
+		# Fiscal (in separate custom GUI)
+			# Taxes (percentage)
+				set_variable = { ECON_arr_nat_REV_tax_rates_pct^1 = 0.21 }	# income
+					set_variable = { ECON_arr_nat_REV_tax_weight_pct^1 = 1 }
+				set_variable = { ECON_arr_nat_REV_tax_rates_pct^2 = 0.1 }	# poor people income
+					set_variable = { ECON_arr_nat_REV_tax_weight_pct^2 = 1 }
+				set_variable = { ECON_arr_nat_REV_tax_rates_pct^3 = 0.9 }	# business
+				set_variable = { ECON_arr_nat_REV_tax_rates_pct^4 = 0 }	# tariff
 		# Security [^5 [policing], ^6 [prison]]
-		set_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 2 }	# [0 - 5]
-		set_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 1 }	# [0 - 4]
+			set_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 2 }	# [0 - 5]
+			set_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 1 }	# [0 - 4]
 		# Social [^0 [education], ^1 [healthcare], ^2 [welfare], ^3 [(unemployment) benefits]]
-		set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 6 }	# [0 - 6]
-		set_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 5 }	# [0 - 5]
-		set_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 5 }	# [0 - 5]
-		set_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 5 }	# [0 - 5]
+			set_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 6 }	# [0 - 6]
+			set_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 5 }	# [0 - 5]
+			set_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 5 }	# [0 - 5]
+			set_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 5 }	# [0 - 5]
 		# Armed forces [^0 [maintenance], ^1 [training], ^2 [supervision]]
-		set_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 3 } 	# [0 - 4]
-		set_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 2 }	# [0 - 4]
-		set_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 4 }	# [0 - 5]
+			set_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 3 } 	# [0 - 4]
+			set_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 2 }	# [0 - 4]
+			set_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 4 }	# [0 - 5]
 }
 
 set_politics = {
