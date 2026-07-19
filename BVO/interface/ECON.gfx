@@ -14,8 +14,93 @@ spriteTypes = {
         allwaystransparent = no
         tilingCenter = yes
     }
+    corneredTileSpriteType = {
+        name = "GFX_MOD_cWT_white_bg_cTST"
+        texturefile = "gfx/interface/MOD_cWT_white_bgr.dds"
+        size = {
+            x = 1
+            y = 1
+        }
+        borderSize = {
+            x = 0
+            y = 0
+        }
+        
+        allwaystransparent = no
+        tilingCenter = yes
+    }
+    corneredTileSpriteType = {
+        name = "GFX_ECON_cWT_bg_cTST"
+        texturefile = "gfx/interface/ECON_cWT_bgr.dds"
+        size = {
+            x = 100
+            y = 100
+        }
+        borderSize = {
+            x = 5
+            y = 5
+        }
+        
+        allwaystransparent = no
+        tilingCenter = yes
+    }
+    corneredTileSpriteType = {
+        name = "GFX_ECON_cWT_blue_bg_cTST"
+        texturefile = "gfx/interface/ECON_cWT_blue_bgr.dds"
+        size = {
+            x = 100
+            y = 100
+        }
+        borderSize = {
+            x = 5
+            y = 5
+        }
+        
+        allwaystransparent = no
+        tilingCenter = yes
+    }
 	spriteType = {
-		name = "GFX_MOD_cWT_bg"
-		textureFile = "gfx/interface/MOD_cWT_bgr.dds"
+		name = "GFX_ECON_cWT_bg"
+		textureFile = "gfx/interface/ECON_cWT_bgr.dds"
+	}
+	
+    corneredTileSpriteType = {
+        name = "GFX_ECON_cWT_btn"
+        texturefile = "gfx/interface/ECON_cWT_btn_65x22.dds"
+        size = {
+            x = 61
+            y = 18
+        }
+        borderSize = {
+            x = 2
+            y = 2
+        }
+        
+        allwaystransparent = no
+        tilingCenter = yes
+    }
+	spriteType = {
+		name = "GFX_ECON_cWT_btn_65x22"
+		textureFile = "gfx/interface/ECON_cWT_btn_65x22.dds"
+	}
+	
+    corneredTileSpriteType = {
+        name = "GFX_ECON_cWT_txt"
+        texturefile = "gfx/interface/ECON_cWT_txt_27x20.dds"
+        size = {
+            x = 23
+            y = 16
+        }
+        borderSize = {
+            x = 2
+            y = 2
+        }
+        
+        allwaystransparent = no
+        tilingCenter = yes
+    }
+	spriteType = {
+		name = "GFX_ECON_cWT_txt_27x20"
+		textureFile = "gfx/interface/ECON_cWT_txt_27x20.dds"
 	}
 }

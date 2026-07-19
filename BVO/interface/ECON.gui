@@ -1,46 +1,418 @@
 guiTypes = {
 	containerWindowType = { name = "MOD_cWT"
-		position = { x = -17 y = -43 }
-		size = { width = 280 height = 70 }
-		orientation = CENTER
+		position = { x = 0 y = -335 }
+		size = { width = 100% height = 30 }
+		orientation = CENTER_LEFT
 		origo = left
 		clipping = no
 
-		background = { name = "bg"
-			quadTextureSprite = "GFX_MOD_cWT_bg_cTST"
-		}
-
-		instantTextBoxType = { name = "MOD_cWT_GUI_mgr_text"
-			position = { x = 10 y = 5 }
-			origo = center
-
-			text = "SELECT MANAGER"
-			font = "hoi4_18mbs"
-		}
+	#	background = { name = "bg"	quadTextureSprite = "GFX_MOD_cWT_bg_cTST" }
 		
 		containerWindowType = { name = "ECON_cWT_toggle"
-			position = { x = 10 y = 30 }
+			position = { x = 500 y = 0 }
+			size = { width = 20% height = 30 }
+
+			background = { name = "ECON_cWT_toggle_bg"	quadTextureSprite = "GFX_ECON_cWT_blue_bg_cTST" }
 
 			iconType = { name = "ECON_cWT_GUI_icon"
 				spriteType = "GFX_non_available_factory_icon"
-				position = { x = 0 y = 1 }
+				position = { x = 20 y = 3 }
 			}
 			buttonType = { name = "ECON_cWT_GUI_toggle_button"
-				position = { x = 30 y = 0 }
-				spriteType = "GFX_generic_box_smallest"
+				position = { x = 50 y = 5 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
 				orientation = UPPER_LEFT
 				
 				buttonFont = hoi_16mbs
-				buttonText = "Economic"
+				buttonText = "[?MOD_cWT_var_ECON_menu_type]"
 			}
 		}
 
-			iconType = {
-				name = "icon_occupied_territories"
-				spriteType = "GFX_non_available_factory_icon"
-				hide = yes
-				position = { x = 0 y = 1 }
+		containerWindowType = { name = "ECON_cWT_replacement_text"
+			position = { x = 0 y = 0 }
+			size = { width = 60% height = 30 }
+		
+			# background = { name = "ECON_cWT_replacement_text_bg" #quadTextureSprite = "GFX_MOD_cWT_blue_bg_cTST" }
+		
+			buttonType = { name = "ECON_cWT_UI_replacement_text"
+				text = "ECONOMIC CONTROL PANEL"	quadTextureSprite = "GFX_ECON_cWT_blue_bg_cTST"
+
+				position = { x = 0 y = 0 }	size = { width = 500 height = 30 }
+				orientation = UPPER_LEFT
+				font = hoi_20b
+			}
+		}
+	}
+	
+	containerWindowType = { name = "ECON_cWT"
+		position = { x = 0 y = 40 }
+		size = { width = 100% height = 100% }
+		orientation = UPPER_LEFT
+		origo = upper_left
+
+		background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+		containerWindowType = { name = "ECON_cWT_inflation"
+			position = { x = 5% y = 10 } size = { width = 30% height = 40% }
+			background = { name = "ECON_cWT_inflation_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+				containerWindowType = { name = "ECON_cWT_inflation_graph"
+					position = { x = 5% y = 5% }	size = { width = 90% height = 50% }
+					background = { name = "b"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+					instantTextBoxType = { name = "ECON_cWT_inflation_graph_text"
+						position = { x = 0% y = 0 }	maxWidth = 180%
+						format = centre	font = hoi_18mbs
+						text = "Inflation [?ECON_var_nat_inflation_pct_monthly|-%]"
+					}
+				}
+		}
+
+		containerWindowType = { name = "ECON_cWT_GDP"
+			position = { x = 35% y = 10 } size = { width = 30% height = 40% }
+			background = { name = "ECON_cWT_GDP_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+			containerWindowType = { name = "ECON_cWT_GDP_graph"
+				position = { x = 5% y = 5% }	size = { width = 90% height = 50% }
+				background = { name = "b"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+				instantTextBoxType = { name = "ECON_cWT_GDP_graph_text"
+					position = { x = 44% y = 0 }	maxWidth = 100%
+					format = centre	font = hoi_18mbs
+					text = "GDP [?ECON_arr_nat_GDP_B^1|+^] B"
+				}
 			}
 
+			instantTextBoxType = { name = "ECON_cWT_GDP_nominal_text"
+				position = { x = 5 y = 165 }	maxWidth = 100
+				format = right font = Arial12
+				text = "GDP (nominal):"
+			}
+			instantTextBoxType = { name = "ECON_cWT_GDP_nominal"
+				position = { x = 110 y = 165 }	maxWidth = 100
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_GDP_B^0|+^] B"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_growth_text"
+				position = { x = 5 y = 180 }	maxWidth = 100
+				format = right font = Arial12
+				text = "GDP (nom.) growth:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_GDP_growth"
+				position = { x = 110 y = 180 }	maxWidth = 90
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_GDP_growth_pct^0|+%]"
+				pdx_tooltip = "ECON_tt_GDP_growth"	pdx_tooltip_delayed = "ECON_tt_GDP_growth_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_deflator_text"
+				position = { x = 5 y = 195 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Deflator:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_GDP_deflator"
+				position = { x = 110 y = 195 }	maxWidth = 90
+				format = left font = hoi_16mbs
+				text = "[?ECON_var_td_nat_GDP_deflator_pct|-%]"
+				pdx_tooltip = "ECON_tt_deflator"	pdx_tooltip_delayed = "ECON_tt_deflator_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_line_text_because_reasons"
+				position = { x = 110 y = 210 }	maxWidth = 50
+				format = left font = Arial12
+				text = "________"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_real_text"
+				position = { x = 5 y = 225 }	maxWidth = 100
+				format = right font = Arial12
+				text = "GDP (real):"
+			}
+			instantTextBoxType = { name = "ECON_cWT_GDP_real"
+				position = { x = 110 y = 225 }	maxWidth = 90
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_GDP_B^1|+^] B"
+				pdx_tooltip = "ECON_tt_GDP_real_per_capita"	pdx_tooltip_delayed = "ECON_tt_GDP_real_per_capita_delayed"
+			}
+
+			buttonType = { name = "ECON_cWT_GDP_econ_laws_button"
+				position = { x = 10 y = 250 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Law"
+				pdx_tooltip = "ECON_tt_GDP_Law_menu"
+			}
+
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_button"	# ECON_cWT_GDP_PU_distrib_menu
+				position = { x = 135 y = 250 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Distrib."
+				pdx_tooltip = "ECON_tt_GDP_PU_menu"
+			}
+		}
+		containerWindowType = { name = "ECON_cWT_RSV"
+			position = { x = 65% y = 10 } size = { width = 30% height = 40% }
+			background = { name = "ECON_cWT_RSV_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+			
+			containerWindowType = { name = "ECON_cWT_RSV_graph"
+				position = { x = 5% y = 5% }	size = { width = 90% height = 50% }
+				background = { name = "b"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+				instantTextBoxType = { name = "ECON_cWT_RSV_graph_text"
+					position = { x = 0% y = 0 }	maxWidth = 180
+					format = centre	font = hoi_18mbs
+					text = "[MOD_cWT_RSV_graph_actual_state_of_the_treasury]"
+				}
+			}
+		}
 	}
+
+	containerWindowType = { name = "ECON_cWT_duplicate"
+		position = { x = 5% y = 48% }
+		size = { width = 90% height = 50% }
+		orientation = UPPER_LEFT
+		origo = upper_left
+
+		background = { name = "ECON_cWT_duplicate_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+		containerWindowType = { name = "ECON_cWT_duplicate_current"
+			position = { x = 2 y = 2 } size = { width = 99% height = 30 }
+			background = { name = "ECON_cWT_duplicate_current_bg"	quadTextureSprite = "GFX_ECON_cWT_blue_bg_cTST" }
+
+			instantTextBoxType = { name = "ECON_cWT_duplicate_UI_current"
+				position = { x = 10 y = 4 } maxWidth = 585
+				format = left font = hoi_20b
+				text = "[MOD_cWT_var_ECON_alt_menu_cur_text]"
+			}
+		}
+	}
+		containerWindowType = { name = "ECON_cWT_GDP_PU_distrib_menu"
+			position = { x = 8% y = 55% }	size = { width = 84% height = 40% }
+
+			#background = { name = "ECON_cWT_GDP_PU_distrib_menu_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+			
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_total_text"
+				position = { x = 15 y = 90 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Production Units"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_total"
+				position = { x = 125 y = 88 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_var_nat_PU_total]"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_consumer_goods_text"
+				position = { x = 15 y = 115 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Consumer Goods"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_consumer_goods"
+				position = { x = 125 y = 113 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^5]"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_line_text_because_reasons"
+				position = { x = 125 y = 135 }	maxWidth = 50
+				format = left font = Arial12
+				text = "________"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_unassigned_text"
+				position = { x = 15 y = 154 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Not Assigned"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_unassigned"
+				position = { x = 125 y = 150 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^0]"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_text"
+				position = { x = 195 y = 45 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Assign to Civ."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ"
+				position = { x = 305 y = 43 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^2]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_1"
+					position = { x = 370 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_2"
+					position = { x = 405 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_5"
+					position = { x = 440 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_10"
+					position = { x = 475 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_1"
+					position = { x = 370 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_2"
+					position = { x = 405 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_5"
+					position = { x = 440 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_10"
+					position = { x = 475 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-10"
+				}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_text"
+				position = { x = 195 y = 125 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Assign to Mil."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil"
+				position = { x = 305 y = 123 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^3]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_1"
+					position = { x = 370 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_2"
+					position = { x = 405 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_5"
+					position = { x = 440 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_10"
+					position = { x = 475 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_1"
+					position = { x = 370 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_2"
+					position = { x = 405 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_5"
+					position = { x = 440 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_10"
+					position = { x = 475 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-10"
+				}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_text"
+				position = { x = 195 y = 205 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Assign to Dock."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav"
+				position = { x = 305 y = 203 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^4]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_1"
+					position = { x = 370 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_2"
+					position = { x = 405 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_5"
+					position = { x = 440 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_10"
+					position = { x = 475 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_1"
+					position = { x = 370 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_2"
+					position = { x = 405 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_5"
+					position = { x = 440 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_10"
+					position = { x = 475 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-10"
+				}
+		}
 }

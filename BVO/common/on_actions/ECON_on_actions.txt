@@ -74,7 +74,7 @@ on_actions = {
 	on_startup = { 
 		effect = { every_country = { 	# these are to be on-startup ONLY.
 			IF = { limit = { check_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0 } }	set_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0.2 } }
-			IF = { limit = { check_variable = { ECON_var_nat_EXP_interest_pct = 0 } } set_variable = { ECON_var_nat_EXP_interest_pct = 0.005 } }	# REPLACE WITH SET FINANCIAL RATING LATER
+			IF = { limit = { check_variable = { ECON_var_nat_EXP_interest_pct = 0 } } set_variable = { ECON_var_nat_EXP_interest_pct = 0.005 } }	# REPLACE WITH SET CREDIT RATING LATER
 			# ARMED FORCES MAINTENANCE
 				# GROUND FORCES
 					# COMBAT BNS
@@ -418,12 +418,15 @@ on_actions = {
 					multiply_variable = { ECON_var_nat_MISC_pensioners_K = ECON_var_nat_MISC_pensioners_pct }
 		
 		# GROSS DOMESTIC PRODUCT _ the metric of growth
+			# GROSS DOMESTIC PRODUCT _ the metric of growth
+			set_variable = { ECON_arr_nat_GDP_B^0 = 0 }
 			# Nominal growth yearly -> monthly & deficit spending bonus
 				set_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_GDP_growth_pct^2 }
 				divide_variable = { ECON_arr_nat_GDP_growth_pct^0 = 12 }
-				IF = { limit = { check_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct > 0 } } add_to_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct } }
+			#	IF = { limit = { check_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct > 0 } } add_to_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct } }
 					set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
 					multiply_variable = { ECON_arr_nat_GDP_growth_pct^1 = 12 }	# accounting for other changes
+			
 			# State
 				every_owned_state = {
 					set_variable = { ECON_var_state_GDP_growth_B = ECON_var_state_GDP_nominal_B }
@@ -431,17 +434,24 @@ on_actions = {
 					add_to_variable = { ECON_var_state_GDP_nominal_B = ECON_var_state_GDP_growth_B }
 					add_to_variable = { PREV.ECON_arr_nat_GDP_B^0 = ECON_var_state_GDP_nominal_B }
 				}
+			
 			# Nominal -> Real
 				set_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_B^0 }
 
 				set_variable = { ECON_var_td_nat_GDP_deflator_pct = 1 }	# (nominal / deflator (1 + inflation))
-				add_to_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_var_nat_inflation_pct_monthly }
-				divide_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_var_td_nat_GDP_deflator_pct }
+				subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_var_nat_inflation_pct_monthly }
+				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_var_td_nat_GDP_deflator_pct }
 				#multiply_variable = { ECON_var_td_nat_GDP_B_nominal = 100 }
-
 				set_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }	# [GDP (Real)]
-				clear_variable = ECON_var_td_nat_GDP_B_nominal
-				clear_variable = ECON_var_td_nat_GDP_deflator_pct
+			
+				# modding values for display (GDP growth, deflator)
+					set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }
+					set_variable = { ECON_var_td_nat_GDP_deflator_to_1_pct = 1 }
+					subtract_from_variable = { ECON_var_td_nat_GDP_deflator_to_1_pct = ECON_var_td_nat_GDP_deflator_pct }
+					multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_to_1_pct }
+
+					set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
+					multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_growth_pct^0 }
 
 				set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
 				divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
@@ -745,13 +755,479 @@ on_actions = {
 					ELSE = { set_variable = { ECON_arr_nat_EXP_sources_B^2 = 0 } }	# reserves positive = not indebted = not paying interest
 					subtract_from_variable = { ECON_var_nat_RSV_budget_B = ECON_arr_nat_EXP_sources_B^2 }
 					subtract_from_variable = { ECON_var_nat_RSV_liquid_B = ECON_arr_nat_EXP_sources_B^2 }
-
-				# Deficit spending bonus
-					set_variable = { ECON_var_nat_RSV_budget_per_GDP_pct = ECON_var_nat_RSV_budget_B }
-					divide_variable = { ECON_var_nat_RSV_budget_per_GDP_pct = ECON_arr_nat_GDP_B^1 }	# real GDP
-						set_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = ECON_var_nat_RSV_budget_per_GDP_pct }
-						divide_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = 10 }
-						multiply_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = -1 }
 		} 
+	} }
+	on_weekly = { 
+		effect = {	# RELEASE ALL CONTENTS OF every_country = {...} BLOCKS AND DELETE THEM.
+		# STAGE SETTING _ relevant variables that are not in any way purely economic
+			# ARM
+				# Bns. & Coys. sorting
+					set_variable = { POLICIES_arr_nat_ARM_sorted_units^0 = num_battalions_with_type@infantry }	# infantry
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^0 = num_battalions_with_type@artillery_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^0 = num_battalions_with_type@anti_tank_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^0 = num_battalions_with_type@anti_air_brigade }
+					set_variable = { POLICIES_arr_nat_ARM_sorted_units^1 = num_battalions_with_type@cavalry }	# cav, light inf & irreg
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^1 = num_battalions_with_type@camelry }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^1 = num_battalions_with_type@bicycle_battalion }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^1 = num_battalions_with_type@irregular_infantry }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^1 = num_battalions_with_type@militia }
+					set_variable = {  POLICIES_arr_nat_ARM_sorted_units^2 = num_battalions_with_type@mountaineers }	# ground SF
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^2 = num_battalions_with_type@paratrooper }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^2 = num_battalions_with_type@marine }
+					set_variable = { POLICIES_arr_nat_ARM_sorted_units^3 = num_battalions_with_type@motorized }	# motorised
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^3 = num_battalions_with_type@mot_artillery_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^3 = num_battalions_with_type@mot_anti_tank_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^3 = num_battalions_with_type@mot_anti_air_brigade }
+					set_variable = { POLICIES_arr_nat_ARM_sorted_units^4 = num_battalions_with_type@mechanized }	# APC
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^4 = num_battalions_with_type@amphibious_mechanized }
+					set_variable = { POLICIES_arr_nat_ARM_sorted_units^5 = num_battalions_with_type@light_armor }	# IFV
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^5 = num_battalions_with_type@light_sp_anti_air_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^5 = num_battalions_with_type@light_sp_artillery_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^5 = num_battalions_with_type@light_tank_destroyer_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^5 = num_battalions_with_type@amphibious_armor }
+					set_variable = { POLICIES_arr_nat_ARM_sorted_units^6 = num_battalions_with_type@modern_armor }	# MBT
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^6 = num_battalions_with_type@modern_sp_anti_air_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^6 = num_battalions_with_type@modern_sp_artillery_brigade }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^6 = num_battalions_with_type@modern_tank_destroyer_brigade }
+
+					set_variable = { POLICIES_arr_nat_ARM_sorted_units^7 = num_battalions_with_type@helicopter_brigade }	# heli SF
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^7 = num_battalions_with_type@helicopter_field_hospital }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^7 = num_battalions_with_type@helicopter_recon }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^7 = num_battalions_with_type@helicopter_transport }
+					set_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@anti_air }	# other spt
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@anti_tank }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@artillery }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@engineer }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@field_hospital }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@light_tank_recon }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@logistics_company }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@maintenance_company }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@military_police }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@mot_recon }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@recon }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@rocket_artillery }
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_units^8 = num_battalions_with_type@signal_company }
+				# Ships sorting
+					set_variable = { POLICIES_arr_nat_ARM_sorted_ships^0 = num_ships_with_type@submarine }	# subbies
+					set_variable = { POLICIES_arr_nat_ARM_sorted_ships^1 = 0 }	# corvettes & frigates
+					set_variable = { POLICIES_arr_nat_ARM_sorted_ships^2 = num_ships_with_type@destroyer }	# destroyers
+					set_variable = { POLICIES_arr_nat_ARM_sorted_ships^3 = num_ships_with_type@light_cruiser }	# cruisers
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_ships^3 = num_ships_with_type@heavy_cruiser }	
+					set_variable = { POLICIES_arr_nat_ARM_sorted_ships^4 = num_ships_with_type@battle_cruiser }	# bat cruiser & ship
+						add_to_variable = { POLICIES_arr_nat_ARM_sorted_ships^4 = num_ships_with_type@battleship }	
+					set_variable = { POLICIES_arr_nat_ARM_sorted_ships^5 = num_ships_with_type@carrier }	# CV
+				# Planes sorting - add all post-research tree shakeup equipment here & find ways to implement multirole
+					set_variable = { POLICIES_arr_nat_ARM_sorted_aircrafts^0 = num_deployed_planes_with_type@small_plane_airframe }	# ftr
+					set_variable = { POLICIES_arr_nat_ARM_sorted_aircrafts^1 = num_deployed_planes_with_type@small_plane_cas_airframe }	# cas
+					set_variable = { POLICIES_arr_nat_ARM_sorted_aircrafts^2 = num_deployed_planes_with_type@medium_plane_fighter_airframe }	# int
+					set_variable = { POLICIES_arr_nat_ARM_sorted_aircrafts^3 = num_deployed_planes_with_type@small_plane_naval_bomber_airframe }	# navb
+					set_variable = { POLICIES_arr_nat_ARM_sorted_aircrafts^4 = 0 }	# multirole
+					set_variable = { POLICIES_arr_nat_ARM_sorted_aircrafts^5 = num_deployed_planes_with_type@medium_plane_airframe }	# tac
+					set_variable = { POLICIES_arr_nat_ARM_sorted_aircrafts^6 = num_deployed_planes_with_type@large_plane_airframe }	# strat
+					set_variable = { POLICIES_arr_nat_ARM_sorted_aircrafts^7 = num_deployed_planes_with_type@transport_plane_equipment }	# tsp
+				# Modifiers reset & count
+					set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^0 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^1 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^2 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^3 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^4 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^5 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^6 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^7 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^8 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 1 }
+					set_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^0 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^1 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^2 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^3 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^4 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^5 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 1 }
+					set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^0 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^1 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^2 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^3 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^4 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^5 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^6 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^7 = 1 }	set_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 1 }
+					# Maintenance
+						IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 0 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_maintenance_scavenge_loot } } add_ideas = POLICIES_cat_MIL_maintenance_scavenge_loot }
+							subtract_from_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.2 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.2 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.2 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 1 } }
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_maintenance_meagre_provisions } } add_ideas = POLICIES_cat_MIL_maintenance_meagre_provisions }
+							subtract_from_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.1 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.1 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.1 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 2 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_maintenance_decent_support } } add_ideas = POLICIES_cat_MIL_maintenance_decent_support } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 3 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_maintenance_expanded_coverage } } add_ideas = POLICIES_cat_MIL_maintenance_expanded_coverage } 
+							add_to_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.1 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.1 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.1 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^0 = 4 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_maintenance_comfort_focus } } add_ideas = POLICIES_cat_MIL_maintenance_comfort_focus } 
+							add_to_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.2 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.2 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.2 } }
+					# Training
+						IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 0 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_training_by_fire } } add_ideas = POLICIES_cat_MIL_training_by_fire }
+							subtract_from_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.1 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.1 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.1 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 1 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_training_boot_camp } } add_ideas = POLICIES_cat_MIL_training_boot_camp } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 2 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_training_rigorious_drilling } } add_ideas = POLICIES_cat_MIL_training_rigorious_drilling } 
+							add_to_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.1 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.1 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.1 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 3 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_training_combat_schooling } } add_ideas = POLICIES_cat_MIL_training_combat_schooling } 
+							add_to_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.2 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.2 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.2 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^1 = 4 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_training_extreme_methods } } add_ideas = POLICIES_cat_MIL_training_extreme_methods } 
+							add_to_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.3 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.3 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.3 } }
+					# Supervision
+						IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 0 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_oversight_encouraged_brutality } } add_ideas = POLICIES_cat_MIL_oversight_encouraged_brutality }
+							subtract_from_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.2 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.2 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.2 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 1 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_oversight_local_discretion } } add_ideas = POLICIES_cat_MIL_oversight_local_discretion }
+							subtract_from_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.1 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.1 }	subtract_from_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.1 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 2 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_oversight_rules_of_engagement } } add_ideas = POLICIES_cat_MIL_oversight_rules_of_engagement } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 3 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_oversight_designated_reporters } } add_ideas = POLICIES_cat_MIL_oversight_designated_reporters } 
+							add_to_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.1 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.1 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.1 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 4 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_oversight_combat_watchdogs } } add_ideas = POLICIES_cat_MIL_oversight_combat_watchdogs } 
+							add_to_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.2 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.2 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.2 } }
+						ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_ARM_progress_level^2 = 5 } } 
+							IF = { limit = { NOT = { has_idea = POLICIES_cat_MIL_oversight_duty_to_disobey } } add_ideas = POLICIES_cat_MIL_oversight_duty_to_disobey } 
+							add_to_variable = { POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 = 0.3 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 = 0.3 }	add_to_variable = { POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 = 0.3 } }
+
+			# MISC [WIP]
+				# Unemployment
+					set_variable = { ECON_var_nat_MISC_unemployment_K = max_manpower_k }
+					multiply_variable = { ECON_var_nat_MISC_unemployment_K = ECON_var_nat_MISC_unemployment_pct }
+				# Poverty
+					set_variable = { ECON_var_nat_MISC_poverty_K = max_manpower_k }
+					multiply_variable = { ECON_var_nat_MISC_poverty_K = ECON_var_nat_MISC_poverty_rate_pct }
+						set_variable = { ECON_var_nat_MISC_poverty_NOT_K = max_manpower_k }
+						subtract_from_variable = { ECON_var_nat_MISC_poverty_NOT_K = ECON_var_nat_MISC_poverty_K }
+				# Pensioners
+					set_variable = { ECON_var_nat_MISC_pensioners_K = max_manpower_k }
+					multiply_variable = { ECON_var_nat_MISC_pensioners_K = ECON_var_nat_MISC_pensioners_pct }
+		
+		# GROSS DOMESTIC PRODUCT _ the metric of growth
+			set_variable = { ECON_arr_nat_GDP_B^0 = 0 }
+			# Nominal growth yearly -> monthly & deficit spending bonus
+				set_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_GDP_growth_pct^2 }
+				divide_variable = { ECON_arr_nat_GDP_growth_pct^0 = 12 }
+			#	IF = { limit = { check_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct > 0 } } add_to_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct } }
+					set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
+					multiply_variable = { ECON_arr_nat_GDP_growth_pct^1 = 12 }	# accounting for other changes
+			
+			# State
+				every_owned_state = {
+					set_variable = { ECON_var_state_GDP_growth_B = ECON_var_state_GDP_nominal_B }
+					multiply_variable = { ECON_var_state_GDP_growth_B = PREV.ECON_arr_nat_GDP_growth_pct^0 }
+					add_to_variable = { ECON_var_state_GDP_nominal_B = ECON_var_state_GDP_growth_B }
+					add_to_variable = { PREV.ECON_arr_nat_GDP_B^0 = ECON_var_state_GDP_nominal_B }
+				}
+			
+			# Nominal -> Real
+				set_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_B^0 }
+
+				set_variable = { ECON_var_td_nat_GDP_deflator_pct = 1 }	# (nominal / deflator (1 + inflation))
+				subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_var_nat_inflation_pct_monthly }
+				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_var_td_nat_GDP_deflator_pct }
+				#multiply_variable = { ECON_var_td_nat_GDP_B_nominal = 100 }
+				set_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }	# [GDP (Real)]
+			
+				# modding values for display (GDP growth, deflator)
+					set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }
+					set_variable = { ECON_var_td_nat_GDP_deflator_to_1_pct = 1 }
+					subtract_from_variable = { ECON_var_td_nat_GDP_deflator_to_1_pct = ECON_var_td_nat_GDP_deflator_pct }
+					multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_to_1_pct }
+
+					set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
+					multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_growth_pct^0 }
+
+				set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
+				divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
+				multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
+				
+				log = "COUNTRY [THIS] ... GDP N [?ECON_arr_nat_GDP_B^0]B  R [?ECON_arr_nat_GDP_B^1]B  /C [?ECON_var_nat_GDP_capita_K]K"
+		
+		# PRODUCTION UNITS _ usual overcomplicating oversimplification
+			# PU calculation
+				IF = { limit = { check_variable = { ECON_var_nat_PU_threshold_B = 0 } }	# in case national threshold unspecified
+					set_variable = { ECON_var_nat_PU_threshold_B = 0.1 } }
+				set_variable = { ECON_var_nat_PU_total = ECON_arr_nat_GDP_B^1 }
+				divide_variable = { ECON_var_nat_PU_total = ECON_var_nat_PU_threshold_B }
+				round_variable = ECON_var_nat_PU_total
+					set_variable = { ECON_arr_nat_PU_assignment^0 = ECON_var_nat_PU_total }	# unassigned PUs
+				
+				set_variable = { ECON_arr_nat_PU_consumer_goods_pct^0 = modifier@consumer_goods_expected_value }
+					set_variable = { ECON_arr_nat_PU_consumer_goods_pct^1 = 1 }
+					add_to_variable = { ECON_arr_nat_PU_consumer_goods_pct^1 = modifier@consumer_goods_factor }
+				multiply_variable = { ECON_arr_nat_PU_consumer_goods_pct^0 = ECON_arr_nat_PU_consumer_goods_pct^1 }
+
+				set_variable = { ECON_arr_nat_PU_assignment^5 = ECON_var_nat_PU_total }	# consumer goods
+				multiply_variable = { ECON_arr_nat_PU_assignment^5 = ECON_arr_nat_PU_consumer_goods_pct^0 }
+				round_variable = ECON_arr_nat_PU_assignment^5
+
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = ECON_arr_nat_PU_assignment^5 }
+
+				IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^1 > ECON_var_nat_PU_total } } 	# assigned > real PUs - production capacity reduction
+					IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^4 > 0 } } 
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^4 = 1 } }	# hit naval production first
+					ELSE_IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^2 > 0 } } 
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^2 = 1 } }	# civilian second
+					ELSE_IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^3 > 0 } } 
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^3 = 1 } }	# military third
+					ELSE = { subtract_from_variable = { ECON_arr_nat_PU_assignment^5 = 1} }	# goods last
+				}
+
+		# RESERVE, REVENUE, EXPENDITURE _ Greece, 2011
+			# Revenue
+				# Taxes
+						# Tax modifiers - [Ctrl+F] to find reasoning
+						set_variable = { ECON_arr_nat_REV_tax_rates_modifier_pct^0 = 1 }	set_variable = { ECON_arr_nat_REV_tax_rates_modifier_pct^1 = 1 }	set_variable = { ECON_arr_nat_REV_tax_rates_modifier_pct^2 = 1 }
+						add_to_variable = { ECON_arr_nat_REV_tax_rates_modifier_pct^0 = POLICIES_arr_nat_SOCL_tax_rate_modifier_pct^0 }
+
+					set_variable = { ECON_arr_nat_REV_sources_B^1 = ECON_var_nat_MISC_poverty_NOT_K }	# Income tax - above poverty
+						multiply_variable = { ECON_arr_nat_REV_sources_B^1 = ECON_var_nat_GDP_capita_K }
+						multiply_variable = { ECON_arr_nat_REV_sources_B^1 = ECON_arr_nat_REV_tax_rates_pct^1 }
+						multiply_variable = { ECON_arr_nat_REV_sources_B^1 = ECON_arr_nat_REV_tax_rates_modifier_pct^0 }	# General modifier
+						multiply_variable = { ECON_arr_nat_REV_sources_B^1 = ECON_arr_nat_REV_tax_rates_modifier_pct^1 }	# Specific modifier
+						divide_variable = { ECON_arr_nat_REV_sources_B^1 = 1000 }
+						set_variable = { ECON_arr_nat_REV_sources_B^0 = ECON_arr_nat_REV_sources_B^1 }
+					set_variable = { ECON_arr_nat_REV_sources_B^2 = ECON_var_nat_MISC_poverty_K }	# Income tax - below poverty
+						multiply_variable = { ECON_arr_nat_REV_sources_B^2 = ECON_var_nat_GDP_capita_K }
+						multiply_variable = { ECON_arr_nat_REV_sources_B^2 = ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC }
+						multiply_variable = { ECON_arr_nat_REV_sources_B^2 = ECON_arr_nat_REV_tax_rates_pct^2 }
+						multiply_variable = { ECON_arr_nat_REV_sources_B^2 = ECON_arr_nat_REV_tax_rates_modifier_pct^0 }	# General modifier
+						multiply_variable = { ECON_arr_nat_REV_sources_B^2 = ECON_arr_nat_REV_tax_rates_modifier_pct^2 }	# Specific modifier
+						divide_variable = { ECON_arr_nat_REV_sources_B^2 = 1000 }
+						add_to_variable = { ECON_arr_nat_REV_sources_B^0 = ECON_arr_nat_REV_sources_B^2 }
+					set_variable = { ECON_arr_nat_REV_sources_B^3 = ECON_arr_nat_PU_assignment^5 }	# Business tax - on consumer goods production
+						multiply_variable = { ECON_arr_nat_REV_sources_B^3 = ECON_var_nat_PU_threshold_B }
+						multiply_variable = { var:ECON_arr_nat_REV_sources_B^3 = ECON_arr_nat_REV_tax_rates_pct^3 }	# Business tax rate
+						add_to_variable = { ECON_arr_nat_REV_sources_B^0 = ECON_arr_nat_REV_sources_B^3 }
+					set_variable = { ECON_arr_nat_REV_sources_B^4 = 0 }	# Tariffs - all imported multiply value multiply this
+						add_to_variable = { ECON_arr_nat_REV_sources_B^0 = ECON_arr_nat_REV_sources_B^4 }
+				# Misc
+					set_variable = { ECON_arr_nat_REV_sources_B^5 = 0 }
+				set_variable = { ECON_var_nat_REV_B = ECON_arr_nat_REV_sources_B^0 }	# redundant but ORDNUNG MUSS SEIN!
+			# Expenditure
+				# Civilian
+					# Spending levels application
+					# SEC
+						# Policing
+							set_variable = { ECON_arr_nat_EXP_SEC_capita^5 = POLICIES_arr_nat_SEC_spending_capita_K^5 }
+
+							set_variable = { ECON_arr_nat_EXP_SEC_B^5 = max_manpower_k }
+								multiply_variable = { ECON_arr_nat_EXP_SEC_B^5 = ECON_arr_nat_EXP_SEC_capita^5 }
+								divide_variable = { ECON_arr_nat_EXP_SEC_B^5 = 1000 }
+								set_variable = { ECON_arr_nat_EXP_sources_B^0 = ECON_arr_nat_EXP_SEC_B^5 }
+						# Prison
+							set_variable = { ECON_arr_nat_EXP_SEC_capita^6 = POLICIES_arr_nat_SEC_spending_capita_K^6 }
+
+							set_variable = { ECON_arr_nat_EXP_SEC_B^6 = max_manpower_k }	# should later be per prison building
+								multiply_variable = { ECON_arr_nat_EXP_SEC_B^6 = ECON_arr_nat_EXP_SEC_capita^6 }
+								divide_variable = { ECON_arr_nat_EXP_SEC_B^6 = 1000 }
+								set_variable = { ECON_arr_nat_EXP_sources_B^0 = ECON_arr_nat_EXP_SEC_B^6 }
+					# SOCL
+						# Education
+							set_variable = { ECON_arr_nat_EXP_SOCL_capita^0 = POLICIES_arr_nat_SOCL_spending_capita_K^0 }
+
+							set_variable = { ECON_arr_nat_EXP_SOCL_B^0 = max_manpower_k }
+								multiply_variable = { ECON_arr_nat_EXP_SOCL_B^0 = ECON_arr_nat_EXP_SOCL_capita^0 }
+								divide_variable = { ECON_arr_nat_EXP_SOCL_B^0 = 1000 }
+								set_variable = { ECON_arr_nat_EXP_sources_B^0 = ECON_arr_nat_EXP_SOCL_B^0 }
+						# Healthcare
+							set_variable = { ECON_arr_nat_EXP_SOCL_capita^1 = POLICIES_arr_nat_SOCL_spending_capita_K^1 }
+
+							set_variable = { ECON_arr_nat_EXP_SOCL_B^1 = max_manpower_k }
+								multiply_variable = { ECON_arr_nat_EXP_SOCL_B^1 = ECON_arr_nat_EXP_SOCL_capita^1 }
+								divide_variable = { ECON_arr_nat_EXP_SOCL_B^1 = 1000 }
+								add_to_variable = { ECON_arr_nat_EXP_sources_B^0 = ECON_arr_nat_EXP_SOCL_B^1 }
+						# Pension
+							set_variable = { ECON_arr_nat_EXP_SOCL_capita^2 = POLICIES_arr_nat_SOCL_spending_capita_K^2 }
+
+							set_variable = { ECON_arr_nat_EXP_SOCL_B^2 = ECON_var_nat_MISC_pensioners_K }	# Pensions aren't paid to 20-year-olds aye?
+								multiply_variable = { ECON_arr_nat_EXP_SOCL_B^2 = ECON_arr_nat_EXP_SOCL_capita^2 }
+								divide_variable = { ECON_arr_nat_EXP_SOCL_B^2 = 1000 }
+								add_to_variable = { ECON_arr_nat_EXP_sources_B^0 = ECON_arr_nat_EXP_SOCL_B^2 }
+						# (Unemployment) Benefits	COUNTED AS PERCENTAGE OF GDP/CAPITA
+							set_variable = { ECON_arr_nat_EXP_SOCL_capita^3 = ECON_var_nat_GDP_capita_K }
+							multiply_variable = { ECON_arr_nat_EXP_SOCL_capita^3 = POLICIES_arr_nat_SOCL_spending_capita_K^3 }	# PERCENTAGE
+
+							set_variable = { ECON_arr_nat_EXP_SOCL_B^3 = ECON_var_nat_MISC_unemployment_K }	# Are unemployment benefits paid to working people?
+								multiply_variable = { ECON_arr_nat_EXP_SOCL_B^3 = ECON_arr_nat_EXP_SOCL_capita^3 }
+								divide_variable = { ECON_arr_nat_EXP_SOCL_B^3 = 1000 }
+								add_to_variable = { ECON_arr_nat_EXP_sources_B^0 = ECON_arr_nat_EXP_SOCL_B^3 }
+					# something
+					#set_variable = { ECON_arr_nat_EXP_SOCL_B^1 = 0 }
+					#	add_to_variable = {  ECON_arr_nat_EXP_sources_B^0 = ECON_arr_nat_EXP_SOCL_B^1 }
+
+					add_to_variable = { ECON_arr_nat_EXP_sources_B^0 = ECON_arr_nat_EXP_SOCL_B^1 }
+				# Military
+					set_variable = { ECON_arr_nat_EXP_military_B^0 = 0 }	# Ground
+						# Infantry & support
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^0 = POLICIES_arr_nat_ARM_sorted_units^0 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^0 = POLICIES_arr_nat_ARM_spending_unit_K^0 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^0 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^0 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^0 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^0 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^0 }
+						# Animal-bound infantry, bicyclers, light & irregular inf.
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^1 = POLICIES_arr_nat_ARM_sorted_units^1 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^1 = POLICIES_arr_nat_ARM_spending_unit_K^1 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^1 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^1 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^1 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^1 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^1 }
+						# Marines, Paras, Mountaineers
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^2 = POLICIES_arr_nat_ARM_sorted_units^2 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^2 = POLICIES_arr_nat_ARM_spending_unit_K^2 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^2 = 1000 }
+								multiply_variable = {  ECON_arr_nat_EXP_military_GROUND_sorted_B^2 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^2 }
+								multiply_variable = {  ECON_arr_nat_EXP_military_GROUND_sorted_B^2 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^2 }
+						# Motorised
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^3 = POLICIES_arr_nat_ARM_sorted_units^3 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^3 = POLICIES_arr_nat_ARM_spending_unit_K^3 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^3 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^3 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^3 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^3 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^3 }
+						# APC
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^4 = POLICIES_arr_nat_ARM_sorted_units^4 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^4 = POLICIES_arr_nat_ARM_spending_unit_K^4 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^4 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^4 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^4 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^4 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^4 }
+						# IFV & amphibious armoured
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^5 = POLICIES_arr_nat_ARM_sorted_units^5 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^5 = POLICIES_arr_nat_ARM_spending_unit_K^5 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^5 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^5 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^5 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^5 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^5 }
+						# MBT
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^6 = POLICIES_arr_nat_ARM_sorted_units^6 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^6 = POLICIES_arr_nat_ARM_spending_unit_K^6 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^6 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^6 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^6 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^6 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^6 }
+						# Heli support
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^7 = POLICIES_arr_nat_ARM_sorted_units^7 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^7 = POLICIES_arr_nat_ARM_spending_unit_K^7 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^7 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^7 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^7 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^7 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^7 }
+						# Other support
+							set_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^8 = POLICIES_arr_nat_ARM_sorted_units^8 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^8 = POLICIES_arr_nat_ARM_spending_unit_K^8 }
+								divide_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^8 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^8 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^8 }
+								multiply_variable = { ECON_arr_nat_EXP_military_GROUND_sorted_B^8 = POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^0 = ECON_arr_nat_EXP_military_GROUND_sorted_B^8 }
+						set_variable = { ECON_arr_nat_EXP_sources_B^1 = ECON_arr_nat_EXP_military_B^0 }
+
+					set_variable = { ECON_arr_nat_EXP_military_B^1 = 0 }	# naval
+						# Submarines
+						set_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^0 = POLICIES_arr_nat_ARM_sorted_ships^0 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^0 = POLICIES_arr_nat_ARM_spending_ship_K^0 }
+								divide_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^0 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^0 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^0 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^0 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^1 = ECON_arr_nat_EXP_military_NAVAL_sorted_B^0 }
+						# corvettes & frigates
+						set_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^1 = POLICIES_arr_nat_ARM_sorted_ships^1 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^1 = POLICIES_arr_nat_ARM_spending_ship_K^1 }
+								divide_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^1 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^1 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^1 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^1 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^1 = ECON_arr_nat_EXP_military_NAVAL_sorted_B^1 }
+						# destroyers
+						set_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^2 = POLICIES_arr_nat_ARM_sorted_ships^2 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^2 = POLICIES_arr_nat_ARM_spending_ship_K^2 }
+								divide_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^2 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^2 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^2 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^2 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^1 = ECON_arr_nat_EXP_military_NAVAL_sorted_B^2 }
+						# cruisers
+						set_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^3 = POLICIES_arr_nat_ARM_sorted_ships^3 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^3 = POLICIES_arr_nat_ARM_spending_ship_K^3 }
+								divide_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^3 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^3 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^3 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^3 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^1 = ECON_arr_nat_EXP_military_NAVAL_sorted_B^3 }
+						# battle -cruisers & -ships
+						set_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^4 = POLICIES_arr_nat_ARM_sorted_ships^4 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^4 = POLICIES_arr_nat_ARM_spending_ship_K^4 }
+								divide_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^4 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^4 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^4 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^4 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^1 = ECON_arr_nat_EXP_military_NAVAL_sorted_B^4 }
+						# aircraft carriers
+						set_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^5 = POLICIES_arr_nat_ARM_sorted_ships^5 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^5 = POLICIES_arr_nat_ARM_spending_ship_K^5 }
+								divide_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^5 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^5 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^5 }
+								multiply_variable = { ECON_arr_nat_EXP_military_NAVAL_sorted_B^5 = POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^1 = ECON_arr_nat_EXP_military_NAVAL_sorted_B^5 }
+						add_to_variable = { ECON_arr_nat_EXP_sources_B^1 = ECON_arr_nat_EXP_military_B^1 }
+
+					set_variable = { ECON_arr_nat_EXP_military_B^2 = 0 }	# air force
+						# fighter
+						set_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^0 = POLICIES_arr_nat_ARM_sorted_aircrafts^0 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^0 = POLICIES_arr_nat_ARM_spending_air_K^0 }
+								divide_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^0 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^0 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^0 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^0 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^2 = ECON_arr_nat_EXP_military_AIR_sorted_B^0 }
+						# attacker
+						set_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^1 = POLICIES_arr_nat_ARM_sorted_aircrafts^1 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^1 = POLICIES_arr_nat_ARM_spending_air_K^1 }
+								divide_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^1 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^1 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^1 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^1 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^2 = ECON_arr_nat_EXP_military_AIR_sorted_B^1 }
+						# navb
+						set_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^3 = POLICIES_arr_nat_ARM_sorted_aircrafts^3 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^3 = POLICIES_arr_nat_ARM_spending_air_K^3 }
+								divide_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^3 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^3 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^3 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^3 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^2 = ECON_arr_nat_EXP_military_AIR_sorted_B^3 }
+						# multirole
+						set_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^4 = POLICIES_arr_nat_ARM_sorted_aircrafts^4 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^4 = POLICIES_arr_nat_ARM_spending_air_K^4 }
+								divide_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^4 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^4 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^4 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^4 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^2 = ECON_arr_nat_EXP_military_AIR_sorted_B^4 }
+						# tac
+						set_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^5 = POLICIES_arr_nat_ARM_sorted_aircrafts^5 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^5 = POLICIES_arr_nat_ARM_spending_air_K^5 }
+								divide_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^5 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^5 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^5 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^5 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^2 = ECON_arr_nat_EXP_military_AIR_sorted_B^5 }
+						# strat
+						set_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^6 = POLICIES_arr_nat_ARM_sorted_aircrafts^6 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^6 = POLICIES_arr_nat_ARM_spending_air_K^6 }
+								divide_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^6 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^6 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^6 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^6 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^2 = ECON_arr_nat_EXP_military_AIR_sorted_B^6 }
+						# tsp
+						set_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^7 = POLICIES_arr_nat_ARM_sorted_aircrafts^7 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^7 = POLICIES_arr_nat_ARM_spending_air_K^7 }
+								divide_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^7 = 1000 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^7 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^7 }
+								multiply_variable = { ECON_arr_nat_EXP_military_AIR_sorted_B^7 = POLICIES_arr_nat_ARM_spending_air_modifier_pct^99 }
+								add_to_variable = { ECON_arr_nat_EXP_military_B^2 = ECON_arr_nat_EXP_military_AIR_sorted_B^7 }
+						add_to_variable = { ECON_arr_nat_EXP_sources_B^1 = ECON_arr_nat_EXP_military_B^2 }
+				# Others
+					set_variable = { ECON_arr_nat_EXP_sources_B^3 = 0 }
+				set_variable = { ECON_var_nat_EXP_B = ECON_arr_nat_EXP_sources_B^0 }
+				add_to_variable = { ECON_var_nat_EXP_B = ECON_arr_nat_EXP_sources_B^1 }
+				add_to_variable = { ECON_var_nat_EXP_B = ECON_arr_nat_EXP_sources_B^3 }
+			# Reserve
+				set_variable = { ECON_var_nat_RSV_budget_B = ECON_var_nat_REV_B }
+				subtract_from_variable = { ECON_var_nat_RSV_budget_B = ECON_var_nat_EXP_B }
+				add_to_variable = { ECON_var_nat_RSV_liquid_B = ECON_var_nat_RSV_budget_B }
+
+				# Debt servicing
+					IF = { limit = { check_variable = { ECON_var_nat_RSV_liquid_B < 0 } }	# reserves negative = indebted = paying interest
+						set_variable = { ECON_var_nat_EXP_debt_servicing_B = ECON_var_nat_RSV_liquid_B }
+						multiply_variable = { ECON_var_nat_EXP_debt_servicing_B = ECON_var_nat_EXP_interest_pct }
+						multiply_variable = { ECON_var_nat_EXP_debt_servicing_B = -1 }
+						set_variable = { ECON_arr_nat_EXP_sources_B^2 = ECON_var_nat_EXP_debt_servicing_B } }
+					ELSE = { set_variable = { ECON_arr_nat_EXP_sources_B^2 = 0 } }	# reserves positive = not indebted = not paying interest
+					subtract_from_variable = { ECON_var_nat_RSV_budget_B = ECON_arr_nat_EXP_sources_B^2 }
+					subtract_from_variable = { ECON_var_nat_RSV_liquid_B = ECON_arr_nat_EXP_sources_B^2 }
+		
 	} }
 }
