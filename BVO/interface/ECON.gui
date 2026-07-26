@@ -1,7 +1,7 @@
 guiTypes = {
 	containerWindowType = { name = "MOD_cWT"
 		position = { x = 0 y = -335 }
-		size = { width = 100% height = 30 }
+		size = { width = 690 height = 30 }
 		orientation = CENTER_LEFT
 		origo = left
 		clipping = no
@@ -10,7 +10,7 @@ guiTypes = {
 		
 		containerWindowType = { name = "ECON_cWT_toggle"
 			position = { x = 500 y = 0 }
-			size = { width = 20% height = 30 }
+			size = { width = 140 height = 30 }
 
 			background = { name = "ECON_cWT_toggle_bg"	quadTextureSprite = "GFX_ECON_cWT_blue_bg_cTST" }
 
@@ -30,7 +30,7 @@ guiTypes = {
 
 		containerWindowType = { name = "ECON_cWT_replacement_text"
 			position = { x = 0 y = 0 }
-			size = { width = 60% height = 30 }
+			size = { width = 500 height = 30 }
 		
 			# background = { name = "ECON_cWT_replacement_text_bg" #quadTextureSprite = "GFX_MOD_cWT_blue_bg_cTST" }
 		
@@ -55,15 +55,58 @@ guiTypes = {
 		containerWindowType = { name = "ECON_cWT_inflation"
 			position = { x = 5% y = 10 } size = { width = 30% height = 40% }
 			background = { name = "ECON_cWT_inflation_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
-				containerWindowType = { name = "ECON_cWT_inflation_graph"
-					position = { x = 5% y = 5% }	size = { width = 90% height = 50% }
-					background = { name = "b"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
-					instantTextBoxType = { name = "ECON_cWT_inflation_graph_text"
-						position = { x = 0% y = 0 }	maxWidth = 180%
-						format = centre	font = hoi_18mbs
-						text = "Inflation [?ECON_var_nat_inflation_pct_monthly|-%]"
-					}
+			
+			containerWindowType = { name = "ECON_cWT_inflation_graph"
+				position = { x = 5% y = 5% }	size = { width = 90% height = 50% }
+				background = { name = "b"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+				instantTextBoxType = { name = "ECON_cWT_inflation_graph_text"
+					position = { x = 0% y = 0 }	maxWidth = 180%
+					format = centre	font = hoi_18mbs
+					text = "Inflation [?ECON_arr_nat_inflation_pct_monthly^1|-%]"
 				}
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_inflation_set_text"
+				position = { x = 5 y = 165 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Set rate:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_inflation_set"
+				position = { x = 110 y = 165 }	maxWidth = 100
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_inflation_pct_monthly^0|-%]"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_inflation_mult_text"
+				position = { x = 5 y = 180 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Multiplier:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_inflation_mult"
+				position = { x = 110 y = 180 }	maxWidth = 100
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_inflation_modifier_pct_monthly^0|-] x"
+			}
+
+			buttonType = { name = "ECON_cWT_inflation_fiscal_policy_button"	# ECON_cWT_inflation_fiscal_policy_menu
+				position = { x = 70 y = 250 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Fisc. Pol."
+				pdx_tooltip = "ECON_tt_inflation_fiscal_policy_menu"
+			}
+
+			#buttonType = { name = "ECON_cWT_inflation_Weimar_button"	# ECON_cWT_inflation_Weimar_menu [basically money printing]
+			#	position = { x = 135 y = 250 }
+			#	quadTextureSprite = "GFX_ECON_cWT_btn"
+			#	orientation = UPPER_LEFT
+			#	
+			#	buttonFont = hoi_16mbs
+			#	buttonText = "Issue"
+			#	pdx_tooltip = "ECON_tt_inflation_Weimar_menu"
+			#}
 		}
 
 		containerWindowType = { name = "ECON_cWT_GDP"
@@ -414,5 +457,28 @@ guiTypes = {
 
 					buttonFont = Arial12	buttonText = "-10"
 				}
+		}
+		containerWindowType = { name = "ECON_cWT_inflation_fiscal_policy_menu"
+			position = { x = 8% y = 55% }	size = { width = 84% height = 40% }
+			
+			instantTextBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_text"
+				position = { x = 20 y = 10 }	maxWidth = 100
+				format = right	font = Arial12
+				text = "Money Printing"
+			}
+			iconType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_bg"
+				position = { x = 130 y = 10 }	size = { width = 40 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_txt"	alwaystransparent = yes
+			}
+			editBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar"
+				position = { x = 130 y = 10 }	maxWidth = 40 maxHeight = 20 fixedsize = yes
+				format = centre	font = hoi_16mbs
+				text = ""
+			}
+			instantTextBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_B_text"
+				position = { x = 160 y = 10 }	maxWidth = 20
+				format = left	font = hoi_16mbs
+				text = "B"
+			}
 		}
 }

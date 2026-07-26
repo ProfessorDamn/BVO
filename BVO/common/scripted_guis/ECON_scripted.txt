@@ -28,6 +28,10 @@ scripted_gui = {
 				IF = { limit = { check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } }	set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 1 } }
 				ELSE = { set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 0 } }
 			}
+			ECON_cWT_inflation_fiscal_policy_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } }	set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } }
+				ELSE = { set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 0 } }
+			}
 		}
 		triggers = {
 		#	ECON_cWT_bg_visible = { check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
@@ -164,5 +168,17 @@ scripted_gui = {
 					ECON_cWT_GDP_PU_distrib_menu_nav_click_enabled = { always = no }
 				}
 			}
-		
+		ECON_cWT_inflation_fiscal_policy_menu = { window_name = "ECON_cWT_inflation_fiscal_policy_menu" 
+				context_type = player_context
+				parent_window_token = trade_tab
+
+				visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 }  }
+
+				effects = {
+				}
+
+				triggers = {
+					
+				}
+			}
 }
