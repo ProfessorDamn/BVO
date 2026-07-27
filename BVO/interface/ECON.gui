@@ -475,10 +475,10 @@ guiTypes = {
 				format = centre	font = hoi_16mbs
 				text = ""
 			}
-			instantTextBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_B_text"
-				position = { x = 160 y = 10 }	maxWidth = 20
-				format = left	font = hoi_16mbs
-				text = "B"
-			}
+		#	instantTextBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_B_text"	change approach.
+		#		position = { x = 160 y = 10 }	maxWidth = 20
+			#	format = left	font = hoi_16mbs
+		#		text = "B"
+		#	}
 		}
 }
