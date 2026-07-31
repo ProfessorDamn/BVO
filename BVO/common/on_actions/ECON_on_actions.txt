@@ -3,7 +3,7 @@
 
 # ECON VARS & SYSTEM OUTLINE - TNO-ish I know hadn't taken A/AS econ classes yet calm down
 # ECON_arr_nat_GDP_B [^0 = [GDP (nominal)], ^1 = [GDP (real)]
-	# ECON_arr_nat_GDP_growth_pct [^0 [monthly]. ^1 [yearly (displayed)], ^2 [yearly (calculated)]]
+	# ECON_arr_nat_GDP_growth_pct [^0 [monthly (nominal)], ^1 [monthly (real)], ^2 [yearly (displayed)], ^3 [yearly (calculated)]]
 	# ECON_var_nat_GDP_capita_K [GDP/capita, based on ECON_arr_nat_GDP_B^1]
 # ECON_arr_nat_inflation_pct_monthly [^0 [set], ^1 [final]]
 	# ECON_arr_nat_inflation_modifier_pct_monthly [^0 [sum], ^1 [random], ^2 [others]]
@@ -25,8 +25,8 @@
 			# ECON_arr_nat_REV_tax_rates_modifier_pct [^0 [general], ^1 [income], ^2 [impoverished effective income]]
 			# ECON_arr_nat_REV_tax_GDP_malus_pct [^1 [income], ^3 [business]]
 				# ECON_arr_nat_REV_tax_GDP_malus_modifier_pct [link to credit rating]
-		# ECON_var_nat_REV_weimar_B [goes to ^5]
-			# ECON_var_nat_weimar_per_gdp_pct [goes to inflation]
+		# ECON_var_nat_RSV_weimar_B [goes to ^5]
+			# ECON_var_nat_RSV_weimar_per_gdp_pct [goes to inflation]
 # ECON_var_nat_EXP_B [Gov't. Expenditures]
 	# ECON_arr_nat_EXP_sources_B [^0 [civilian spending], ^1 [military spending], ^2 [debt servicing], ^3 [misc]]
 			# ECON_arr_nat_EXP_SEC_B [^5 [policing], ^6 [prison]]
@@ -427,56 +427,54 @@ on_actions = {
 					multiply_variable = { ECON_var_nat_MISC_pensioners_K = ECON_var_nat_MISC_pensioners_pct }
 		
 		# GROSS DOMESTIC PRODUCT _ the metric of growth
-			# GROSS DOMESTIC PRODUCT _ the metric of growth
-			set_variable = { ECON_arr_nat_GDP_B^0 = 0 }
+			set_variable = { ECON_arr_nat_GDP_B^1 = 0 }
 			# Nominal growth yearly -> monthly & deficit spending bonus
-				set_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_GDP_growth_pct^2 }
+				set_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_GDP_growth_pct^3 }
 				divide_variable = { ECON_arr_nat_GDP_growth_pct^0 = 12 }
 				IF = { limit = { check_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct > 0 } } add_to_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct } }
-					set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
-					multiply_variable = { ECON_arr_nat_GDP_growth_pct^1 = 12 }	# accounting for other changes
 				subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_REV_tax_GDP_malus_pct^1 }
 				subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_REV_tax_GDP_malus_pct^3 }
+				IF = { limit = { check_variable = { ECON_var_nat_RSV_liquid_malus_pct > 0 } } subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_liquid_malus_pct } }
+					set_variable = { ECON_arr_nat_GDP_growth_pct^4 = ECON_arr_nat_GDP_growth_pct^0 }
+					multiply_variable = { ECON_arr_nat_GDP_growth_pct^4 = 12 }	# accounting for other changes
+			# Inflation
+				set_variable_to_random = { var = ECON_arr_nat_inflation_modifier_pct_monthly^1	min = 0.5 max = 2 }
+				set_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^1 }
+				add_to_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^2 }
+				set_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_pct_monthly^0 }
+				multiply_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_modifier_pct_monthly^0 }
+			# RGDP conversion
+				set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
+					subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_inflation_pct_monthly^1 }
 			
 			# State
 				every_owned_state = {
 					set_variable = { ECON_var_state_GDP_growth_B = ECON_var_state_GDP_nominal_B }
-					multiply_variable = { ECON_var_state_GDP_growth_B = PREV.ECON_arr_nat_GDP_growth_pct^0 }
+					multiply_variable = { ECON_var_state_GDP_growth_B = PREV.ECON_arr_nat_GDP_growth_pct^1 }
 					add_to_variable = { ECON_var_state_GDP_nominal_B = ECON_var_state_GDP_growth_B }
-					add_to_variable = { PREV.ECON_arr_nat_GDP_B^0 = ECON_var_state_GDP_nominal_B }
+					add_to_variable = { PREV.ECON_arr_nat_GDP_B^1 = ECON_var_state_GDP_nominal_B }
 				}
-			
-			# Nominal -> Real
-				# Inflation
-					set_variable_to_random = { var = ECON_arr_nat_inflation_modifier_pct_monthly^1	min = 0.5 max = 2 }
-					set_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^1 }
-					add_to_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^2 }
-					set_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_pct_monthly^0 }
-					multiply_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_modifier_pct_monthly^0 }
-				set_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_B^0 }
-
-				set_variable = { ECON_var_td_nat_GDP_deflator_pct = 1 }
-				subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_inflation_pct_monthly^1 }
-				IF = { limit = { check_variable = { ECON_var_nat_RSV_liquid_malus_pct > 0 } } subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_var_nat_RSV_liquid_malus_pct } }
-				#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_REV_tax_GDP_malus_pct^1 }
-				#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_REV_tax_GDP_malus_pct^3 }
-				#multiply_variable = { ECON_var_td_nat_GDP_B_nominal = 100 }
-				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_var_td_nat_GDP_deflator_pct }
-				set_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }	# [GDP (Real)]
-			
-				# modding values for display (GDP growth, deflator)
-					set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }	set_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = 1 }
-					subtract_from_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = ECON_var_td_nat_GDP_deflator_pct }
-					multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_disp_pct }
-
-					set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
-					multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_growth_pct^0 }
-
-				set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
-				divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
-				multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
+	
+			#set_variable = { ECON_arr_nat_GDP_B^1 = ECON_arr_nat_GDP_B^0 }
+				set_variable = { ECON_var_td_nat_GDP_B_nominal = var:ECON_arr_nat_GDP_B^1 }
+				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_growth_pct^1 }
+			add_to_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }
 				
-				log = "COUNTRY [THIS] ... GDP N [?ECON_arr_nat_GDP_B^0]B  R [?ECON_arr_nat_GDP_B^1]B  /C [?ECON_var_nat_GDP_capita_K]K"
+				# modding values for display (GDP growth, deflator)
+					#set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }	set_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = 1 }
+					#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = ECON_var_td_nat_GDP_deflator_pct }
+					#multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_disp_pct }
+
+					#set_variable = { ECON_var_td_nat_GDP_growth_real_disp_pct = ECON_arr_nat_GDP_growth_pct^0 }
+					#subtract_from_variable = { ECON_var_td_nat_GDP_growth_real_disp_pct = ECON_var_td_nat_GDP_deflator_disp_pct }
+
+					#set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
+					#divide_variable = { ECON_var_td_nat_GDP_growth_disp_B = 100 }
+					#multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_var_td_nat_GDP_growth_real_disp_pct }
+
+			set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
+			divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
+			multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
 		
 		# PRODUCTION UNITS _ rehoused below
 
@@ -756,6 +754,10 @@ on_actions = {
 				set_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_var_nat_RSV_liquid_B }
 				divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_arr_nat_GDP_B^1 }
 				divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = 10 }
+			# Weimar GDP malus
+				set_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = ECON_var_nat_RSV_weimar_B }
+				divide_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = ECON_arr_nat_GDP_B^1 }
+				divide_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = 1 }
 			# Tax GDP malus
 			set_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = ECON_arr_nat_REV_sources_B^1 }
 				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = ECON_arr_nat_GDP_B^1 }
@@ -765,35 +767,53 @@ on_actions = {
 				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_GDP_B^1 }
 				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = 100 }
 				multiply_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_REV_tax_GDP_malus_modifier_pct^3 }
-			# Nominal -> Real #2 (scripting limitations blah blah blah)
-				# Inflation
-					set_variable_to_random = { var = ECON_arr_nat_inflation_modifier_pct_monthly^1	min = 0.5 max = 2 }
-					set_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^1 }
-					add_to_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^2 }
-					set_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_pct_monthly^0 }
-					multiply_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_modifier_pct_monthly^0 }
-				set_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_B^0 }
-
-				set_variable = { ECON_var_td_nat_GDP_deflator_pct = 1 }
-				subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_inflation_pct_monthly^1 }
-				IF = { limit = { check_variable = { ECON_var_nat_RSV_liquid_malus_pct > 0 } } subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_var_nat_RSV_liquid_malus_pct } }
-				#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_REV_tax_GDP_malus_pct^1 }
-				#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_REV_tax_GDP_malus_pct^3 }
-				#multiply_variable = { ECON_var_td_nat_GDP_B_nominal = 100 }
-				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_var_td_nat_GDP_deflator_pct }
-				set_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }	# [GDP (Real)]
+			# Nominal growth yearly -> monthly & deficit spending bonus
+				set_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_GDP_growth_pct^3 }
+				divide_variable = { ECON_arr_nat_GDP_growth_pct^0 = 12 }
+				IF = { limit = { check_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct > 0 } } add_to_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct } }
+				subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_REV_tax_GDP_malus_pct^1 }
+				subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_REV_tax_GDP_malus_pct^3 }
+				IF = { limit = { check_variable = { ECON_var_nat_RSV_liquid_malus_pct > 0 } } subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_liquid_malus_pct } }
+					set_variable = { ECON_arr_nat_GDP_growth_pct^4 = ECON_arr_nat_GDP_growth_pct^0 }
+					multiply_variable = { ECON_arr_nat_GDP_growth_pct^4 = 12 }	# accounting for other changes
+			# Inflation
+				set_variable_to_random = { var = ECON_arr_nat_inflation_modifier_pct_monthly^1	min = 0.5 max = 2 }
+				set_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^1 }
+				add_to_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^2 }
+				set_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_pct_monthly^0 }
+				multiply_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_modifier_pct_monthly^0 }
+			# RGDP conversion
+				set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
+					subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_inflation_pct_monthly^1 }
 			
+			# State
+				#every_owned_state = {
+					#set_variable = { ECON_var_state_GDP_growth_B = ECON_var_state_GDP_nominal_B }
+					#multiply_variable = { ECON_var_state_GDP_growth_B = PREV.ECON_arr_nat_GDP_growth_pct^1 }
+					#add_to_variable = { ECON_var_state_GDP_nominal_B = ECON_var_state_GDP_growth_B }
+					#add_to_variable = { PREV.ECON_arr_nat_GDP_B^1 = ECON_var_state_GDP_nominal_B }
+				#}
+	
+			#set_variable = { ECON_arr_nat_GDP_B^1 = ECON_arr_nat_GDP_B^0 }
+				set_variable = { ECON_var_td_nat_GDP_B_nominal = var:ECON_arr_nat_GDP_B^1 }
+				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_growth_pct^1 }
+			add_to_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }
+				
 				# modding values for display (GDP growth, deflator)
-					set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }	set_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = 1 }
-					subtract_from_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = ECON_var_td_nat_GDP_deflator_pct }
-					multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_disp_pct }
+					#set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }	set_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = 1 }
+					#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = ECON_var_td_nat_GDP_deflator_pct }
+					#multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_disp_pct }
 
-					set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
-					multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_growth_pct^0 }
+					#set_variable = { ECON_var_td_nat_GDP_growth_real_disp_pct = ECON_arr_nat_GDP_growth_pct^0 }
+					#subtract_from_variable = { ECON_var_td_nat_GDP_growth_real_disp_pct = ECON_var_td_nat_GDP_deflator_disp_pct }
 
-				set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
-				divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
-				multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
+					#set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
+					#divide_variable = { ECON_var_td_nat_GDP_growth_disp_B = 100 }
+					#multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_var_td_nat_GDP_growth_real_disp_pct }
+
+			set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
+			divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
+			multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
 		
 		# PRODUCTION UNITS _ usual overcomplicating oversimplification
 			# PU calculation
@@ -963,55 +983,54 @@ on_actions = {
 					multiply_variable = { ECON_var_nat_MISC_pensioners_K = ECON_var_nat_MISC_pensioners_pct }
 		
 		# GROSS DOMESTIC PRODUCT _ the metric of growth
-			set_variable = { ECON_arr_nat_GDP_B^0 = 0 }
+			set_variable = { ECON_arr_nat_GDP_B^1 = 0 }
 			# Nominal growth yearly -> monthly & deficit spending bonus
-				set_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_GDP_growth_pct^2 }
+				set_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_GDP_growth_pct^3 }
 				divide_variable = { ECON_arr_nat_GDP_growth_pct^0 = 12 }
 				IF = { limit = { check_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct > 0 } } add_to_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct } }
-					set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
-					multiply_variable = { ECON_arr_nat_GDP_growth_pct^1 = 12 }	# accounting for other changes
 				subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_REV_tax_GDP_malus_pct^1 }
 				subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_REV_tax_GDP_malus_pct^3 }
+				IF = { limit = { check_variable = { ECON_var_nat_RSV_liquid_malus_pct > 0 } } subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_liquid_malus_pct } }
+					set_variable = { ECON_arr_nat_GDP_growth_pct^4 = ECON_arr_nat_GDP_growth_pct^0 }
+					multiply_variable = { ECON_arr_nat_GDP_growth_pct^4 = 12 }	# accounting for other changes
+			# Inflation
+				set_variable_to_random = { var = ECON_arr_nat_inflation_modifier_pct_monthly^1	min = 0.5 max = 2 }
+				set_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^1 }
+				add_to_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^2 }
+				set_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_pct_monthly^0 }
+				multiply_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_modifier_pct_monthly^0 }
+			# RGDP conversion
+				set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
+					subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_inflation_pct_monthly^1 }
 			
 			# State
 				every_owned_state = {
 					set_variable = { ECON_var_state_GDP_growth_B = ECON_var_state_GDP_nominal_B }
-					multiply_variable = { ECON_var_state_GDP_growth_B = PREV.ECON_arr_nat_GDP_growth_pct^0 }
+					multiply_variable = { ECON_var_state_GDP_growth_B = PREV.ECON_arr_nat_GDP_growth_pct^1 }
 					add_to_variable = { ECON_var_state_GDP_nominal_B = ECON_var_state_GDP_growth_B }
-					add_to_variable = { PREV.ECON_arr_nat_GDP_B^0 = ECON_var_state_GDP_nominal_B }
+					add_to_variable = { PREV.ECON_arr_nat_GDP_B^1 = ECON_var_state_GDP_nominal_B }
 				}
-			
-			# Nominal -> Real
-				# Inflation
-					set_variable_to_random = { var = ECON_arr_nat_inflation_modifier_pct_monthly^1	min = 0.5 max = 2 }
-					set_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^1 }
-					add_to_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^2 }
-					set_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_pct_monthly^0 }
-					multiply_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_modifier_pct_monthly^0 }
-				set_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_B^0 }
-
-				set_variable = { ECON_var_td_nat_GDP_deflator_pct = 1 }
-				subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_inflation_pct_monthly^1 }
-				IF = { limit = { check_variable = { ECON_var_nat_RSV_liquid_malus_pct > 0 } } subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_var_nat_RSV_liquid_malus_pct } }
-				#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_REV_tax_GDP_malus_pct^1 }
-				#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_pct = ECON_arr_nat_REV_tax_GDP_malus_pct^3 }
-				#multiply_variable = { ECON_var_td_nat_GDP_B_nominal = 100 }
-				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_var_td_nat_GDP_deflator_pct }
-				set_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }	# [GDP (Real)]
-			
-				# modding values for display (GDP growth, deflator)
-					set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }	set_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = 1 }
-					subtract_from_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = ECON_var_td_nat_GDP_deflator_pct }
-					multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_disp_pct }
-
-					set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
-					multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_growth_pct^0 }
-
-				set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
-				divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
-				multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
+	
+			#set_variable = { ECON_arr_nat_GDP_B^1 = ECON_arr_nat_GDP_B^0 }
+				set_variable = { ECON_var_td_nat_GDP_B_nominal = var:ECON_arr_nat_GDP_B^1 }
+				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_growth_pct^1 }
+			add_to_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }
 				
-				log = "COUNTRY [THIS] ... GDP N [?ECON_arr_nat_GDP_B^0]B  R [?ECON_arr_nat_GDP_B^1]B  /C [?ECON_var_nat_GDP_capita_K]K"
+				# modding values for display (GDP growth, deflator)
+					#set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }	set_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = 1 }
+					#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = ECON_var_td_nat_GDP_deflator_pct }
+					#multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_disp_pct }
+
+					#set_variable = { ECON_var_td_nat_GDP_growth_real_disp_pct = ECON_arr_nat_GDP_growth_pct^0 }
+					#subtract_from_variable = { ECON_var_td_nat_GDP_growth_real_disp_pct = ECON_var_td_nat_GDP_deflator_disp_pct }
+
+					#set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
+					#divide_variable = { ECON_var_td_nat_GDP_growth_disp_B = 100 }
+					#multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_var_td_nat_GDP_growth_real_disp_pct }
+
+			set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
+			divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
+			multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
 		
 		# PRODUCTION UNITS _ usual overcomplicating oversimplification
 			# PU calculation
@@ -1319,14 +1338,18 @@ on_actions = {
 				set_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_var_nat_RSV_liquid_B }
 				divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_arr_nat_GDP_B^1 }
 				divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = 10 }
+			# Weimar GDP malus
+				set_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = ECON_var_nat_RSV_weimar_B }
+				divide_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = ECON_arr_nat_GDP_B^1 }
+				divide_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = 1 }
 			# Tax GDP malus
-				set_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = ECON_arr_nat_REV_sources_B^1 }
-					divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = ECON_arr_nat_GDP_B^1 }
-					divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = 100 }
-					multiply_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = ECON_arr_nat_REV_tax_GDP_malus_modifier_pct^1 }
-				set_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_REV_sources_B^3 }
-					divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_GDP_B^1 }
-					divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = 100 }
-					multiply_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_REV_tax_GDP_malus_modifier_pct^3 }
+			set_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = ECON_arr_nat_REV_sources_B^1 }
+				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = ECON_arr_nat_GDP_B^1 }
+				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = 100 }
+				multiply_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^1 = ECON_arr_nat_REV_tax_GDP_malus_modifier_pct^1 }
+			set_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_REV_sources_B^3 }
+				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_GDP_B^1 }
+				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = 100 }
+				multiply_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_REV_tax_GDP_malus_modifier_pct^3 }
 	} }
 }

@@ -11,9 +11,9 @@
  ECON_tt_state_GDP_growth_monthly:0 "Fixed modification rate on state GDP every month. Affected by national rates, infrastructure construction, decisions and foci."
  
  ECON_tt_GDP_growth:0 "This variable represents the economy's growth, or lack thereof, as a percentage value.\nThis percentage value will be applied at the end of each month."
-    ECON_tt_GDP_growth_delayed:0 "[?ECON_arr_nat_GDP_growth_pct^1|+%]\nChanges:\n...[?ECON_arr_nat_REV_tax_GDP_malus_pct^1|-%] monthly due to income tax;\n...[?ECON_arr_nat_REV_tax_GDP_malus_pct^3|-%] monthly due to business tax.\n\nWithout deflation, our economy shall change by [?ECON_var_td_nat_GDP_growth_disp_B|+^] B next month."
+    ECON_tt_GDP_growth_delayed:0 "Nominal monthly: [?ECON_arr_nat_GDP_growth_pct^0|+%]\nChanges:\n...[?ECON_arr_nat_REV_tax_GDP_malus_pct^1|-%] monthly due to income tax;\n...[?ECON_arr_nat_REV_tax_GDP_malus_pct^3|-%] monthly due to business tax.\n\nWithout deflation, our economy shall change by [?ECON_var_td_nat_GDP_growth_disp_B|+^] B next month."
  ECON_tt_deflator:0 "A nation's economic growth may be inaccurately represented without counting in other factors normally not within the balance sheet."
-    ECON_tt_deflator_delayed:0 "Changes:\n...[?ECON_var_nat_inflation_pct_monthly|-%] monthly due to inflation;\n...[?ECON_var_nat_RSV_liquid_malus_pct|-%] monthly due to reserves of [ECON_var_nat_RSV_liquid_B|+^] B.\n\nIn total, our current nominal GDP will suffer a [?ECON_var_td_nat_GDP_deflator_disp_B|-^] B deduction."
+    ECON_tt_deflator_delayed:0 "[?ECON_var_td_nat_GDP_growth_real_disp_pct|+%]\nChanges:\n...[?ECON_var_nat_inflation_pct_monthly|-%] monthly due to inflation;\n...[?ECON_var_nat_RSV_liquid_malus_pct|-%] monthly due to reserves of [?ECON_var_nat_RSV_liquid_B|+^] B.\n\nIn total, our current nominal GDP will suffer a [?ECON_var_td_nat_GDP_deflator_disp_B|-^] B deduction."
  ECON_tt_GDP_real_per_capita:0 "One good way to measure the actual effect of a nation's GDP on its population is to divide the nation's total GDP by its total population."
     ECON_tt_GDP_real_per_capita_delayed:0 "We have [?max_manpower|^] people, and our GDP/capita is [?ECON_var_nat_GDP_capita_K|+^] K"
 

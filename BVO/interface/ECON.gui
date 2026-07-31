@@ -126,51 +126,39 @@ guiTypes = {
 			instantTextBoxType = { name = "ECON_cWT_GDP_nominal_text"
 				position = { x = 5 y = 165 }	maxWidth = 100
 				format = right font = Arial12
-				text = "GDP (nominal):"
+				text = "GDP (nom.) growth:"
 			}
 			instantTextBoxType = { name = "ECON_cWT_GDP_nominal"
 				position = { x = 110 y = 165 }	maxWidth = 100
 				format = left font = hoi_16mbs
-				text = "[?ECON_arr_nat_GDP_B^0|+^] B"
+				text = "[?ECON_arr_nat_GDP_growth_pct^0|+%]"
 			}
 
 			instantTextBoxType = { name = "ECON_cWT_GDP_growth_text"
 				position = { x = 5 y = 180 }	maxWidth = 100
 				format = right font = Arial12
-				text = "GDP (nom.) growth:"
+				text = "GDP (real) growth:"
 			}
 			instantTextBoxType = { name = "ECON_cWT_GDP_growth"
-				position = { x = 110 y = 180 }	maxWidth = 90
+				position = { x = 110 y = 180 }	maxWidth = 90	maxHeight = 16
 				format = left font = hoi_16mbs
-				text = "[?ECON_arr_nat_GDP_growth_pct^0|+%]"
+				text = "[?ECON_arr_nat_GDP_growth_pct^1|+%]"
 				pdx_tooltip = "ECON_tt_GDP_growth"	pdx_tooltip_delayed = "ECON_tt_GDP_growth_delayed"
 			}
 
-			instantTextBoxType = { name = "ECON_cWT_GDP_deflator_text"
-				position = { x = 5 y = 195 }	maxWidth = 100
-				format = right font = Arial12
-				text = "Deflator:"
-			}
-			instantTextBoxType = { name = "ECON_cWT_GDP_deflator"
-				position = { x = 110 y = 195 }	maxWidth = 90
-				format = left font = hoi_16mbs
-				text = "[?ECON_var_td_nat_GDP_deflator_pct|-%]"
-				pdx_tooltip = "ECON_tt_deflator"	pdx_tooltip_delayed = "ECON_tt_deflator_delayed"
-			}
-
 			instantTextBoxType = { name = "ECON_cWT_line_text_because_reasons"
-				position = { x = 110 y = 210 }	maxWidth = 50
+				position = { x = 110 y = 195 }	maxWidth = 50
 				format = left font = Arial12
 				text = "________"
 			}
 
 			instantTextBoxType = { name = "ECON_cWT_GDP_real_text"
-				position = { x = 5 y = 225 }	maxWidth = 100
+				position = { x = 5 y = 210 }	maxWidth = 100
 				format = right font = Arial12
 				text = "GDP (real):"
 			}
 			instantTextBoxType = { name = "ECON_cWT_GDP_real"
-				position = { x = 110 y = 225 }	maxWidth = 90
+				position = { x = 110 y = 210 }	maxWidth = 90
 				format = left font = hoi_16mbs
 				text = "[?ECON_arr_nat_GDP_B^1|+^] B"
 				pdx_tooltip = "ECON_tt_GDP_real_per_capita"	pdx_tooltip_delayed = "ECON_tt_GDP_real_per_capita_delayed"
@@ -466,19 +454,59 @@ guiTypes = {
 				format = right	font = Arial12
 				text = "Money Printing"
 			}
-			iconType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_bg"
+			buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar"
 				position = { x = 130 y = 10 }	size = { width = 40 height = 20 }
-				quadTextureSprite = "GFX_ECON_cWT_txt"	alwaystransparent = yes
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "fig."
 			}
-			editBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar"
-				position = { x = 130 y = 10 }	maxWidth = 40 maxHeight = 20 fixedsize = yes
-				format = centre	font = hoi_16mbs
-				text = ""
-			}
-		#	instantTextBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_B_text"	change approach.
-		#		position = { x = 160 y = 10 }	maxWidth = 20
-			#	format = left	font = hoi_16mbs
-		#		text = "B"
-		#	}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_plus_1"
+					position = { x = 370 y = 10 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_plus_2"
+					position = { x = 405 y = 10 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_plus_5"
+					position = { x = 440 y = 10 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_plus_10"
+					position = { x = 475 y = 10 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_minus_1"
+					position = { x = 370 y = 34 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_minus_2"
+					position = { x = 405 y = 34 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_minus_5"
+					position = { x = 440 y = 34 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_minus_10"
+					position = { x = 475 y = 34 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-10"
+				}
 		}
 }

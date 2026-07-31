@@ -127,7 +127,7 @@ if = {
 
 # ECON STUFF
 SWE = {
-	set_variable = { ECON_arr_nat_GDP_growth_pct^2 = 0.1344 }
+	set_variable = { ECON_arr_nat_GDP_growth_pct^3 = 0.1344 }
 	set_variable = { ECON_arr_nat_inflation_pct_monthly^0 = 0.00585 }
 
 	set_variable = { ECON_var_nat_PU_threshold_B = 1 }
