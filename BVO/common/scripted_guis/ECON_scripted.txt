@@ -1,7 +1,6 @@
 scripted_gui = {
 	MOD_cWT = { window_name = "MOD_cWT"
-		context_type = player_context
-		parent_window_token = trade_tab
+		context_type = player_context	parent_window_token = trade_tab
 
 		visible = { always = yes }
 
@@ -18,18 +17,25 @@ scripted_gui = {
 	}
 
 	ECON_cWT = { window_name = "ECON_cWT"
-		context_type = player_context
-		parent_window_token = trade_tab
+		context_type = player_context	parent_window_token = trade_tab
 
 		visible = { check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
 
 		effects = {
+			ECON_cWT_inflation_fiscal_policy_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } }	set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } }
+				ELSE = { set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 0 } }
+			}
 			ECON_cWT_GDP_PU_distrib_button_click = {
 				IF = { limit = { check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } }	set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 1 } }
 				ELSE = { set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 0 } }
 			}
-			ECON_cWT_inflation_fiscal_policy_button_click = {
-				IF = { limit = { check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } }	set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } }
+			ECON_cWT_RSV_civ_spending_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } }	set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 3 } }
+				ELSE = { set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 0 } }
+			}
+			ECON_cWT_RSV_mil_spending_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } }	set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 4 } }
 				ELSE = { set_variable = { MOD_cWT_var_ECON_alt_menu_visible = 0 } set_variable = { MOD_cWT_var_ECON_alt_menu_cur = 0 } }
 			}
 		}
@@ -39,8 +45,7 @@ scripted_gui = {
 	}
 
 		ECON_cWT_duplicated = { window_name = "ECON_cWT_duplicate" 
-			context_type = player_context
-			parent_window_token = trade_tab
+			context_type = player_context	parent_window_token = trade_tab
 
 			visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
 
@@ -52,8 +57,7 @@ scripted_gui = {
 			}
 		}
 			ECON_cWT_GDP_PU_distrib_menu = { window_name = "ECON_cWT_GDP_PU_distrib_menu" 
-				context_type = player_context
-				parent_window_token = trade_tab
+				context_type = player_context	parent_window_token = trade_tab
 
 				visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 1 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 }  }
 
@@ -168,15 +172,74 @@ scripted_gui = {
 					ECON_cWT_GDP_PU_distrib_menu_nav_click_enabled = { always = no }
 				}
 			}
-		ECON_cWT_inflation_fiscal_policy_menu = { window_name = "ECON_cWT_inflation_fiscal_policy_menu" 
-				context_type = player_context
-				parent_window_token = trade_tab
+			ECON_cWT_inflation_fiscal_policy_menu = { window_name = "ECON_cWT_inflation_fiscal_policy_menu" 
+				context_type = player_context	parent_window_token = trade_tab
 
 				visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 }  }
 
 				effects = {
+					ECON_cWT_inflation_fiscal_policy_menu_monetary_policy_sub_button_click = {
+						IF = { limit = { check_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 0 } }	set_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 0 } }
+						ELSE = { set_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 0 } }
+					}
+					ECON_cWT_inflation_fiscal_policy_menu_taxation_proposal_sub_button_click = {
+						IF = { limit = { check_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 1 } }	set_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 0 } }
+						ELSE = { set_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 1 } }
+					}
 				}
 
+				triggers = {
+					
+				}
+			}
+				ECON_cwt_inflation_fiscal_policy_menu_monetary_policy_sub = { window_name = "ECON_cWT_inflation_fiscal_policy_menu_monetary_policy_sub"
+					context_type = player_context	parent_window_token = trade_tab
+
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } check_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 0 } }
+					
+					effects = {
+						
+					}
+
+					triggers = {
+						
+					}
+				}
+				ECON_cWT_inflation_fiscal_policy_menu_taxation_proposal_sub = { window_name = "ECON_cWT_inflation_fiscal_policy_menu_taxation_proposal_sub"
+					context_type = player_context	parent_window_token = trade_tab
+
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } check_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 1 } }
+					
+					effects = {
+						
+					}
+
+					triggers = {
+						
+					}
+				}
+			ECON_cWT_RSV_civ_spending_menu = { window_name = "ECON_cWT_RSV_civ_spending_menu" 
+				context_type = player_context	parent_window_token = trade_tab
+
+				visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 3 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
+
+				effects = {
+					
+				}
+
+				triggers = {
+					
+				}
+			}
+			ECON_cWT_RSV_mil_spending_menu = { window_name = "ECON_cWT_RSV_mil_spending_menu" 
+				context_type = player_context	parent_window_token = trade_tab
+
+				visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 4 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
+
+				effects = {
+					
+				}
+				
 				triggers = {
 					
 				}
