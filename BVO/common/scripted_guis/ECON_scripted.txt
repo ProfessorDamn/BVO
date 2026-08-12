@@ -195,7 +195,7 @@ scripted_gui = {
 				ECON_cwt_inflation_fiscal_policy_menu_monetary_policy_sub = { window_name = "ECON_cWT_inflation_fiscal_policy_menu_monetary_policy_sub"
 					context_type = player_context	parent_window_token = trade_tab
 
-					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } check_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 1 } }
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } check_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 1 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
 					
 					effects = {
 						
@@ -208,7 +208,7 @@ scripted_gui = {
 				ECON_cWT_inflation_fiscal_policy_menu_taxation_proposal_sub = { window_name = "ECON_cWT_inflation_fiscal_policy_menu_taxation_proposal_sub"
 					context_type = player_context	parent_window_token = trade_tab
 
-					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } check_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 2 } }
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } check_variable = { MOD_cWT_var_ECON_fiscal_policy_menu_alt = 2 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
 					
 					effects = {
 						ECON_cWT_RSV_civ_spending_reset_button_click = { set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = ECON_arr_nat_REV_tax_rates_pct^1 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = ECON_arr_nat_REV_tax_rates_pct^2 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = ECON_arr_nat_REV_tax_rates_pct^3 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = ECON_arr_nat_REV_tax_rates_pct^4 } }
@@ -380,24 +380,67 @@ scripted_gui = {
 				visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 3 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
 
 				effects = {
-					
+					ECON_cWT_RSV_civ_spending_security_button_click = {
+						IF = { limit = { check_variable = { MOD_cWT_var_ECON_civ_spending_menu_alt = 1 } } set_variable = { MOD_cWT_var_ECON_civ_spending_menu_alt = 0 } }
+						ELSE = { set_variable = { MOD_cWT_var_ECON_civ_spending_menu_alt = 1 } }
+					}
+					ECON_cWT_RSV_civ_spending_social_button_click = {
+						IF = { limit = { check_variable = { MOD_cWT_var_ECON_civ_spending_menu_alt = 2 } } set_variable = { MOD_cWT_var_ECON_civ_spending_menu_alt = 0 } }
+						ELSE = { set_variable = { MOD_cWT_var_ECON_civ_spending_menu_alt = 2 } }
+					}
 				}
 
 				triggers = {
 					
 				}
 			}
+				ECON_cWT_RSV_civ_spending_menu_security_sub = { window_name = ECON_cWT_RSV_civ_spending_menu_security_sub 
+					context_type = player_context	parent_window_token = trade_tab
+
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 3 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } check_variable = { MOD_cWT_var_ECON_civ_spending_menu_alt = 1 } }
+				}
+				ECON_cWT_RSV_civ_spending_menu_social_sub = { window_name = ECON_cWT_RSV_civ_spending_menu_social_sub 
+					context_type = player_context	parent_window_token = trade_tab
+					
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 3 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } check_variable = { MOD_cWT_var_ECON_civ_spending_menu_alt = 2 } }
+				}
 			ECON_cWT_RSV_mil_spending_menu = { window_name = "ECON_cWT_RSV_mil_spending_menu" 
 				context_type = player_context	parent_window_token = trade_tab
 
 				visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 4 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
 
 				effects = {
-					
+					ECON_cWT_RSV_mil_spending_army_button_click = {
+						IF = { limit = { check_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 1 } } set_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 0 } }
+						ELSE = { set_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 1 } }
+					}
+					ECON_cWT_RSV_mil_spending_navy_button_click = {
+						IF = { limit = { check_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 2 } } set_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 0 } }
+						ELSE = { set_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 2 } }
+					}
+					ECON_cWT_RSV_mil_spending_air_button_click = {
+						IF = { limit = { check_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 3 } } set_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 0 } }
+						ELSE = { set_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 3 } }
+					}
 				}
 				
 				triggers = {
 					
 				}
 			}
+				ECON_cWT_RSV_mil_spending_menu_army_sub = { window_name = "ECON_cWT_RSV_mil_spending_menu_army_sub"
+					context_type = player_context	parent_window_token = trade_tab
+					
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 4 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } check_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 1 } }
+				}
+				ECON_cWT_RSV_mil_spending_menu_navy_sub = { window_name = "ECON_cWT_RSV_mil_spending_menu_navy_sub"
+					context_type = player_context	parent_window_token = trade_tab
+					
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 4 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } check_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 2 } }
+				}
+				ECON_cWT_RSV_mil_spending_menu_air_force_sub = { window_name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub"
+					context_type = player_context	parent_window_token = trade_tab
+					
+					visible = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 4 } check_variable = { MOD_cWT_var_ECON_alt_menu_visible = 1 } check_variable = { MOD_cWT_var_ECON_menu_type = 1 } check_variable = { MOD_cWT_var_ECON_mil_spending_menu_alt = 3 } }
+				}
 }

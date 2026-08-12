@@ -823,7 +823,7 @@ on_actions = {
 			# Surplus GDP malus
 				set_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_var_nat_RSV_liquid_B }
 				divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_arr_nat_GDP_B^1 }
-				divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = 10 }
+				divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = 50 }
 			# Weimar GDP malus
 				set_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = ECON_var_nat_RSV_weimar_B }
 				divide_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = ECON_arr_nat_GDP_B^1 }
@@ -1079,61 +1079,6 @@ on_actions = {
 			divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
 			multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
 		
-		# PRODUCTION UNITS _ usual overcomplicating oversimplification
-			# PU calculation
-				IF = { limit = { check_variable = { ECON_var_nat_PU_threshold_B = 0 } }	# in case national threshold unspecified
-					set_variable = { ECON_var_nat_PU_threshold_B = 0.1 } }
-				set_variable = { ECON_var_nat_PU_total = ECON_arr_nat_GDP_B^1 }
-				divide_variable = { ECON_var_nat_PU_total = ECON_var_nat_PU_threshold_B }
-				round_variable = ECON_var_nat_PU_total
-				
-				set_variable = { ECON_arr_nat_PU_consumer_goods_pct^0 = modifier@consumer_goods_expected_value }
-					set_variable = { ECON_arr_nat_PU_consumer_goods_pct^1 = 1 }
-					add_to_variable = { ECON_arr_nat_PU_consumer_goods_pct^1 = modifier@consumer_goods_factor }
-				multiply_variable = { ECON_arr_nat_PU_consumer_goods_pct^0 = ECON_arr_nat_PU_consumer_goods_pct^1 }
-				set_variable = { ECON_arr_nat_PU_assignment^5 = ECON_var_nat_PU_total }	# consumer goods
-				multiply_variable = { ECON_arr_nat_PU_assignment^5 = ECON_arr_nat_PU_consumer_goods_pct^0 }
-				round_variable = ECON_arr_nat_PU_assignment^5
-				
-				set_variable = { ECON_arr_nat_PU_assignment^0 = ECON_var_nat_PU_total }	# unassigned PUs
-				subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = ECON_arr_nat_PU_assignment^5 }
-				set_variable = { ECON_arr_var_PU_assignment_0_original = ECON_arr_nat_PU_assignment^0 }
-				
-				IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^1 > ECON_arr_nat_PU_assignment^0 } } 	# assigned > real PUs - production capacity reduction
-					set_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^1 }
-					subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_var_PU_assignment_0_original }
-					IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^4 > 0 } } 
-						subtract_from_variable = { ECON_arr_nat_PU_assignment^4 = ECON_var_nat_PU_overassignment }	# hit naval production first
-						subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = ECON_var_nat_PU_overassignment }
-						subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^4 }
-						IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^4 < 0 } }
-							multiply_variable = { ECON_arr_nat_PU_assignment^4 = -1 }
-							subtract_from_variable = { ECON_arr_nat_PU_assignment^2 = ECON_arr_nat_PU_assignment^4 }
-							set_variable = { ECON_arr_nat_PU_assignment^4 = 0 } } }
-					ELSE_IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^2 > 0 } } 
-						subtract_from_variable = { ECON_arr_nat_PU_assignment^2 = ECON_var_nat_PU_overassignment }	# civilian second
-						subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = ECON_var_nat_PU_overassignment }
-						subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^2 }
-						IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^2 < 0 } }
-							multiply_variable = { ECON_arr_nat_PU_assignment^2 = -1 }
-							subtract_from_variable = { ECON_arr_nat_PU_assignment^3 = ECON_arr_nat_PU_assignment^2 }
-							set_variable = { ECON_arr_nat_PU_assignment^2 = 0 } } }
-					ELSE_IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^3 > 0 } } 
-						subtract_from_variable = { ECON_arr_nat_PU_assignment^3 = ECON_var_nat_PU_overassignment }	# military third
-						subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = ECON_var_nat_PU_overassignment }
-						subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^3 }
-						IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^4 < 0 } }
-							multiply_variable = { ECON_arr_nat_PU_assignment^3 = -1 }
-							subtract_from_variable = { ECON_arr_nat_PU_assignment^5 = ECON_arr_nat_PU_assignment^3 }
-							set_variable = { ECON_arr_nat_PU_assignment^3 = 0 } } }
-					#ELSE = { subtract_from_variable = { ECON_arr_nat_PU_assignment^5 = ECON_var_nat_PU_overassignment }	# goods last
-					#	subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^5 } }
-				}
-
-				subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = ECON_arr_nat_PU_assignment^1 }	
-				clamp_variable = { var = ECON_arr_nat_PU_assignment^0	min = 0 }
-
-
 		# RESERVE, REVENUE, EXPENDITURE _ Greece, 2011
 			# Revenue
 				# Taxes
@@ -1415,6 +1360,7 @@ on_actions = {
 				set_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = ECON_var_nat_RSV_budget_B }
 				multiply_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = -1 }
 				divide_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = ECON_arr_nat_GDP_B^1 }
+				divide_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = 10 }
 			# Surplus GDP malus
 				set_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_var_nat_RSV_liquid_B }
 				divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_arr_nat_GDP_B^1 }
@@ -1432,5 +1378,111 @@ on_actions = {
 				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_GDP_B^1 }
 				divide_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = 100 }
 				multiply_variable = { ECON_arr_nat_REV_tax_GDP_malus_pct^3 = ECON_arr_nat_REV_tax_GDP_malus_modifier_pct^3 }
+
+			# copy below
+			set_variable = { ECON_arr_nat_GDP_B^1 = 0 }
+			# Nominal growth yearly -> monthly & deficit spending bonus
+				set_variable = { ECON_arr_nat_GDP_growth_pct^5 = ECON_arr_nat_GDP_growth_pct^3 }
+				divide_variable = { ECON_arr_nat_GDP_growth_pct^5 = 12 }
+				set_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_GDP_growth_pct^3 }
+				divide_variable = { ECON_arr_nat_GDP_growth_pct^0 = 12 }
+				IF = { limit = { check_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct > 0 } } add_to_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct } }
+				subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_REV_tax_GDP_malus_pct^1 }
+				subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_arr_nat_REV_tax_GDP_malus_pct^3 }
+				IF = { limit = { check_variable = { ECON_var_nat_RSV_liquid_malus_pct > 0 } } subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^0 = ECON_var_nat_RSV_liquid_malus_pct } }
+					set_variable = { ECON_arr_nat_GDP_growth_pct^4 = ECON_arr_nat_GDP_growth_pct^0 }
+					multiply_variable = { ECON_arr_nat_GDP_growth_pct^4 = 12 }	# accounting for other changes
+			# Inflation
+				set_variable_to_random = { var = ECON_arr_nat_inflation_modifier_pct_monthly^1	min = 0.5 max = 2 }
+				set_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^1 }
+				add_to_variable = { ECON_arr_nat_inflation_modifier_pct_monthly^0 = ECON_arr_nat_inflation_modifier_pct_monthly^2 }
+				set_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_pct_monthly^0 }
+				multiply_variable = { ECON_arr_nat_inflation_pct_monthly^1 = ECON_arr_nat_inflation_modifier_pct_monthly^0 }
+			# RGDP conversion
+				set_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_GDP_growth_pct^0 }
+					subtract_from_variable = { ECON_arr_nat_GDP_growth_pct^1 = ECON_arr_nat_inflation_pct_monthly^1 }
+			
+			# State
+				every_owned_state = {
+					set_variable = { ECON_var_state_GDP_growth_B = ECON_var_state_GDP_nominal_B }
+					multiply_variable = { ECON_var_state_GDP_growth_B = PREV.ECON_arr_nat_GDP_growth_pct^1 }
+					add_to_variable = { ECON_var_state_GDP_nominal_B = ECON_var_state_GDP_growth_B }
+					add_to_variable = { PREV.ECON_arr_nat_GDP_B^1 = ECON_var_state_GDP_nominal_B }
+				}
+	
+			#set_variable = { ECON_arr_nat_GDP_B^1 = ECON_arr_nat_GDP_B^0 }
+				set_variable = { ECON_var_td_nat_GDP_B_nominal = var:ECON_arr_nat_GDP_B^1 }
+				multiply_variable = { ECON_var_td_nat_GDP_B_nominal = ECON_arr_nat_GDP_growth_pct^1 }
+			add_to_variable = { ECON_arr_nat_GDP_B^1 = ECON_var_td_nat_GDP_B_nominal }
+				
+				# modding values for display (GDP growth, deflator)
+					#set_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_arr_nat_GDP_B^0 }	set_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = 1 }
+					#subtract_from_variable = { ECON_var_td_nat_GDP_deflator_disp_pct = ECON_var_td_nat_GDP_deflator_pct }
+					#multiply_variable = { ECON_var_td_nat_GDP_deflator_disp_B = ECON_var_td_nat_GDP_deflator_disp_pct }
+
+					#set_variable = { ECON_var_td_nat_GDP_growth_real_disp_pct = ECON_arr_nat_GDP_growth_pct^0 }
+					#subtract_from_variable = { ECON_var_td_nat_GDP_growth_real_disp_pct = ECON_var_td_nat_GDP_deflator_disp_pct }
+
+					#set_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_arr_nat_GDP_B^1 }
+					#divide_variable = { ECON_var_td_nat_GDP_growth_disp_B = 100 }
+					#multiply_variable = { ECON_var_td_nat_GDP_growth_disp_B = ECON_var_td_nat_GDP_growth_real_disp_pct }
+
+			set_variable = { ECON_var_nat_GDP_capita_K = ECON_arr_nat_GDP_B^1 }	# PROOF I AM SO FUCKING BAD AT MATHS
+			divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
+			multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
+		
+		# PRODUCTION UNITS _ usual overcomplicating oversimplification
+			# PU calculation
+				IF = { limit = { check_variable = { ECON_var_nat_PU_threshold_B = 0 } }	# in case national threshold unspecified
+					set_variable = { ECON_var_nat_PU_threshold_B = 0.1 } }
+				set_variable = { ECON_var_nat_PU_total = ECON_arr_nat_GDP_B^1 }
+				divide_variable = { ECON_var_nat_PU_total = ECON_var_nat_PU_threshold_B }
+				round_variable = ECON_var_nat_PU_total
+				
+				set_variable = { ECON_arr_nat_PU_consumer_goods_pct^0 = modifier@consumer_goods_expected_value }
+					set_variable = { ECON_arr_nat_PU_consumer_goods_pct^1 = 1 }
+					add_to_variable = { ECON_arr_nat_PU_consumer_goods_pct^1 = modifier@consumer_goods_factor }
+				multiply_variable = { ECON_arr_nat_PU_consumer_goods_pct^0 = ECON_arr_nat_PU_consumer_goods_pct^1 }
+				set_variable = { ECON_arr_nat_PU_assignment^5 = ECON_var_nat_PU_total }	# consumer goods
+				multiply_variable = { ECON_arr_nat_PU_assignment^5 = ECON_arr_nat_PU_consumer_goods_pct^0 }
+				round_variable = ECON_arr_nat_PU_assignment^5
+				
+				set_variable = { ECON_arr_nat_PU_assignment^0 = ECON_var_nat_PU_total }	# unassigned PUs
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = ECON_arr_nat_PU_assignment^5 }
+				set_variable = { ECON_arr_var_PU_assignment_0_original = ECON_arr_nat_PU_assignment^0 }
+				
+				IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^1 > ECON_arr_nat_PU_assignment^0 } } 	# assigned > real PUs - production capacity reduction
+					set_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^1 }
+					subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_var_PU_assignment_0_original }
+					IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^4 > 0 } } 
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^4 = ECON_var_nat_PU_overassignment }	# hit naval production first
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = ECON_var_nat_PU_overassignment }
+						subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^4 }
+						IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^4 < 0 } }
+							multiply_variable = { ECON_arr_nat_PU_assignment^4 = -1 }
+							subtract_from_variable = { ECON_arr_nat_PU_assignment^2 = ECON_arr_nat_PU_assignment^4 }
+							set_variable = { ECON_arr_nat_PU_assignment^4 = 0 } } }
+					ELSE_IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^2 > 0 } } 
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^2 = ECON_var_nat_PU_overassignment }	# civilian second
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = ECON_var_nat_PU_overassignment }
+						subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^2 }
+						IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^2 < 0 } }
+							multiply_variable = { ECON_arr_nat_PU_assignment^2 = -1 }
+							subtract_from_variable = { ECON_arr_nat_PU_assignment^3 = ECON_arr_nat_PU_assignment^2 }
+							set_variable = { ECON_arr_nat_PU_assignment^2 = 0 } } }
+					ELSE_IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^3 > 0 } } 
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^3 = ECON_var_nat_PU_overassignment }	# military third
+						subtract_from_variable = { ECON_arr_nat_PU_assignment^1 = ECON_var_nat_PU_overassignment }
+						subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^3 }
+						IF = { limit = { check_variable = { ECON_arr_nat_PU_assignment^4 < 0 } }
+							multiply_variable = { ECON_arr_nat_PU_assignment^3 = -1 }
+							subtract_from_variable = { ECON_arr_nat_PU_assignment^5 = ECON_arr_nat_PU_assignment^3 }
+							set_variable = { ECON_arr_nat_PU_assignment^3 = 0 } } }
+					#ELSE = { subtract_from_variable = { ECON_arr_nat_PU_assignment^5 = ECON_var_nat_PU_overassignment }	# goods last
+					#	subtract_from_variable = { ECON_var_nat_PU_overassignment = ECON_arr_nat_PU_assignment^5 } }
+				}
+
+				subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = ECON_arr_nat_PU_assignment^1 }	
+				clamp_variable = { var = ECON_arr_nat_PU_assignment^0	min = 0 }
 	} }
 }

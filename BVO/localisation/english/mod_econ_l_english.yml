@@ -11,7 +11,7 @@
  ECON_tt_state_GDP_growth_monthly:0 "Fixed modification rate on state GDP every month. Affected by national rates, infrastructure construction, decisions and foci."
  
  ECON_tt_GDP_growth:0 "This variable represents the economy's growth, or lack thereof, as a percentage value.\nThis percentage value will be applied at the end of each month."
-    ECON_tt_GDP_growth_delayed:0 "Nominal monthly: [?ECON_arr_nat_GDP_growth_pct^0|+%]\nChanges:\n...[?ECON_arr_nat_GDP_growth_pct^5|+%] base;\n...[?ECON_var_nat_RSV_liquid_malus_pct|-%] monthly due to reserves of [?ECON_var_nat_RSV_liquid_B|+^] B\n...[?ECON_arr_nat_REV_tax_GDP_malus_pct^1|-%] monthly due to income tax;\n...[?ECON_arr_nat_REV_tax_GDP_malus_pct^3|-%] monthly due to business tax.\n\n"
+    ECON_tt_GDP_growth_delayed:0 "Nominal monthly: [?ECON_arr_nat_GDP_growth_pct^0|+%]\nChanges:\n...[?ECON_arr_nat_GDP_growth_pct^5|+%] base;\n...[?ECON_var_nat_RSV_liquid_malus_pct|-%] monthly due to reserves of [?ECON_var_nat_RSV_liquid_B|+^] B\n...[?ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct|+%] monthly due to deficit spending of [?ECON_var_nat_RSV_budget_B|+^] B\n...[?ECON_arr_nat_REV_tax_GDP_malus_pct^1|-%] monthly due to income tax;\n...[?ECON_arr_nat_REV_tax_GDP_malus_pct^3|-%] monthly due to business tax.\n\n"
  ECON_tt_GDP_real_growth:0 ""
     ECON_tt_GDP_real_growth_delayed:0 "Changes:\n...[?ECON_arr_nat_inflation_pct_monthly^1|-%] monthly due to inflation;"
  #ECON_tt_deflator:0 "A nation's economic growth may be inaccurately represented without counting in other factors normally not within the balance sheet."
@@ -42,3 +42,8 @@
      ECON_tt_deficit:0 "Debt [?ECON_var_nat_RSV_liquid_B|+] B"
      ECON_tt_surplus:0 "Reserves [?ECON_var_nat_RSV_liquid_B|+] B"
      ECON_tt_moneygod:0 "BoP [?ECON_var_nat_RSV_liquid_B|+] B" 
+     
+     ECON_tt_GDP_PU_distrib_menu_total:0 "Units used to directly assign production capabilities in accordance to GDP size are aptly called Production Units.\nProduction Units are calculated by dividing GDP (real) by conversion threshold, with the quotient rounded to the nearest whole number."
+     ECON_tt_GDP_PU_distrib_menu_total_delayed:0 "Conversion threshold: [?ECON_var_nat_PU_threshold_B|+^] B."
+     ECON_tt_GDP_PU_distrib_menu_consumer_goods:0 "Some of our production capacity are naturally used in, or otherwise must be assigned, to help produce bread and butter for our people.\nThis percentage is set and modified by our Laws and Policies."
+     ECON_tt_GDP_PU_distrib_menu_consumer_goods_delayed:0 "Final expected Consumer Goods factor: [?ECON_arr_nat_PU_consumer_goods_pct^0|%]"
