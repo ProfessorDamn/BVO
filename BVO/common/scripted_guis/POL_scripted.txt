@@ -1,0 +1,77 @@
+scripted_gui = {
+	POL_cWT_toggle = { window_name = "POL_cWT_toggle"
+		context_type = player_context	parent_window_token = politics_tab
+
+		visible = { always = yes }
+
+		effects = {
+			POL_cWT_toggle_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_POL_toggle = 1 } } set_variable = { MOD_cWT_var_POL_toggle = 0 } }
+				ELSE = { set_variable = { MOD_cWT_var_POL_toggle = 1 } }
+			}
+		}
+		triggers = {
+			
+		}
+	}
+	POL_cWT = { window_name = "POL_cWT"
+		context_type = player_context
+
+		visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 } }
+
+		effects = {
+			POL_cWT_topbar_exit_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_POL_toggle = 1 } } set_variable = { MOD_cWT_var_POL_toggle = 0 } }
+				ELSE = { set_variable = { MOD_cWT_var_POL_toggle = 1 } }
+			}
+			POL_cWT_sidebar_legislative_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_POL_sub = 1 } } set_variable = { MOD_cWT_var_POL_sub = 0 } }
+				ELSE = { set_variable = { MOD_cWT_var_POL_sub = 1 } }
+			}
+			POL_cWT_sidebar_executive_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_POL_sub = 2 } } set_variable = { MOD_cWT_var_POL_sub = 0 } }
+				ELSE = { set_variable = { MOD_cWT_var_POL_sub = 2 } }
+			}
+			POL_cWT_sidebar_assorted_laws_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_POL_sub = 3 } } set_variable = { MOD_cWT_var_POL_sub = 0 } }
+				ELSE = { set_variable = { MOD_cWT_var_POL_sub = 3 } }
+			}
+		}
+	}
+		POL_cWT_content_legislative = { window_name = "POL_cWT_content_legislative"
+			context_type = player_context	parent_window_name = "POL_cWT"
+
+			visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 1 } }
+
+			effects = {
+				
+			}
+			triggers = {
+
+			}
+		}
+		POL_cWT_content_executive = { window_name = "POL_cWT_content_executive"
+			context_type = player_context	parent_window_name = "POL_cWT"
+
+			visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 2 } }
+
+			effects = {
+				
+			}
+			triggers = {
+
+			}
+		}
+		POL_cWT_content_assorted_laws = { window_name = "POL_cWT_content_assorted_laws"
+			context_type = player_context	parent_window_name = "POL_cWT"
+
+			visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 3 } }
+
+			effects = {
+				
+			}
+			triggers = {
+
+			}
+		}
+}

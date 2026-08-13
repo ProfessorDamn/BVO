@@ -1,0 +1,49 @@
+spriteTypes = {
+	corneredTileSpriteType = {
+		name = "GFX_POL_parliament_icon_seat"
+		textureFile = "gfx/interface/POL_parliament_icon_seats.dds"
+	}
+	
+    corneredTileSpriteType = {
+        name = "GFX_MOD_cWT_DOS_btn"
+        texturefile = "gfx/interface/MOD_cWT_DOS_btn_25x25.dds"
+        size = {
+            x = 17
+            y = 17
+        }
+        borderSize = {
+            x = 4
+            y = 4
+        }
+        
+        allwaystransparent = no
+        tilingCenter = yes
+    }
+	spriteType = {
+		name = "GFX_MOD_cWT_DOS_btn_25x25"
+		textureFile = "gfx/interface/MOD_cWT_DOS_btn_25x25.dds"
+	}
+	spriteType = {
+		name = "GFX_MOD_cWT_DOS_btn_65x22"
+		textureFile = "gfx/interface/MOD_cWT_DOS_btn_65x22.dds"
+	}
+	spriteType = {
+		name = "GFX_MOD_cWT_DOS_btn_100x25"
+		textureFile = "gfx/interface/MOD_cWT_DOS_btn_100x25.dds"
+	}
+    corneredTileSpriteType = {
+        name = "GFX_MOD_cWT_DOS_bgr"
+        texturefile = "gfx/interface/MOD_cWT_DOS_bgr.dds"
+        size = {
+            x = 103
+            y = 103
+        }
+        borderSize = {
+            x = 1
+            y = 1
+        }
+        
+        allwaystransparent = no
+        tilingCenter = yes
+    }
+}

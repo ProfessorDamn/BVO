@@ -1,0 +1,4 @@
+defined_text = {
+	name = MOD_cWT_PAR_topbar_text
+	text = { }
+}

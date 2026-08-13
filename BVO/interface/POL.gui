@@ -1,0 +1,89 @@
+guiTypes = {
+	containerWindowType = { name = "POL_cWT_toggle"
+		position = { x = 260 y = 302 }	size = { width = 277 height = 68 }
+		orientation = UPPER_LEFT	origo = upper_left
+
+		background = { name = "POL_cWT_toggle_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+		
+		buttonType = { name = "POL_cWT_toggle_button"
+			position = { x = 172 y = 5 }
+			quadTextureSprite = "GFX_MOD_cWT_DOS_btn_100x25"
+			orientation = UPPER_LEFT
+			
+			buttonFont = "DOSVGA_16"
+			buttonText = "ow"
+		}
+	}
+
+	containerWindowType = { name = "POL_cWT"
+		position = { x = 540 y = 100 }	size = { width = 800 height = 600 }
+		fade_time = 1000	fade_type = accelerated
+		orientation = UPPER_LEFT	origo = upper_left
+		moveable = yes
+
+		background = { name = "POL_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+		
+		# TOPBAR
+			buttonType = { name = "POL_cWT_topbar_exit_button"
+				position = { x = 5 y = 5 }	orientation = UPPER_LEFT	
+				spriteType = "GFX_MOD_cWT_DOS_btn_25x25"
+
+				shortcut = "ESCAPE"
+				
+				buttonFont = "DOSVGA_16"	format = centre
+				buttonText = "X"
+			}
+			instantTextBoxType = { name = "POL_cWT_topbar_title"
+				position = { x = -75 y = 10 }	orientation = CENTER_UP
+
+				font = "DOSVGA_20bold"	format = centre
+				text = "POLITICS"
+			}
+		# SIDEBAR
+			buttonType = { name = "POL_cWT_sidebar_legislative_button"
+				position = { x = 5 y = 60 }	size = { width = 150 height = 50 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_16"	format = centre
+				buttonText = "LEGISLATIVE"
+			}
+			buttonType = { name = "POL_cWT_sidebar_executive_button"
+				position = { x = 5 y = 110 }	size = { width = 150 height = 50 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_16"	format = centre
+				buttonText = "EXECUTIVE"
+			}
+
+			buttonType = { name = "POL_cWT_sidebar_assorted_laws_button"
+				position = { x = 5 y = 160 }	size = { width = 150 height = 50 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_16"	format = centre
+				buttonText = "ASSORTED LAWS"
+			} }
+		# CONTENT
+			containerWindowType = { name = "POL_cWT_content_legislative"	# votes on bills, elections, parties, popularities etc.
+				position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+				background = { name = "POL_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+			}
+			containerWindowType = { name = "POL_cWT_content_executive"	# who holds the executive power?
+				position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+				background = { name = "POL_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+			}
+			containerWindowType = { name = "POL_cWT_content_assorted_laws"
+				position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+				background = { name = "POL_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+			}
+
+	containerWindowType = {
+		name = "GFX_POL_parliament_container_seat"
+		position = { x = 0 y = 0 }
+
+		iconType = { 
+			name = "GFX_POL_parliament_gui_seats"
+			quadTextureSprite = "GFX_POL_parliament_icon_seat"
+			pdx_tooltip = "MP"
+		}
+	}
+}
