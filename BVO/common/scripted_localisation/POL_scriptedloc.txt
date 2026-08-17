@@ -1,0 +1,108 @@
+# Gets the loc to be displayed based on what the current v (value) of the element in the array is (the value corresponds to the party id set in the scripted effect).
+defined_text = {
+	name = GetParliamentPartyName
+	# not generic
+		# SWE
+		text = { trigger = { tag = SWE check_variable = { v = 1 } }
+			localization_key = SWE_com_party }
+		text = { trigger = { tag = SWE check_variable = { v = 2 } }
+			localization_key = SWE_soc_party }
+		text = { trigger = { tag = SWE check_variable = { v = 3 } }
+			localization_key = SWE_socdem_party }
+		text = { trigger = { tag = SWE check_variable = { v = 4 } }
+			localization_key = SWE_soclib_party }
+		text = { trigger = { tag = SWE check_variable = { v = 5 } }
+			localization_key = SWE_marktlib_party }
+		text = { trigger = { tag = SWE check_variable = { v = 6 } }
+			localization_key = SWE_con_party }
+		text = { trigger = { tag = SWE check_variable = { v = 7 } }
+			localization_key = SWE_pat_party }
+		text = { trigger = { tag = SWE check_variable = { v = 8 } }
+			localization_key = SWE_desp_party }
+		text = { trigger = { tag = SWE check_variable = { v = 9 } }
+			localization_key = SWE_nat_party }
+		text = { trigger = { tag = SWE check_variable = { v = 10 } }
+			localization_key = SWE_fasc_party }
+	# generic
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 1 } }
+			localization_key = com_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 2 } }
+			localization_key = soc_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 3 } }
+			localization_key = socdem_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 4 } }
+			localization_key = soclib_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 5 } }
+			localization_key = marktlib_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 6 } }
+			localization_key = con_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 7 } }
+			localization_key = pat_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 8 } }
+			localization_key = desp_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 9 } }
+			localization_key = nat_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 10 } }
+			localization_key = fasc_party }
+	text = { localization_key = "Error" }
+}
+defined_text = {
+	name = GetParliamentLongPartyName
+	# not generic
+		# SWE
+		text = { trigger = { tag = SWE check_variable = { v = 1 } }
+			localization_key = SWE_com_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 2 } }
+			localization_key = SWE_soc_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 3 } }
+			localization_key = SWE_socdem_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 4 } }
+			localization_key = SWE_soclib_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 5 } }
+			localization_key = SWE_marktlib_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 6 } }
+			localization_key = SWE_con_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 7 } }
+			localization_key = SWE_pat_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 8 } }
+			localization_key = SWE_desp_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 9 } }
+			localization_key = SWE_nat_party_long }
+		text = { trigger = { tag = SWE check_variable = { v = 10 } }
+			localization_key = SWE_fasc_party_long }
+	# generic
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 1 } }
+			localization_key = com_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 2 } }
+			localization_key = soc_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 3 } }
+			localization_key = socdem_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 4 } }
+			localization_key = soclib_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 5 } }
+			localization_key = marktlib_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 6 } }
+			localization_key = con_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 7 } }
+			localization_key = pat_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 8 } }
+			localization_key = desp_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 9 } }
+			localization_key = nat_party }
+		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 10 } }
+			localization_key = fasc_party }
+	text = { localization_key = "Error" }
+}
+
+# Since index starts as 0, i can get the current seat number by jut adding it by one and then displaying it.
+defined_text = {
+	name = GetParliamentSeatName
+	text = {
+		trigger = {
+			set_temp_variable = { temp_seat = parliament_main_index }
+			add_to_temp_variable = { temp_seat = 1 }
+			check_variable = { temp_seat > 0 }
+		}
+		localization_key = parliament_seat_text
+	}
+}

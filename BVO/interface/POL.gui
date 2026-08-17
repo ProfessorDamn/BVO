@@ -73,7 +73,7 @@ guiTypes = {
 				containerWindowType = { name = "POL_cWT_content_legislature_Westminster"
 					position = { x = 160 y = 100 }	size = { width = 635 height = 200 }	orientation = UPPER_LEFT
 					clipping = no
-					background = { name = "POL_cWT_content_legislative_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+					background = { name = "POL_cWT_content_legislature_Wminster_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 					
 
 					containerWindowType = {
@@ -97,17 +97,58 @@ guiTypes = {
 						}
 					}
 				}
-				containerWindowType = {
-					name = "parliament_main_entry"
-					position = { x = 0 y = 0 }
+				containerWindowType = { name = "POL_cWT_content_legislative_party_list"
+					position = { x = 160 y = 300 }	size = { width = 635 height = 275 }	orientation = UPPER_LEFT
 
-					iconType = {
-						name = "parliament_main_icon"
-						spriteType = "GFX_POL_parliament_icon_seat"
-						position = { x = 0 y = 0 }
-						pdx_tooltip = "parliament_main_icon_tt"
+					background = { name = "POL_cWT_content_legislature_pl_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+					clipping = no
+					
+					gridboxtype = {
+						name = "parliament_member_grid"
+						position = { x = -225 y = 10 }
+						size = { width = 100%% height = 100%% }
+						slotsize = { width = 350 height = 18 }
+						max_slots_vertical = 12
+						add_horizontal = no
 					}
 				}
+					containerWindowType = {
+						name = "parliament_main_entry"
+						position = { x = 0 y = 0 }
+
+						iconType = {
+							name = "parliament_main_icon"
+							spriteType = "GFX_POL_parliament_icon_seat"
+							position = { x = 0 y = 0 }
+							pdx_tooltip = "parliament_main_icon_tt"
+						}
+					}
+					containerWindowType = {
+						name = "parliament_member_entry"
+						position = { x = 0 y = 0 }
+						size = { width = 350 height = 18 }
+
+						iconType = {
+							name = "parliament_member_icon"
+							spriteType = "GFX_POL_parliament_icon_seat"
+							position = { x = -20 y = 0 }
+						}
+						buttonType = {
+							name = "parliament_modify_button"
+							spriteType = "GFX_POL_parliament_icon_seat_empty"
+							position = { x = -20 y = 0 }
+							pdx_tooltip = "parliament_modify_button_tt"
+						}
+						instantTextboxType = {
+							name = "parliament_member_text"
+							position = { x = 0 y = 0 }
+							font = "hoi_16mbs"
+							maxWidth = 350
+							maxHeight = 16
+							format = left
+							text = "parliament_member_text"
+						}
+					}
 			containerWindowType = { name = "POL_cWT_content_executive"	# who holds the executive power?
 				position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
 				background = { name = "POL_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }

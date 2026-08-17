@@ -42,54 +42,6 @@ scripted_gui = {
 			context_type = player_context	parent_window_name = "POL_cWT"
 
 			visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 1 } }
-
-			dynamic_lists = {
-				parliament_main_grid = {
-					array = parliament_main_array
-					index = parliament_main_index
-					change_scope = no
-					entry_container = parliament_main_entry
-				}
-				parliament_semicircle_main_grid = {
-					array = parliament_main_array
-					index = parliament_main_index
-					change_scope = no
-					entry_container = parliament_semicircle_main_entry
-				}
-				parliament_member_grid = {
-					array = parliament_member_array
-					index = parliament_member_index
-					change_scope = no
-					entry_container = parliament_member_entry
-				}
-			}
-
-			effects = {
-				parliament_modify_button_control_click = {
-					set_temp_variable = { temp_member = v }
-					set_temp_variable = { temp_seats = 5 }
-					modify_parliament_seat = yes
-				}
-				parliament_modify_button_shift_click = {
-					set_temp_variable = { temp_member = v }
-					set_temp_variable = { temp_seats = -5 }
-					modify_parliament_seat = yes
-				}
-			}
-
-			properties = {
-				parliament_main_icon = {
-					frame = v
-				}
-				parliament_semicircle_main_icon = {
-					frame = v
-					x = parliament_x_array^parliament_main_index
-					y = parliament_y_array^parliament_main_index
-				}
-				parliament_member_icon = {
-					frame = v
-				}
-			}
 		}
 			POL_cWT_content_legislature_Westminster = { window_name = "POL_cWT_content_legislature_Westminster"
 				context_type = player_context	parent_window_name = "POL_cWT"
@@ -106,6 +58,37 @@ scripted_gui = {
 				}
 				properties = {
 					parliament_main_icon = { frame = v }
+				}
+			}
+			POL_cWT_content_legislative_party_list = { window_name = "POL_cWT_content_legislative_party_list"
+				context_type = player_context	parent_window_name = "POL_cWT"
+				
+				visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 1 } }
+				
+				dynamic_lists = {
+					parliament_member_grid = {
+						array = parliament_member_array
+						index = parliament_member_index
+						change_scope = no
+						entry_container = parliament_member_entry
+					}
+				}
+				effects = {
+					parliament_modify_button_control_click = {
+						set_temp_variable = { temp_member = v }
+						set_temp_variable = { temp_seats = 5 }
+						modify_parliament_seat = yes
+					}
+					parliament_modify_button_shift_click = {
+						set_temp_variable = { temp_member = v }
+						set_temp_variable = { temp_seats = -5 }
+						modify_parliament_seat = yes
+					}
+				}
+				properties = {
+					parliament_member_icon = {
+						frame = v
+					}
 				}
 			}
 		POL_cWT_content_executive = { window_name = "POL_cWT_content_executive"

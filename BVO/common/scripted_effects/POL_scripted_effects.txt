@@ -11,10 +11,10 @@ parliament_gui_initial = {
 	add_to_array = { parliament_seat_array = 33 } # soc
 	add_to_array = { parliament_seat_array = 130 } # socdem
 	add_to_array = { parliament_seat_array = 71 } # soclib
-	add_to_array = { parliament_seat_array = 41 } # marktlib
-	add_to_array = { parliament_seat_array = 58 } # con
-	add_to_array = { parliament_seat_array = 0 } # desp
+	add_to_array = { parliament_seat_array = 58 } # marktlib
+	add_to_array = { parliament_seat_array = 41 } # con
 	add_to_array = { parliament_seat_array = 0 } # pat
+	add_to_array = { parliament_seat_array = 0 } # desp
 	add_to_array = { parliament_seat_array = 0 } # nat
 	add_to_array = { parliament_seat_array = 0 } # fasc
 
@@ -26,8 +26,8 @@ parliament_gui_initial = {
 	add_to_array = { parliament_member_array = 4 } # soclib
 	add_to_array = { parliament_member_array = 5 } # marktlib
 	add_to_array = { parliament_member_array = 6 } # con
-	add_to_array = { parliament_member_array = 7 } # desp
-	add_to_array = { parliament_member_array = 8 } # pat
+	add_to_array = { parliament_member_array = 7 } # pat
+	add_to_array = { parliament_member_array = 8 } # desp
 	add_to_array = { parliament_member_array = 9 } # nat
 	add_to_array = { parliament_member_array = 10 } # fasc
 
