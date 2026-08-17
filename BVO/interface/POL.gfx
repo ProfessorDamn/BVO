@@ -1,7 +1,12 @@
 spriteTypes = {
-	corneredTileSpriteType = {
+	spriteType = {
 		name = "GFX_POL_parliament_icon_seat"
 		textureFile = "gfx/interface/POL_parliament_icon_seats.dds"
+        noOfFrames = 10  # added more parties? increase the n# pf frames here!
+	}
+	spriteType = {
+		name = "GFX_POL_parliament_icon_seat_empty"
+		textureFile = "gfx/interface/POL_parliament_icon_seat_empty.dds"
 	}
 	
     corneredTileSpriteType = {
