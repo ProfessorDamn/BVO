@@ -2,3 +2,5 @@
   parliament_main_icon_tt:0 "[GetParliamentSeatName] - [GetParliamentPartyName]"
   parliament_seat_text:0 "Seat [?temp_seat|Y0]"
   parliament_member_text:0 "[GetParliamentPartyName] - [GetParliamentLongPartyName] - [?parliament_seat_array^parliament_member_index] Seats"
+  POL_tt_legislative_party_list_MPs:0 "[?POL_arr_nat_LEG_seats^parliament_member_index]"
+  POL_tt_legislative_party_list_name:0 "[GetParliamentLongPartyName]"

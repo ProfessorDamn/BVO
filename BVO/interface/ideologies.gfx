@@ -1,0 +1,42 @@
+spriteTypes = {
+	spriteType = {
+		name = "GFX_ideology_com_group"
+		textureFile = "gfx/interface/ideologies/com_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_soc_group"
+		textureFile = "gfx/interface/ideologies/soc_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_socdem_group"
+		textureFile = "gfx/interface/ideologies/socdem_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_soclib_group"
+		textureFile = "gfx/interface/ideologies/soclib_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_conlib_group"
+		textureFile = "gfx/interface/ideologies/conlib_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_con_group"
+		textureFile = "gfx/interface/ideologies/con_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_authdem_group"
+		textureFile = "gfx/interface/ideologies/authdem_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_desp_group"
+		textureFile = "gfx/interface/ideologies/desp_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_nat_group"
+		textureFile = "gfx/interface/ideologies/nat_group.dds"
+	}
+	spriteType = {
+		name = "GFX_ideology_fasc_group"
+		textureFile = "gfx/interface/ideologies/fasc_group.dds"
+	}
+}

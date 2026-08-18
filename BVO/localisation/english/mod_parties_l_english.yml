@@ -1,7 +1,7 @@
 ﻿l_english:
  com_party:0 "CP[THIS.GetTag]"
   SWE_com_party:0 "VPK"
-   SWE_com_party_long:0 "Vänsterpartiet Kommunisterna"
+   SWE_com_party_long:0 "Vansterpartiet Kommunisterna"
  soc_party:0 "SP[THIS.GetTag]"
   SWE_soc_party:0 "S"
    SWE_soc_party_long:0 "Sveriges socialdemokratiska arbetareparti"
@@ -22,7 +22,7 @@
    SWE_pat_party_long:0 "Kristdemokraterna"
  desp_party:0 "[THIS.GetAdjective] Armed Forces"
   SWE_desp_party:0 "HKV"
-   SWE_desp_party_long:0 "Högkvarteret"
+   SWE_desp_party_long:0 "Hogkvarteret"
  nat_party:0 "NP[THIS.GetTag]"
   SWE_nat_party:0 "FsP"
    SWE_nat_party_long:0 "Framstegspartiet"

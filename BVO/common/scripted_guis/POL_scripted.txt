@@ -50,7 +50,7 @@ scripted_gui = {
 
 				dynamic_lists = {
 					parliament_main_grid = {
-						array = parliament_main_array
+						array = POL_arr_nat_LEG_disp
 						index = parliament_main_index
 						change_scope = no
 						entry_container = parliament_main_entry
@@ -67,11 +67,14 @@ scripted_gui = {
 				
 				dynamic_lists = {
 					parliament_member_grid = {
-						array = parliament_member_array
+						array = POL_arr_nat_LEG_parties
 						index = parliament_member_index
 						change_scope = no
 						entry_container = parliament_member_entry
 					}
+				}
+				triggers = {
+					parliament_modify_button_visible = { is_debug = yes }
 				}
 				effects = {
 					parliament_modify_button_control_click = {
@@ -80,10 +83,10 @@ scripted_gui = {
 						modify_parliament_seat = yes
 					}
 					parliament_modify_button_shift_click = {
+						IF = { limit = { check_variable = { POL_arr_nat_LEG_seats^parliament_member_index > 4 } } 
 						set_temp_variable = { temp_member = v }
 						set_temp_variable = { temp_seats = -5 }
-						modify_parliament_seat = yes
-					}
+						modify_parliament_seat = yes } }
 				}
 				properties = {
 					parliament_member_icon = {

@@ -98,17 +98,17 @@ guiTypes = {
 					}
 				}
 				containerWindowType = { name = "POL_cWT_content_legislative_party_list"
-					position = { x = 160 y = 300 }	size = { width = 635 height = 275 }	orientation = UPPER_LEFT
+					position = { x = 160 y = 300 }	size = { width = 450 height = 275 }	orientation = UPPER_LEFT
 
 					background = { name = "POL_cWT_content_legislature_pl_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
-					clipping = no
+					clipping = yes	verticalScrollbar = "left_vertical_slider"	autohide_scrollbars = yes	#margin = { bottom = 10 }
 					
 					gridboxtype = {
 						name = "parliament_member_grid"
-						position = { x = -225 y = 10 }
+						position = { x = 0 y = 10 }
 						size = { width = 100%% height = 100%% }
-						slotsize = { width = 350 height = 18 }
-						max_slots_vertical = 12
+						slotsize = { width = 350 height = 50 }
+						max_slots_vertical = 20
 						add_horizontal = no
 					}
 				}
@@ -126,11 +126,11 @@ guiTypes = {
 					containerWindowType = {
 						name = "parliament_member_entry"
 						position = { x = 0 y = 0 }
-						size = { width = 350 height = 18 }
+						size = { width = 350 height = 50 }
 
 						iconType = {
 							name = "parliament_member_icon"
-							spriteType = "GFX_POL_parliament_icon_seat"
+							spriteType = "GFX_POL_parliament_icon_parties"
 							position = { x = -20 y = 0 }
 						}
 						buttonType = {
@@ -140,13 +140,29 @@ guiTypes = {
 							pdx_tooltip = "parliament_modify_button_tt"
 						}
 						instantTextboxType = {
-							name = "parliament_member_text"
-							position = { x = 0 y = 0 }
-							font = "hoi_16mbs"
-							maxWidth = 350
+							name = "POL_cWT_content_legislative_party_list_MPs"
+							position = { x = 20 y = 0 }
+							font = "DOSVGA_15"
+							maxWidth = 30
 							maxHeight = 16
 							format = left
-							text = "parliament_member_text"
+							text = "POL_tt_legislative_party_list_MPs"
+						}
+						instantTextboxType = {
+							name = "POL_cWT_content_legislative_party_list_name"
+							position = { x = 50 y = 0 }
+							font = "DOSVGA_15"
+							maxWidth = 350	maxHeight = 15	fixedsize = yes
+							format = left
+							text = "POL_tt_legislative_party_list_name"
+						}
+						instantTextboxType = {
+							name = "POL_cWT_content_legislative_party_list_ideology"
+							position = { x = 20 y = 15 }
+							font = "DOSVGA_12"
+							maxWidth = 350	maxHeight = 10	fixedsize = yes
+							format = left
+							text = "TO BE IMPLEMENTED"
 						}
 					}
 			containerWindowType = { name = "POL_cWT_content_executive"	# who holds the executive power?

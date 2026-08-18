@@ -1,8 +1,13 @@
 spriteTypes = {
 	spriteType = {
+		name = "GFX_POL_parliament_icon_parties"
+		textureFile = "gfx/interface/ideologies/GFX_POL_parliament_icon_parties.dds"
+        noOfFrames = 10  # added more parties? increase the n# of frames here!
+	}
+	spriteType = {
 		name = "GFX_POL_parliament_icon_seat"
 		textureFile = "gfx/interface/POL_parliament_icon_seats.dds"
-        noOfFrames = 10  # added more parties? increase the n# pf frames here!
+        noOfFrames = 10  # added more parties? increase the n# of frames here!
 	}
 	spriteType = {
 		name = "GFX_POL_parliament_icon_seat_empty"

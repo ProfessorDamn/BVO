@@ -1,5 +1,26 @@
 bitmapfonts = {
 	bitmapfont = {
+		name = "DOSVGA_10"
+		fontfiles = {
+			"gfx/fonts/DOSVGA_10"
+		}
+		color = 0xffffffff
+	}
+	bitmapfont = {
+		name = "DOSVGA_12"
+		fontfiles = {
+			"gfx/fonts/DOSVGA_12"
+		}
+		color = 0xffffffff
+	}
+	bitmapfont = {
+		name = "DOSVGA_15"
+		fontfiles = {
+			"gfx/fonts/DOSVGA_15"
+		}
+		color = 0xffffffff
+	}
+	bitmapfont = {
 		name = "DOSVGA_16"
 		fontfiles = {
 			"gfx/fonts/DOSVGA_16"
