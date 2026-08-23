@@ -42,6 +42,14 @@ scripted_gui = {
 			context_type = player_context	parent_window_name = "POL_cWT"
 
 			visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 1 } }
+
+			effects = {
+				POL_cWT_sidebar_legislative_party_list_button_click = { set_variable = { MOD_cWT_var_POL_LEG_sub = 0 } }
+				POL_cWT_sidebar_legislative_coalition_button_click = {
+					IF = { limit = { check_variable = { MOD_cWT_var_POL_LEG_sub = 1 } } set_variable = { MOD_cWT_var_POL_LEG_sub = 0 } }
+					ELSE = { set_variable = { MOD_cWT_var_POL_LEG_sub = 1 } }
+				}
+			}
 		}
 			POL_cWT_content_legislature_Westminster = { window_name = "POL_cWT_content_legislature_Westminster"
 				context_type = player_context	parent_window_name = "POL_cWT"
@@ -63,7 +71,7 @@ scripted_gui = {
 			POL_cWT_content_legislative_party_list = { window_name = "POL_cWT_content_legislative_party_list"
 				context_type = player_context	parent_window_name = "POL_cWT"
 				
-				visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 1 } }
+				visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 1 } check_variable = { MOD_cWT_var_POL_LEG_sub = 0 } }
 				
 				dynamic_lists = {
 					parliament_member_grid = {
@@ -87,6 +95,24 @@ scripted_gui = {
 						set_temp_variable = { temp_member = v }
 						set_temp_variable = { temp_seats = -5 }
 						modify_parliament_seat = yes } }
+				}
+				properties = {
+					parliament_member_icon = {
+						frame = v
+					}
+				}
+			}
+			POL_cWT_content_legislative_coalitions = { window_name = "POL_cWT_content_legislative_coalitions"
+				context_type = player_context	parent_window_name = "POL_cWT"
+
+				visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 1 } check_variable = { MOD_cWT_var_POL_LEG_sub = 1 } }
+				
+				dynamic_lists = {
+					POL_cWT_content_legislative_coalitions_gridbox_govt = {
+						array = POL_arr_nat_LEG_parties_coalition	index = parliament_member_index
+						change_scope = no
+						entry_container = POL_cWT_content_legislative_coalitions_gridbox_party_entry
+					}
 				}
 				properties = {
 					parliament_member_icon = {

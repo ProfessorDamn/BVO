@@ -7,16 +7,25 @@ parliament_gui_initial = {
 
 	# POL_arr_nat_LEG_seats stores the list of seat numbers for each party
 	# code in a check to distribute seats according to party popularity if not already distributed later.
-	add_to_array = { POL_arr_nat_LEG_seats = 17 } # com
-	add_to_array = { POL_arr_nat_LEG_seats = 33 } # soc
-	add_to_array = { POL_arr_nat_LEG_seats = 130 } # socdem
-	add_to_array = { POL_arr_nat_LEG_seats = 71 } # soclib
-	add_to_array = { POL_arr_nat_LEG_seats = 58 } # marktlib
-	add_to_array = { POL_arr_nat_LEG_seats = 41 } # con
-	add_to_array = { POL_arr_nat_LEG_seats = 0 } # pat
-	add_to_array = { POL_arr_nat_LEG_seats = 0 } # desp
-	add_to_array = { POL_arr_nat_LEG_seats = 0 } # nat
-	add_to_array = { POL_arr_nat_LEG_seats = 0 } # fasc
+	IF = { limit = { tag = SWE } 
+		add_to_array = { POL_arr_nat_LEG_seats = 17 } # com
+		add_to_array = { POL_arr_nat_LEG_seats = 33 } # soc
+		add_to_array = { POL_arr_nat_LEG_seats = 130 } # socdem
+		add_to_array = { POL_arr_nat_LEG_seats = 71 } # soclib
+		add_to_array = { POL_arr_nat_LEG_seats = 58 } # marktlib
+		add_to_array = { POL_arr_nat_LEG_seats = 41 } # con
+		add_to_array = { POL_arr_nat_LEG_seats = 0 } # pat
+		add_to_array = { POL_arr_nat_LEG_seats = 0 } # desp
+		add_to_array = { POL_arr_nat_LEG_seats = 0 } # nat
+		add_to_array = { POL_arr_nat_LEG_seats = 0 } # fasc
+	}
+	# (sorry Bernard referencing POL_arr_nat_LEG_seats^x LITERALLY MEANS GETTING THOSE PARTIES' SEATS. WHAT THE FUCK IS WRONG WITH YOU, THAT'S ONE GOOD HOUR YOU FUCKING IDIOT!)
+	# coalition setup
+	IF = { limit = { tag = SWE } 
+		add_to_array = { POL_arr_nat_LEG_parties_coalition = 1 }
+		add_to_array = { POL_arr_nat_LEG_parties_coalition = 2 }
+		add_to_array = { POL_arr_nat_LEG_parties_coalition = 3 }
+	}
 
 	# POL_arr_nat_LEG_parties stores the list of parties
 	# This basically assigns an id for each party, so Party A = 1, Party B = 2, etc. (must start from 1 and is in order)
@@ -36,6 +45,35 @@ parliament_gui_initial = {
 
 	# Modify what shows up in the gui
 	reload_parliament_gui = yes
+
+	# sets up coalitions
+	POL_se_LEG_set_up_coalitions = yes
+}
+
+# clear POL_arr_nat_LEG_parties_coalition before calling this
+POL_se_LEG_set_up_coalitions = {
+	clear_variable = POL_var_nat_LEG_seats_total
+	clear_variable = POL_var_nat_LEG_seats_coalition
+
+	for_each_loop = { array = POL_arr_nat_LEG_parties_coalition
+		index = i	value = v
+
+		# visual
+
+		# mathematics
+		set_temp_variable = { v1 = v }	subtract_from_temp_variable = { v1 = 1 }
+		add_to_variable = { POL_var_nat_LEG_seats_coalition = POL_arr_nat_LEG_seats^v1 }	# base 0
+	}
+	for_each_loop = { array = POL_arr_nat_LEG_parties
+		index = i	value = v
+
+		set_temp_variable = { v1 = v }	subtract_from_temp_variable = { v1 = 1 }
+		add_to_variable = { POL_var_nat_LEG_seats_total = POL_arr_nat_LEG_seats^v1 }	# base 0
+	}
+
+	set_variable = { POL_var_nat_LEG_seats_half = POL_var_nat_LEG_seats_total }	divide_variable = { POL_var_nat_LEG_seats_half = 2 }	round_variable = POL_var_nat_LEG_seats_half
+	set_variable = { POL_var_nat_LEG_seats_3qtr = POL_var_nat_LEG_seats_total }	divide_variable = { POL_var_nat_LEG_seats_3qtr = 1.5 }	round_variable = POL_var_nat_LEG_seats_3qtr
+	clear_variable = v1
 }
 
 # The following scripted effect does the main job of generating the gui, by adding the seats for each party in a grid.

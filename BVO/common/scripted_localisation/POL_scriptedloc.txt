@@ -1,3 +1,16 @@
+defined_text = {
+	name = POL_cWT_content_legislative_coalitions_law_number
+	text = { localization_key = "..." }
+}
+defined_text = {
+	name = POL_cWT_content_legislative_coalitions_law_name
+	text = { localization_key = "..." }
+}
+defined_text = {
+	name = POL_cWT_content_legislative_coalitions_law_content
+	text = { localization_key = "No bills are currently being voted on." }
+}
+
 # Gets the loc to be displayed based on what the current v (value) of the element in the array is (the value corresponds to the party id set in the scripted effect).
 defined_text = {
 	name = GetParliamentPartyName

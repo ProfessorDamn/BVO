@@ -54,7 +54,6 @@ guiTypes = {
 				buttonFont = "DOSVGA_16"	format = centre
 				buttonText = "EXECUTIVE"
 			}
-
 			buttonType = { name = "POL_cWT_sidebar_assorted_laws_button"
 				position = { x = 5 y = 160 }	size = { width = 150 height = 50 }	orientation = UPPER_LEFT	
 				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
@@ -68,10 +67,23 @@ guiTypes = {
 				
 				background = { name = "POL_cWT_content_legislative_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 				
-				
+				buttonType = { name = "POL_cWT_sidebar_legislative_party_list_button"
+					position = { x = 4 y = 10 }	size = { width = 100 height = 30 }	orientation = UPPER_LEFT	
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+					
+					buttonFont = "DOSVGA_12"	format = centre
+					buttonText = "PARTY LIST"
+				}
+				buttonType = { name = "POL_cWT_sidebar_legislative_coalition_button"
+					position = { x = 104 y = 10 }	size = { width = 100 height = 30 }	orientation = UPPER_LEFT	
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+					
+					buttonFont = "DOSVGA_12"	format = centre
+					buttonText = "COALITION"
+				}
 			}
 				containerWindowType = { name = "POL_cWT_content_legislature_Westminster"
-					position = { x = 160 y = 100 }	size = { width = 635 height = 200 }	orientation = UPPER_LEFT
+					position = { x = 160 y = 100 }	size = { width = 630 height = 200 }	orientation = UPPER_LEFT
 					clipping = no
 					background = { name = "POL_cWT_content_legislature_Wminster_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 					
@@ -98,10 +110,13 @@ guiTypes = {
 					}
 				}
 				containerWindowType = { name = "POL_cWT_content_legislative_party_list"
-					position = { x = 160 y = 300 }	size = { width = 450 height = 275 }	orientation = UPPER_LEFT
+					position = { x = 160 y = 305 }	size = { width = 450 height = 285 }	orientation = UPPER_LEFT
 
 					background = { name = "POL_cWT_content_legislature_pl_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 					clipping = yes	verticalScrollbar = "left_vertical_slider"	autohide_scrollbars = yes	#margin = { bottom = 10 }
+
+					fade_time = 500	fade_type = accelerated
+
 					
 					gridboxtype = {
 						name = "parliament_member_grid"
@@ -112,6 +127,132 @@ guiTypes = {
 						add_horizontal = no
 					}
 				}
+				containerWindowType = { name = "POL_cWT_content_legislative_coalitions"
+					position = { x = 160 y = 305 }	size = { width = 630 height = 285 }	orientation = UPPER_LEFT
+					background = { name = "POL_cWT_content_legislature_coal_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+					fade_time = 500	fade_type = accelerated
+
+					# party/coal grids
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_govt_text"
+							position = { x = 5 y = 5 }	orientation = UPPER_LEFT	maxWidth = 175 maxHeight = 15
+
+							font = "DOSVGA_15"	format = left
+							text = "Government" }
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_govt"
+							position = { x = 180 y = 5 }	orientation = UPPER_LEFT	maxWidth = 45 maxHeight = 15
+
+							font = "DOSVGA_20"	format = right
+							text = "[?POL_var_nat_LEG_seats_coalition]"
+						}
+						gridBoxType = { name = "POL_cWT_content_legislative_coalitions_gridbox_govt"
+							background = { name = "POL_cWT_content_legislature_coal_govt_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+							position = { x = 0 y = 25 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
+							max_slots_vertical = 20
+							add_horizontal = no
+						}
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_nongovt_text"
+							position = { x = 450 y = 5 }	orientation = UPPER_LEFT	maxWidth = 175 maxHeight = 15
+
+							font = "DOSVGA_15"	format = right
+							text = "Opposition" }
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_nongovt"
+							position = { x = 405 y = 5 }	orientation = UPPER_LEFT	maxWidth = 45 maxHeight = 15
+
+							font = "DOSVGA_20"	format = left
+							text = "000"	# change later
+						}
+						gridBoxType = { name = "POL_cWT_content_legislative_coalitions_gridbox_nongovt"
+							background = { name = "POL_cWT_content_legislature_coal_nongovt_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+							position = { x = 405 y = 25 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
+							max_slots_vertical = 20
+							add_horizontal = no
+						}
+					# sep. party interaction elements
+					# legislation
+					containerWindowType = { name = "POL_cWT_content_legislative_coalitions_law"
+						background = { name = "POL_cWT_content_legislature_coal_law_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+						position = { x = 230 y = 5 }	size = { width = 170 height = 225 }
+
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_law_number"
+							position = { x = 0 y = 5 }	orientation = UPPER_LEFT	maxWidth = 170 maxHeight = 15
+
+							font = "DOSVGA_15"	format = centre
+							text = "[POL_cWT_content_legislative_coalitions_law_number]"
+						}
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_law_name"
+							position = { x = 0 y = 20 }	orientation = UPPER_LEFT	maxWidth = 170 maxHeight = 60
+
+							font = "DOSVGA_16"	format = centre
+							text = "[POL_cWT_content_legislative_coalitions_law_name]"
+						}
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_law_content"
+							position = { x = 2 y = 60 }	orientation = UPPER_LEFT	maxWidth = 165	maxHeight = 150
+							scrollbartype = "standardtext_slider"
+
+							font = "DOSVGA_12"	format = centre
+							text = "[POL_cWT_content_legislative_coalitions_law_content]"
+						}
+					}
+					containerWindowType = { name = "POL_cWT_content_legislative_coalitions_votes"
+						background = { name = "POL_cWT_content_legislature_coal_law_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+						position = { x = 230 y = 235 }	size = { width = 170 height = 45 }
+
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_votes_current"
+							position = { x = 5 y = 5 }	orientation = UPPER_LEFT	maxWidth = 75 maxHeight = 15
+
+							font = "DOSVGA_20"	format = right
+							text = "000"
+						}
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_votes_necessary"
+							position = { x = 80 y = 9 }	orientation = UPPER_LEFT	maxWidth = 75 maxHeight = 15
+
+							font = "DOSVGA_16"	format = left
+							text = "/ [?POL_var_nat_LEG_seats_half]"
+						}
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_votes_status"	# passed or
+							position = { x = 5 y = 25 }	orientation = UPPER_LEFT	maxWidth = 160 maxHeight = 15
+
+							font = "DOSVGA_12"	format = center
+							text = "The vote will ???"
+						}
+					}
+				}
+					containerWindowType = { name = "POL_cWT_content_legislative_coalitions_gridbox_party_entry"
+						background = { name = "POL_cWT_content_legislature_coal_law_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+						position = { x = 0 y = 0 } size = { width = 225 height = 50 }
+
+						iconType = { name = "parliament_member_icon"
+							spriteType = "GFX_POL_parliament_icon_parties"
+							position = { x = 5 y = 5 } }
+						instantTextboxType = { name = "POL_cWT_content_legislative_party_list_MPs"
+							position = { x = 30 y = 9 }
+							font = "DOSVGA_20" maxWidth = 45 maxHeight = 16 format = left
+							text = "POL_tt_legislative_party_list_MPs" }
+						instantTextboxType = {
+							name = "POL_cWT_content_legislative_party_list_name"
+							position = { x = 75 y = 5 }
+							font = "DOSVGA_15" maxWidth = 145	maxHeight = 15	fixedsize = yes	format = left
+							text = "[GetParliamentPartyName]" }
+						instantTextboxType = {
+							name = "POL_cWT_content_legislative_party_list_name_long"
+							position = { x = 75 y = 20 }
+							font = "DOSVGA_10" maxWidth = 145	maxHeight = 15	fixedsize = yes	format = left
+							text = "POL_tt_legislative_party_list_name" }
+
+						instantTextboxType = {
+							name = "POL_cWT_content_legislative_party_relationship_type"
+							position = { x = 5 y = 32 }
+							font = "DOSVGA_12" maxWidth = 165	maxHeight = 15	fixedsize = yes	format = left
+							text = "Confidence & Supply" }	# gov't/coal/c-and-s
+						instantTextboxType = {
+							name = "POL_cWT_content_legislative_party_relationship_seats_rallied"
+							position = { x = 170 y = 32 }
+							font = "DOSVGA_12" maxWidth = 50	maxHeight = 15	fixedsize = yes	format = right
+							text = "000" 	# gov't/coal/c-and-s
+							#pdx_tooltip = 	# % support
+							}
+					}
 					containerWindowType = {
 						name = "parliament_main_entry"
 						position = { x = 0 y = 0 }
