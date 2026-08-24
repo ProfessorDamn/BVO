@@ -114,6 +114,13 @@ scripted_gui = {
 						entry_container = POL_cWT_content_legislative_coalitions_gridbox_party_entry
 					}
 				}
+				dynamic_lists = {
+					POL_cWT_content_legislative_coalitions_gridbox_nongovt = {
+						array = POL_arr_nat_LEG_parties_noncoalition	index = parliament_member_index
+						change_scope = no
+						entry_container = POL_cWT_content_legislative_coalitions_gridbox_party_entry
+					}
+				}
 				properties = {
 					parliament_member_icon = {
 						frame = v

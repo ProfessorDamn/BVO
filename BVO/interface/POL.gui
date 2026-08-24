@@ -135,10 +135,16 @@ guiTypes = {
 
 					# party/coal grids
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_govt_text"
-							position = { x = 5 y = 5 }	orientation = UPPER_LEFT	maxWidth = 175 maxHeight = 15
+							position = { x = 5 y = 5 }	orientation = UPPER_LEFT	maxWidth = 140 maxHeight = 15
 
 							font = "DOSVGA_15"	format = left
 							text = "Government" }
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_rallied_govt"
+							position = { x = 150 y = 5 }	orientation = UPPER_LEFT	maxWidth = 35 maxHeight = 15
+
+							font = "DOSVGA_16"	format = right
+							text = "[?POL_var_nat_LEG_parties_coalition_support_seats]"
+						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_govt"
 							position = { x = 180 y = 5 }	orientation = UPPER_LEFT	maxWidth = 45 maxHeight = 15
 
@@ -152,10 +158,16 @@ guiTypes = {
 							add_horizontal = no
 						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_nongovt_text"
-							position = { x = 450 y = 5 }	orientation = UPPER_LEFT	maxWidth = 175 maxHeight = 15
+							position = { x = 485 y = 5 }	orientation = UPPER_LEFT	maxWidth = 140 maxHeight = 15
 
 							font = "DOSVGA_15"	format = right
 							text = "Opposition" }
+						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_rallied_nongovt"
+							position = { x = 450 y = 5 }	orientation = UPPER_LEFT	maxWidth = 35 maxHeight = 15
+
+							font = "DOSVGA_16"	format = left
+							text = "000"	# change later
+						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_nongovt"
 							position = { x = 405 y = 5 }	orientation = UPPER_LEFT	maxWidth = 45 maxHeight = 15
 
@@ -228,7 +240,7 @@ guiTypes = {
 						instantTextboxType = { name = "POL_cWT_content_legislative_party_list_MPs"
 							position = { x = 30 y = 9 }
 							font = "DOSVGA_20" maxWidth = 45 maxHeight = 16 format = left
-							text = "POL_tt_legislative_party_list_MPs" }
+							text = "[POL_cWT_content_legislative_coalitions_total_seats]" }
 						instantTextboxType = {
 							name = "POL_cWT_content_legislative_party_list_name"
 							position = { x = 75 y = 5 }
@@ -249,7 +261,7 @@ guiTypes = {
 							name = "POL_cWT_content_legislative_party_relationship_seats_rallied"
 							position = { x = 170 y = 32 }
 							font = "DOSVGA_12" maxWidth = 50	maxHeight = 15	fixedsize = yes	format = right
-							text = "000" 	# gov't/coal/c-and-s
+							text = "[POL_cWT_content_legislative_coalitions_support_seats]" 	# gov't/coal/c-and-s
 							#pdx_tooltip = 	# % support
 							}
 					}

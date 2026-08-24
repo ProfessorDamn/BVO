@@ -23,8 +23,25 @@ parliament_gui_initial = {
 	# coalition setup
 	IF = { limit = { tag = SWE } 
 		add_to_array = { POL_arr_nat_LEG_parties_coalition = 1 }
+			add_to_array = { POL_arr_nat_LEG_parties_coalition_support_pct = 0.5 }	# POL_arr_nat_LEG_parties_coalition_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_coalition = 2 }
+			add_to_array = { POL_arr_nat_LEG_parties_coalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_coalition_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_coalition = 3 }
+			add_to_array = { POL_arr_nat_LEG_parties_coalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_coalition_support_seats
+		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 4 }
+			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 5 }
+			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 6 }
+			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 7 }
+			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 8 }
+			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 9 }
+			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 10 }
+			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
 	}
 
 	# POL_arr_nat_LEG_parties stores the list of parties
@@ -51,9 +68,11 @@ parliament_gui_initial = {
 }
 
 # clear POL_arr_nat_LEG_parties_coalition before calling this
+# cannibalise this for other codes as well
 POL_se_LEG_set_up_coalitions = {
 	clear_variable = POL_var_nat_LEG_seats_total
 	clear_variable = POL_var_nat_LEG_seats_coalition
+	clear_variable = POL_var_nat_LEG_parties_coalition_support_seats
 
 	for_each_loop = { array = POL_arr_nat_LEG_parties_coalition
 		index = i	value = v
@@ -63,6 +82,24 @@ POL_se_LEG_set_up_coalitions = {
 		# mathematics
 		set_temp_variable = { v1 = v }	subtract_from_temp_variable = { v1 = 1 }
 		add_to_variable = { POL_var_nat_LEG_seats_coalition = POL_arr_nat_LEG_seats^v1 }	# base 0
+		set_variable = { POL_arr_nat_LEG_parties_coalition_support_seats^v1 = POL_arr_nat_LEG_seats^v1 }
+			multiply_variable = { POL_arr_nat_LEG_parties_coalition_support_seats^v1 = POL_arr_nat_LEG_parties_coalition_support_pct^v1 }
+			round_variable = POL_arr_nat_LEG_parties_coalition_support_seats^v1
+			add_to_variable = { POL_var_nat_LEG_parties_coalition_support_seats = POL_arr_nat_LEG_parties_coalition_support_seats^v1 }
+	}
+
+	for_each_loop = { array = POL_arr_nat_LEG_parties_noncoalition
+		index = i	value = v
+
+		# visual
+
+		# mathematics
+		set_temp_variable = { v1 = v }	subtract_from_temp_variable = { v1 = 1 }
+		add_to_variable = { POL_var_nat_LEG_seats_noncoalition = POL_arr_nat_LEG_seats^v1 }	# base 0
+		set_variable = { POL_arr_nat_LEG_parties_noncoalition_support_seats^v1 = POL_arr_nat_LEG_seats^v1 }
+			multiply_variable = { POL_arr_nat_LEG_parties_noncoalition_support_seats^v1 = POL_arr_nat_LEG_parties_noncoalition_support_pct^v1 }
+			round_variable = POL_arr_nat_LEG_parties_noncoalition_support_seats^v1
+			add_to_variable = { POL_var_nat_LEG_parties_noncoalition_support_seats = POL_arr_nat_LEG_parties_noncoalition_support_seats^v1 }
 	}
 	for_each_loop = { array = POL_arr_nat_LEG_parties
 		index = i	value = v
