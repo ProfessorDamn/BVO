@@ -187,13 +187,13 @@ guiTypes = {
 						position = { x = 230 y = 5 }	size = { width = 170 height = 225 }
 
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_law_number"
-							position = { x = 0 y = 5 }	orientation = UPPER_LEFT	maxWidth = 170 maxHeight = 15
+							position = { x = 0 y = 5 }	orientation = UPPER_LEFT	maxWidth = 170 maxHeight = 15	fixedsize = yes
 
-							font = "DOSVGA_15"	format = centre
+							font = "DOSVGA_12"	format = centre
 							text = "[POL_cWT_content_legislative_coalitions_law_number]"
 						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_law_name"
-							position = { x = 0 y = 20 }	orientation = UPPER_LEFT	maxWidth = 170 maxHeight = 60
+							position = { x = 0 y = 20 }	orientation = UPPER_LEFT	maxWidth = 170 maxHeight = 60	fixedsize = yes
 
 							font = "DOSVGA_16"	format = centre
 							text = "[POL_cWT_content_legislative_coalitions_law_name]"

@@ -67,13 +67,57 @@ parliament_gui_initial = {
 	POL_se_LEG_set_up_coalitions = yes
 }
 
-# bills that can potentially be passed into legislation must be defined here.
-# run only once at the start of the game.
-# arrays: POL_arr_nat_LEG_laws_index			- localisation also ties to this (handle it in SEPARATE scripted loc!).
-#		  POL_arr_nat_LEG_laws_passed			- switches to 1 if 
-#		  POL_arr_nat_LEG_laws_threshold_pct	- 
-#		  POL_arr_nat_LEG_laws_effects			- 
-POL_se_LEG_vote = {	# change to mission later
+# elections hooray
+POL_se_LEG_elections_seat_allocation = {
+	#clear_array = POL_arr_nat_LEG_seats
+	set_temp_variable = { total_seats_calculated = 0 }
+
+	IF = { limit = { check_variable = { POL_var_nat_LEG_seats_total = 0 } }
+		set_variable = { POL_var_nat_LEG_seats_total = 350 } }
+
+	set_variable = { POL_arr_nat_LEG_votes_pct^0 = party_popularity@communism }	# com
+	set_variable = { POL_arr_nat_LEG_votes_pct^1 = party_popularity@soc }
+	set_variable = { POL_arr_nat_LEG_votes_pct^2 = party_popularity@democratic }	# prog
+	set_variable = { POL_arr_nat_LEG_votes_pct^3 = party_popularity@soclib }
+	set_variable = { POL_arr_nat_LEG_votes_pct^4 = party_popularity@marktlib }
+	set_variable = { POL_arr_nat_LEG_votes_pct^5 = party_popularity@con }
+	set_variable = { POL_arr_nat_LEG_votes_pct^6 = party_popularity@neutrality }	# pat
+	set_variable = { POL_arr_nat_LEG_votes_pct^7 = party_popularity@desp }
+	set_variable = { POL_arr_nat_LEG_votes_pct^8 = party_popularity@nat }
+	set_variable = { POL_arr_nat_LEG_votes_pct^9 = party_popularity@fascism }	# fasc
+
+	for_each_loop = { array = POL_arr_nat_LEG_parties
+		index = i	value = v
+
+		set_variable = { POL_arr_nat_LEG_seats^i = POL_var_nat_LEG_seats_total }
+			multiply_variable = { POL_arr_nat_LEG_seats^i = POL_arr_nat_LEG_votes_pct^i }
+			round_variable = POL_arr_nat_LEG_seats^i
+			add_to_temp_variable = { total_seats_calculated = POL_arr_nat_LEG_seats^i } }
+	
+	IF = { limit = { check_variable = { total_seats_calculated > POL_var_nat_LEG_seats_total } }
+		subtract_from_temp_variable = { total_seats_calculated = POL_var_nat_LEG_seats_total }
+		for_each_loop = { array = POL_arr_nat_LEG_seats
+			index = i	value = v	break = b
+			IF = { limit = { check_variable = { POL_arr_nat_LEG_seats^i > 0 } }
+				subtract_from_variable = { POL_arr_nat_LEG_seats^i = total_seats_calculated }
+				set_temp_variable = { b = 1 } }
+		} }
+	ELSE_IF = { limit = { check_variable = { total_seats_calculated < POL_var_nat_LEG_seats_total } }
+		subtract_from_temp_variable = { total_seats_calculated = POL_var_nat_LEG_seats_total }
+		multiply_temp_variable = { total_seats_calculated = -1 }
+		for_each_loop = { array = POL_arr_nat_LEG_seats
+			index = i	value = v	break = b
+			IF = { limit = { check_variable = { POL_arr_nat_LEG_seats^i > 0 } }
+				add_to_variable = { POL_arr_nat_LEG_seats^i = total_seats_calculated }
+				set_temp_variable = { b = 1 } }
+		} }
+	
+	clear_variable = total_seats_calculated
+	reload_parliament_gui = yes
+}
+
+# call this to initiate parliamentary votes
+POL_se_LEG_vote = {
 	# define two things first:
 		# - bill index (POL_var_nat_LEG_laws_index)	[do NOT bypass]
 		# - passing threshold (POL_var_nat_LEG_laws_threshold_pct) [can bypass if threshold = 0.5]

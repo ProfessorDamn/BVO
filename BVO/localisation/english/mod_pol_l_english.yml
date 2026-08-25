@@ -37,8 +37,8 @@
       POL_tt_content_legislative_coalitions_support_pct_fasc:0 "[?POL_arr_nat_LEG_parties_support_pct^9]"
     
     
-    POL_tt_content_legislative_coalitions_law_index_1:0 "01"
-     POL_tt_content_legislative_coalitions_law_name_1:0 "Among Us Instrumentality Bill"
-      POL_tt_content_legislative_coalitions_law_content_1:0 "1. Among Us shall be legalised throughout the country. Anyone who refuses to play Among Us shall be sent to prison. Among Us supremacy should be enshrined in the constitution. You must accept Among Us. You must accept. You must."
+    POL_tt_content_legislative_coalitions_law_index_1:0 "SFS [GetYear]:5u5 Bill"
+     POL_tt_content_legislative_coalitions_law_name_1:0 "Among Us Instrumentality"
+      POL_tt_content_legislative_coalitions_law_content_1:0 "1. Among Us shall be legalised throughout the country. Anyone who refuses to play Among Us shall be sent to prison. Among Us supremacy should be enshrined in the constitution. You must accept Among Us. You must accept. You must;\n2. Authorities of the State shall be conferred to the Lord of the Sus, and the Nation shall be known as the Sus Domain of [THIS.GetName]."
     
     
