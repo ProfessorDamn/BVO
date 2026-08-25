@@ -90,36 +90,37 @@ POL_se_LEG_vote = {	# change to mission later
 	  # set passing var
 	  	set_variable = { POL_var_nat_LEG_seats_pass_required = POL_var_nat_LEG_seats_total }
 		divide_variable = { POL_var_nat_LEG_seats_pass_required = 2 }	round_variable = POL_var_nat_LEG_seats_pass_required
-	  # everything during the vote goes here
-		IF = { limit = { has_country_flag = { flag = is_voting days < POL_var_nat_LEG_laws_days_voting } } 
-	
-		}
-		ELSE = {
-		  # if passed? if not?
-	    	# clear the voting country flag first
-			  clr_country_flag = is_voting
-			# check if current support is over required support
-			  set_variable = { POL_var_nat_LEG_parties_support_seats = POL_var_nat_LEG_parties_noncoalition_support_seats }	add_to_variable = { POL_var_nat_LEG_parties_support_seats = POL_var_nat_LEG_parties_coalition_support_seats }
-			  IF = { limit = { check_variable = { POL_var_nat_LEG_parties_support_seats > POL_var_nat_LEG_seats_pass_required } }
-			  	  set_variable = { POL_var_nat_LEG_laws_passed = 1 } }
-			# effects
-			  IF = { limit = { check_variable = { POL_var_nat_LEG_laws_passed = 1 } }	# This piece of legislation has cleared the Legislature.
-			  # test law
-				IF = { limit = { check_variable = { POL_var_nat_LEG_laws_index = 1 } }
-					THIS = { add_political_power = 100 }
-				}
-			}
-			ELSE = {	# Something happened that meant this piece hasn't
-			  # test law
-				IF = { limit = { check_variable = { POL_var_nat_LEG_laws_index = 1 } }
-					THIS = { add_political_power = -100 }
-				}
-			}
-		  clear_variable = POL_var_nat_LEG_laws_index
-		  clear_variable = POL_arr_nat_LEG_laws_threshold_pct
-		  clear_variable = POL_var_nat_LEG_laws_days_voting
-		}
+	    activate_mission = POL_mission_LEG_vote_timeout
 	  
+}
+# everything during the vote goes into another scripted effect
+
+# everything after the vote goes here
+POL_se_LEG_vote_finished = {
+	# if passed? if not?
+	# clear the voting country flag first
+		clr_country_flag = is_voting
+	# check if current support is over required support
+		set_variable = { POL_var_nat_LEG_parties_support_seats = POL_var_nat_LEG_parties_noncoalition_support_seats }	add_to_variable = { POL_var_nat_LEG_parties_support_seats = POL_var_nat_LEG_parties_coalition_support_seats }
+		IF = { limit = { check_variable = { POL_var_nat_LEG_parties_support_seats > POL_var_nat_LEG_seats_pass_required } }
+			set_variable = { POL_var_nat_LEG_laws_passed = 1 } }
+	# effects
+		IF = { limit = { check_variable = { POL_var_nat_LEG_laws_passed = 1 } }	# This piece of legislation has cleared the Legislature.
+		# test law
+		IF = { limit = { check_variable = { POL_var_nat_LEG_laws_index = 1 } }
+			THIS = { add_political_power = 100 }
+		}
+	}
+	ELSE = {	# Something happened that meant this piece hasn't
+		# test law
+		IF = { limit = { check_variable = { POL_var_nat_LEG_laws_index = 1 } }
+			THIS = { add_political_power = -100 }
+		}
+	}
+	clear_variable = POL_var_nat_LEG_laws_index
+	clear_variable = POL_arr_nat_LEG_laws_threshold_pct
+	clear_variable = POL_var_nat_LEG_laws_days_voting
+
 }
 POL_se_LEG_vote_test_cursed = { set_variable = { POL_var_nat_LEG_laws_index = 1 } POL_se_LEG_vote = yes }
 
