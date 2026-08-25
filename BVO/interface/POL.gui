@@ -166,13 +166,13 @@ guiTypes = {
 							position = { x = 450 y = 5 }	orientation = UPPER_LEFT	maxWidth = 35 maxHeight = 15
 
 							font = "DOSVGA_16"	format = left
-							text = "000"	# change later
+							text = "[?POL_var_nat_LEG_parties_noncoalition_support_seats]"	# change later
 						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_nongovt"
 							position = { x = 405 y = 5 }	orientation = UPPER_LEFT	maxWidth = 45 maxHeight = 15
 
 							font = "DOSVGA_20"	format = left
-							text = "000"	# change later
+							text = "[?POL_var_nat_LEG_seats_noncoalition]"	# change later
 						}
 						gridBoxType = { name = "POL_cWT_content_legislative_coalitions_gridbox_nongovt"
 							background = { name = "POL_cWT_content_legislature_coal_nongovt_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
@@ -214,13 +214,13 @@ guiTypes = {
 							position = { x = 5 y = 5 }	orientation = UPPER_LEFT	maxWidth = 75 maxHeight = 15
 
 							font = "DOSVGA_20"	format = right
-							text = "000"
+							text = "[?POL_var_nat_LEG_parties_support_seats]"
 						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_votes_necessary"
 							position = { x = 80 y = 9 }	orientation = UPPER_LEFT	maxWidth = 75 maxHeight = 15
 
 							font = "DOSVGA_16"	format = left
-							text = "/ [?POL_var_nat_LEG_seats_half]"
+							text = "/ [?POL_var_nat_LEG_seats_pass_required]"
 						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_votes_status"	# passed or
 							position = { x = 5 y = 25 }	orientation = UPPER_LEFT	maxWidth = 160 maxHeight = 15

@@ -23,25 +23,25 @@ parliament_gui_initial = {
 	# coalition setup
 	IF = { limit = { tag = SWE } 
 		add_to_array = { POL_arr_nat_LEG_parties_coalition = 1 }
-			add_to_array = { POL_arr_nat_LEG_parties_coalition_support_pct = 0.5 }	# POL_arr_nat_LEG_parties_coalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 0.5 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_coalition = 2 }
-			add_to_array = { POL_arr_nat_LEG_parties_coalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_coalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 1 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_coalition = 3 }
-			add_to_array = { POL_arr_nat_LEG_parties_coalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_coalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 1 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 4 }
-			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 0.2 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 5 }
-			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 0.1 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 6 }
-			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 0.05 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 7 }
-			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 0 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 8 }
-			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 0 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 9 }
-			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 0 }	# POL_arr_nat_LEG_parties_support_seats
 		add_to_array = { POL_arr_nat_LEG_parties_noncoalition = 10 }
-			add_to_array = { POL_arr_nat_LEG_parties_noncoalition_support_pct = 1 }	# POL_arr_nat_LEG_parties_noncoalition_support_seats
+			add_to_array = { POL_arr_nat_LEG_parties_support_pct = 0 }	# POL_arr_nat_LEG_parties_support_seats
 	}
 
 	# POL_arr_nat_LEG_parties stores the list of parties
@@ -67,6 +67,62 @@ parliament_gui_initial = {
 	POL_se_LEG_set_up_coalitions = yes
 }
 
+# bills that can potentially be passed into legislation must be defined here.
+# run only once at the start of the game.
+# arrays: POL_arr_nat_LEG_laws_index			- localisation also ties to this (handle it in SEPARATE scripted loc!).
+#		  POL_arr_nat_LEG_laws_passed			- switches to 1 if 
+#		  POL_arr_nat_LEG_laws_threshold_pct	- 
+#		  POL_arr_nat_LEG_laws_effects			- 
+POL_se_LEG_vote = {	# change to mission later
+	# define two things first:
+		# - bill index (POL_var_nat_LEG_laws_index)	[do NOT bypass]
+		# - passing threshold (POL_var_nat_LEG_laws_threshold_pct) [can bypass if threshold = 0.5]
+		# - days voting (POL_var_nat_LEG_laws_days_voting) [can bypass if = 30 days]
+		set_variable = { POL_var_nat_LEG_laws_passed = 0 }
+		IF = { limit = { check_variable = { POL_arr_nat_LEG_laws_threshold_pct = 0 } } 
+			set_variable = { POL_arr_nat_LEG_laws_threshold_pct = 0.5 } }
+		IF = { limit = { check_variable = { POL_var_nat_LEG_laws_days_voting = 0 } } 
+			set_variable = { POL_var_nat_LEG_laws_days_voting = 30 } }
+
+	# leg process
+	  # sets a country flag at the beginning of the voting process
+		set_country_flag = is_voting
+	  # set passing var
+	  	set_variable = { POL_var_nat_LEG_seats_pass_required = POL_var_nat_LEG_seats_total }
+		divide_variable = { POL_var_nat_LEG_seats_pass_required = 2 }	round_variable = POL_var_nat_LEG_seats_pass_required
+	  # everything during the vote goes here
+		IF = { limit = { has_country_flag = { flag = is_voting days < POL_var_nat_LEG_laws_days_voting } } 
+	
+		}
+		ELSE = {
+		  # if passed? if not?
+	    	# clear the voting country flag first
+			  clr_country_flag = is_voting
+			# check if current support is over required support
+			  set_variable = { POL_var_nat_LEG_parties_support_seats = POL_var_nat_LEG_parties_noncoalition_support_seats }	add_to_variable = { POL_var_nat_LEG_parties_support_seats = POL_var_nat_LEG_parties_coalition_support_seats }
+			  IF = { limit = { check_variable = { POL_var_nat_LEG_parties_support_seats > POL_var_nat_LEG_seats_pass_required } }
+			  	  set_variable = { POL_var_nat_LEG_laws_passed = 1 } }
+			# effects
+			  IF = { limit = { check_variable = { POL_var_nat_LEG_laws_passed = 1 } }	# This piece of legislation has cleared the Legislature.
+			  # test law
+				IF = { limit = { check_variable = { POL_var_nat_LEG_laws_index = 1 } }
+					THIS = { add_political_power = 100 }
+				}
+			}
+			ELSE = {	# Something happened that meant this piece hasn't
+			  # test law
+				IF = { limit = { check_variable = { POL_var_nat_LEG_laws_index = 1 } }
+					THIS = { add_political_power = -100 }
+				}
+			}
+		  clear_variable = POL_var_nat_LEG_laws_index
+		  clear_variable = POL_arr_nat_LEG_laws_threshold_pct
+		  clear_variable = POL_var_nat_LEG_laws_days_voting
+		}
+	  
+}
+POL_se_LEG_vote_test_cursed = { set_variable = { POL_var_nat_LEG_laws_index = 1 } POL_se_LEG_vote = yes }
+
 # clear POL_arr_nat_LEG_parties_coalition before calling this
 # cannibalise this for other codes as well
 POL_se_LEG_set_up_coalitions = {
@@ -82,10 +138,10 @@ POL_se_LEG_set_up_coalitions = {
 		# mathematics
 		set_temp_variable = { v1 = v }	subtract_from_temp_variable = { v1 = 1 }
 		add_to_variable = { POL_var_nat_LEG_seats_coalition = POL_arr_nat_LEG_seats^v1 }	# base 0
-		set_variable = { POL_arr_nat_LEG_parties_coalition_support_seats^v1 = POL_arr_nat_LEG_seats^v1 }
-			multiply_variable = { POL_arr_nat_LEG_parties_coalition_support_seats^v1 = POL_arr_nat_LEG_parties_coalition_support_pct^v1 }
-			round_variable = POL_arr_nat_LEG_parties_coalition_support_seats^v1
-			add_to_variable = { POL_var_nat_LEG_parties_coalition_support_seats = POL_arr_nat_LEG_parties_coalition_support_seats^v1 }
+		set_variable = { POL_arr_nat_LEG_parties_support_seats^v1 = POL_arr_nat_LEG_seats^v1 }
+			multiply_variable = { POL_arr_nat_LEG_parties_support_seats^v1 = POL_arr_nat_LEG_parties_support_pct^v1 }
+			round_variable = POL_arr_nat_LEG_parties_support_seats^v1
+			add_to_variable = { POL_var_nat_LEG_parties_coalition_support_seats = POL_arr_nat_LEG_parties_support_seats^v1 }
 	}
 
 	for_each_loop = { array = POL_arr_nat_LEG_parties_noncoalition
@@ -96,10 +152,10 @@ POL_se_LEG_set_up_coalitions = {
 		# mathematics
 		set_temp_variable = { v1 = v }	subtract_from_temp_variable = { v1 = 1 }
 		add_to_variable = { POL_var_nat_LEG_seats_noncoalition = POL_arr_nat_LEG_seats^v1 }	# base 0
-		set_variable = { POL_arr_nat_LEG_parties_noncoalition_support_seats^v1 = POL_arr_nat_LEG_seats^v1 }
-			multiply_variable = { POL_arr_nat_LEG_parties_noncoalition_support_seats^v1 = POL_arr_nat_LEG_parties_noncoalition_support_pct^v1 }
-			round_variable = POL_arr_nat_LEG_parties_noncoalition_support_seats^v1
-			add_to_variable = { POL_var_nat_LEG_parties_noncoalition_support_seats = POL_arr_nat_LEG_parties_noncoalition_support_seats^v1 }
+		set_variable = { POL_arr_nat_LEG_parties_support_seats^v1 = POL_arr_nat_LEG_seats^v1 }
+			multiply_variable = { POL_arr_nat_LEG_parties_support_seats^v1 = POL_arr_nat_LEG_parties_support_pct^v1 }
+			round_variable = POL_arr_nat_LEG_parties_support_seats^v1
+			add_to_variable = { POL_var_nat_LEG_parties_noncoalition_support_seats = POL_arr_nat_LEG_parties_support_seats^v1 }
 	}
 	for_each_loop = { array = POL_arr_nat_LEG_parties
 		index = i	value = v
@@ -108,6 +164,7 @@ POL_se_LEG_set_up_coalitions = {
 		add_to_variable = { POL_var_nat_LEG_seats_total = POL_arr_nat_LEG_seats^v1 }	# base 0
 	}
 
+	set_variable = { POL_var_nat_LEG_parties_support_seats = POL_var_nat_LEG_parties_noncoalition_support_seats }	add_to_variable = { POL_var_nat_LEG_parties_support_seats = POL_var_nat_LEG_parties_coalition_support_seats }
 	set_variable = { POL_var_nat_LEG_seats_half = POL_var_nat_LEG_seats_total }	divide_variable = { POL_var_nat_LEG_seats_half = 2 }	round_variable = POL_var_nat_LEG_seats_half
 	set_variable = { POL_var_nat_LEG_seats_3qtr = POL_var_nat_LEG_seats_total }	divide_variable = { POL_var_nat_LEG_seats_3qtr = 1.5 }	round_variable = POL_var_nat_LEG_seats_3qtr
 	clear_variable = v1

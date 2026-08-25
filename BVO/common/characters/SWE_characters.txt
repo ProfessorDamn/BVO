@@ -1,0 +1,12 @@
+characters = {
+	# Politics
+	  # Head of State
+	  	SWE_char_Olof_Palme_socdem = { name = SWE_char_Olof_Palme
+			portraits = { civilian = { large = GFX_SWE_portrait_leader_Olof_Palme_1968 } }
+			
+			country_leader = {
+				ideology = socialism	# FIX LATER
+				desc = SWE_char_Olof_Palme_cl_70	traits = { }
+			}
+		}
+}
