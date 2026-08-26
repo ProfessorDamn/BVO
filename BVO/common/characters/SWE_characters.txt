@@ -1,7 +1,7 @@
 characters = {
 	# Politics
 	  # Head of State
-	  	SWE_char_Olof_Palme_socdem = { name = SWE_char_Olof_Palme
+	  	SWE_char_Olof_Palme_prog = { name = SWE_char_Olof_Palme
 			portraits = { civilian = { large = GFX_SWE_portrait_leader_Olof_Palme_1968 } }
 			
 			country_leader = {

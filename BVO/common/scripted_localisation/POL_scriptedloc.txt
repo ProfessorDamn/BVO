@@ -20,7 +20,7 @@ defined_text = { name = POL_cWT_content_legislative_coalitions_total_seats
 	text = { trigger = { check_variable = { v = 2 } }
 		localization_key = POL_tt_content_legislative_coalitions_total_seats_soc }
 	text = { trigger = { check_variable = { v = 3 } }
-		localization_key = POL_tt_content_legislative_coalitions_total_seats_socdem }
+		localization_key = POL_tt_content_legislative_coalitions_total_seats_prog }
 	text = { trigger = { check_variable = { v = 4 } }
 		localization_key = POL_tt_content_legislative_coalitions_total_seats_soclib }
 	text = { trigger = { check_variable = { v = 5 } }
@@ -43,7 +43,7 @@ defined_text = { name = POL_cWT_content_legislative_coalitions_support_seats
 	text = { trigger = { check_variable = { v = 2 } }
 		localization_key = POL_tt_content_legislative_coalitions_support_seats_soc }
 	text = { trigger = { check_variable = { v = 3 } }
-		localization_key = POL_tt_content_legislative_coalitions_support_seats_socdem }
+		localization_key = POL_tt_content_legislative_coalitions_support_seats_prog }
 	text = { trigger = { check_variable = { v = 4 } }
 		localization_key = POL_tt_content_legislative_coalitions_support_seats_soclib }
 	text = { trigger = { check_variable = { v = 5 } }
@@ -70,7 +70,7 @@ defined_text = {
 		text = { trigger = { tag = SWE check_variable = { v = 2 } }
 			localization_key = SWE_soc_party }
 		text = { trigger = { tag = SWE check_variable = { v = 3 } }
-			localization_key = SWE_socdem_party }
+			localization_key = SWE_prog_party }
 		text = { trigger = { tag = SWE check_variable = { v = 4 } }
 			localization_key = SWE_soclib_party }
 		text = { trigger = { tag = SWE check_variable = { v = 5 } }
@@ -91,7 +91,7 @@ defined_text = {
 		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 2 } }
 			localization_key = soc_party }
 		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 3 } }
-			localization_key = socdem_party }
+			localization_key = prog_party }
 		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 4 } }
 			localization_key = soclib_party }
 		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 5 } }
@@ -117,7 +117,7 @@ defined_text = {
 		text = { trigger = { tag = SWE check_variable = { v = 2 } }
 			localization_key = SWE_soc_party_long }
 		text = { trigger = { tag = SWE check_variable = { v = 3 } }
-			localization_key = SWE_socdem_party_long }
+			localization_key = SWE_prog_party_long }
 		text = { trigger = { tag = SWE check_variable = { v = 4 } }
 			localization_key = SWE_soclib_party_long }
 		text = { trigger = { tag = SWE check_variable = { v = 5 } }
@@ -138,7 +138,7 @@ defined_text = {
 		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 2 } }
 			localization_key = soc_party }
 		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 3 } }
-			localization_key = socdem_party }
+			localization_key = prog_party }
 		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 4 } }
 			localization_key = soclib_party }
 		text = { trigger = { NOT = { tag = SWE } check_variable = { v = 5 } }

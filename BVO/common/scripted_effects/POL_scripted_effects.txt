@@ -1,5 +1,5 @@
 # icon_seats regular political orientation (from left to right)
-# [com] [soc] [socdem] [soclib] [marktlib] [con] [pat] [desp] [nat] [fasc]
+# [com] [soc] [prog] [soclib] [marktlib] [con] [pat] [desp] [nat] [fasc]
 
 # The following scripted effect sets-up the parliament at game start.
 parliament_gui_initial = {
@@ -10,7 +10,7 @@ parliament_gui_initial = {
 	IF = { limit = { tag = SWE } 
 		add_to_array = { POL_arr_nat_LEG_seats = 17 } # com
 		add_to_array = { POL_arr_nat_LEG_seats = 33 } # soc
-		add_to_array = { POL_arr_nat_LEG_seats = 130 } # socdem
+		add_to_array = { POL_arr_nat_LEG_seats = 130 } # prog
 		add_to_array = { POL_arr_nat_LEG_seats = 71 } # soclib
 		add_to_array = { POL_arr_nat_LEG_seats = 58 } # marktlib
 		add_to_array = { POL_arr_nat_LEG_seats = 41 } # con
@@ -48,7 +48,7 @@ parliament_gui_initial = {
 	# This basically assigns an id for each party, so Party A = 1, Party B = 2, etc. (must start from 1 and is in order)
 	add_to_array = { POL_arr_nat_LEG_parties = 1 } # com
 	add_to_array = { POL_arr_nat_LEG_parties = 2 } # soc
-	add_to_array = { POL_arr_nat_LEG_parties = 3 } # socdem
+	add_to_array = { POL_arr_nat_LEG_parties = 3 } # prog
 	add_to_array = { POL_arr_nat_LEG_parties = 4 } # soclib
 	add_to_array = { POL_arr_nat_LEG_parties = 5 } # marktlib
 	add_to_array = { POL_arr_nat_LEG_parties = 6 } # con

@@ -45,10 +45,8 @@ scripted_gui = {
 
 			effects = {
 				POL_cWT_sidebar_legislative_party_list_button_click = { set_variable = { MOD_cWT_var_POL_LEG_sub = 0 } }
-				POL_cWT_sidebar_legislative_coalition_button_click = {
-					IF = { limit = { check_variable = { MOD_cWT_var_POL_LEG_sub = 1 } } set_variable = { MOD_cWT_var_POL_LEG_sub = 0 } }
-					ELSE = { set_variable = { MOD_cWT_var_POL_LEG_sub = 1 } }
-				}
+				POL_cWT_sidebar_legislative_coalitions_button_click = { set_variable = { MOD_cWT_var_POL_LEG_sub = 1 } }
+				POL_cWT_sidebar_legislative_relations_button_click = { set_variable = { MOD_cWT_var_POL_LEG_sub = 2 } }
 			}
 		}
 			POL_cWT_content_legislature_Westminster = { window_name = "POL_cWT_content_legislature_Westminster"
@@ -113,12 +111,40 @@ scripted_gui = {
 						change_scope = no
 						entry_container = POL_cWT_content_legislative_coalitions_gridbox_party_entry
 					}
-				}
-				dynamic_lists = {
 					POL_cWT_content_legislative_coalitions_gridbox_nongovt = {
 						array = POL_arr_nat_LEG_parties_noncoalition	index = parliament_member_index
 						change_scope = no
 						entry_container = POL_cWT_content_legislative_coalitions_gridbox_party_entry
+					}
+				}
+				properties = {
+					parliament_member_icon = {
+						frame = v
+					}
+				}
+			}
+			POL_cWT_content_legislative_relations = { window_name = "POL_cWT_content_legislative_relations"
+				context_type = player_context	parent_window_name = "POL_cWT"
+
+				visible = { check_variable = { MOD_cWT_var_POL_toggle = 1 }	check_variable = { MOD_cWT_var_POL_sub = 1 } check_variable = { MOD_cWT_var_POL_LEG_sub = 2 } }
+				
+				dynamic_lists = {
+					POL_cWT_content_legislative_relations_gridbox_govt = {
+						array = POL_arr_nat_LEG_parties_coalition	index = parliament_member_index
+						change_scope = no
+						entry_container = POL_cWT_content_legislative_relations_gridbox_party_entry
+					}
+					POL_cWT_content_legislative_relations_gridbox_nongovt = {
+						array = POL_arr_nat_LEG_parties_noncoalition	index = parliament_member_index
+						change_scope = no
+						entry_container = POL_cWT_content_legislative_relations_gridbox_party_entry
+					}
+				}
+				effects = {
+					POL_cWT_content_legislative_relations_select_button_click = {
+						IF = { limit = { check_variable = { MOD_cWT_var_POL_LEG_coaltions_sub_party = v } }	
+							set_variable = { MOD_cWT_var_POL_LEG_coaltions_sub_party = 0 } }	# back to menu
+						ELSE = { set_variable = { MOD_cWT_var_POL_LEG_coaltions_sub_party = v } }
 					}
 				}
 				properties = {

@@ -8,8 +8,8 @@ spriteTypes = {
 		textureFile = "gfx/interface/ideologies/soc_group.dds"
 	}
 	spriteType = {
-		name = "GFX_ideology_socdem_group"
-		textureFile = "gfx/interface/ideologies/socdem_group.dds"
+		name = "GFX_ideology_prog_group"
+		textureFile = "gfx/interface/ideologies/prog_group.dds"
 	}
 	spriteType = {
 		name = "GFX_ideology_soclib_group"
