@@ -1,0 +1,196 @@
+POL_policies_se_set = {
+	# POLICIES
+		# SEC
+			# Policing
+				IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 0 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_police_neighbourhood_watch } }
+							add_ideas = POLICIES_cat_SEC_police_neighbourhood_watch }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^5 = 0.01 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 1 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_police_unarmed_civilian } }
+							add_ideas = POLICIES_cat_SEC_police_unarmed_civilian }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^5 = 0.025 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 2 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_police_armed_civilian } }
+							add_ideas = POLICIES_cat_SEC_police_armed_civilian }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^5 = 0.035 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 3 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_police_extralegal_approaches } }
+							add_ideas = POLICIES_cat_SEC_police_extralegal_approaches }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^5 = 0.05 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^5 = 4 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_police_stasi } }
+							add_ideas = POLICIES_cat_SEC_police_stasi }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^5 = 0.1 }
+				}
+			# Prison
+				IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 0 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_prison_frontier_justice } }
+							add_ideas = POLICIES_cat_SEC_prison_frontier_justice }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^6 = 0.005 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 1 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_prison_forced_labour } }
+							add_ideas = POLICIES_cat_SEC_prison_forced_labour }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^6 = 0.02 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 2 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_prison_work_programmes } }
+							add_ideas = POLICIES_cat_SEC_prison_work_programmes }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^6 = 0.04 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 3 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_prison_selected_rehabilitation } }
+							add_ideas = POLICIES_cat_SEC_prison_selected_rehabilitation }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^6 = 0.05 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SEC_progress_level^6 = 4 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SEC_prison_comprehensive_rehabilitation } }
+							add_ideas = POLICIES_cat_SEC_prison_comprehensive_rehabilitation }
+					set_variable = { POLICIES_arr_nat_SEC_spending_capita_K^6 = 0.1 }
+				}
+		# SOCL
+			# Education
+				IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 0 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_education_anarchic_self_education } }
+							add_ideas = POLICIES_cat_SOCL_education_anarchic_self_education }
+					set_variable = { POLICIES_arr_nat_SOCL_tax_rate_modifier_pct^0 = -0.25 }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^0 = 0.005 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 1 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_education_literacy_training } }
+							add_ideas = POLICIES_cat_SOCL_education_literacy_training }
+					set_variable = { POLICIES_arr_nat_SOCL_tax_rate_modifier_pct^0 = -0.15 }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^0 = 0.01 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 2 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_education_public_grade_school_system } }
+							add_ideas = POLICIES_cat_SOCL_education_public_grade_school_system }
+					set_variable = { POLICIES_arr_nat_SOCL_tax_rate_modifier_pct^0 = -0.05 }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^0 = 0.02 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 3 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_education_free_primary } }
+							add_ideas = POLICIES_cat_SOCL_education_free_primary }
+					set_variable = { POLICIES_arr_nat_SOCL_tax_rate_modifier_pct^0 = 0.05 }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^0 = 0.05 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 4 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_education_free_secondary } }
+							add_ideas = POLICIES_cat_SOCL_education_free_secondary }
+					set_variable = { POLICIES_arr_nat_SOCL_tax_rate_modifier_pct^0 = 0.1 }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^0 = 0.1 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 5 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_education_free_tertiary } }
+							add_ideas = POLICIES_cat_SOCL_education_free_tertiary }
+					set_variable = { POLICIES_arr_nat_SOCL_tax_rate_modifier_pct^0 = 0.2 }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^0 = 0.2 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^0 = 6 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_education_free_higher } }
+							add_ideas = POLICIES_cat_SOCL_education_free_higher }
+					set_variable = { POLICIES_arr_nat_SOCL_tax_rate_modifier_pct^0 = 0.25 }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^0 = 0.5 }
+				}
+			
+			# Healthcare
+				IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 0 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_healthcare_no_coverage } }
+							add_ideas = POLICIES_cat_SOCL_healthcare_no_coverage }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^1 = 0.005 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 1 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_healthcare_negotiated_coverage } }
+							add_ideas = POLICIES_cat_SOCL_healthcare_negotiated_coverage }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^1 = 0.01 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 2 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_healthcare_emergency_coverage } }
+							add_ideas = POLICIES_cat_SOCL_healthcare_emergency_coverage }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^1 = 0.02 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 3 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_healthcare_state_insurance } }
+							add_ideas = POLICIES_cat_SOCL_healthcare_state_insurance }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^1 = 0.05 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 4 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_healthcare_free_public_coverage } }
+							add_ideas = POLICIES_cat_SOCL_healthcare_free_public_coverage }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^1 = 0.1 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^1 = 5 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_healthcare_single_payer_system } }
+							add_ideas = POLICIES_cat_SOCL_healthcare_single_payer_system }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^1 = 0.2 }
+				}
+			
+			# Pension
+				IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 0 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_pension_none } }
+							add_ideas = POLICIES_cat_SOCL_pension_none }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^2 = 0 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 1 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_pension_piecemeal } }
+							add_ideas = POLICIES_cat_SOCL_pension_piecemeal }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^2 = 0.005 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 2 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_pension_low } }
+							add_ideas = POLICIES_cat_SOCL_pension_low }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^2 = 0.01 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 3 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_pension_moderate } }
+							add_ideas = POLICIES_cat_SOCL_pension_moderate }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^2 = 0.025 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 4 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_pension_high } }
+							add_ideas = POLICIES_cat_SOCL_pension_high }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^2 = 0.05 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^2 = 5 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_pension_generous } }
+							add_ideas = POLICIES_cat_SOCL_pension_generous }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^2 = 0.1 }
+				}
+			
+			# (Unemployment) Benefits	COUNTED AS PERCENTAGE OF GDP/CAPITA
+				IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 0 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_benefits_none } }
+							add_ideas = POLICIES_cat_SOCL_benefits_none }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^3 = 0 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 1 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_benefits_piecemeal } }
+							add_ideas = POLICIES_cat_SOCL_benefits_piecemeal }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^3 = 0.01 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 2 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_benefits_low } }
+							add_ideas = POLICIES_cat_SOCL_benefits_low }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^3 = 0.025 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 3 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_benefits_moderate } }
+							add_ideas = POLICIES_cat_SOCL_benefits_moderate }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^3 = 0.05 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 4 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_benefits_high } }
+							add_ideas = POLICIES_cat_SOCL_benefits_high }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^3 = 0.075 }
+				}
+				ELSE_IF = { limit = { check_variable = { POLICIES_arr_nat_SOCL_progress_level^3 = 5 } }
+					IF = { limit = { NOT = { has_idea = POLICIES_cat_SOCL_benefits_generous } }
+							add_ideas = POLICIES_cat_SOCL_benefits_generous }
+					set_variable = { POLICIES_arr_nat_SOCL_spending_capita_K^3 = 0.1 }
+				}
+}

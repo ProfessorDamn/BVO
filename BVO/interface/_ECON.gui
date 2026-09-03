@@ -1,0 +1,2009 @@
+guiTypes = {
+	containerWindowType = { name = "MOD_cWT"
+		position = { x = 0 y = -335 }
+		size = { width = 690 height = 30 }
+		orientation = CENTER_LEFT
+		origo = left
+		clipping = no
+
+	#	background = { name = "bg"	quadTextureSprite = "GFX_MOD_cWT_bg_cTST" }
+		
+		containerWindowType = { name = "ECON_cWT_toggle"
+			position = { x = 500 y = 0 }
+			size = { width = 140 height = 30 }
+
+			background = { name = "ECON_cWT_toggle_bg"	quadTextureSprite = "GFX_ECON_cWT_blue_bg_cTST" }
+
+			iconType = { name = "ECON_cWT_GUI_icon"
+				spriteType = "GFX_non_available_factory_icon"
+				position = { x = 20 y = 3 }
+			}
+			buttonType = { name = "ECON_cWT_GUI_toggle_button"
+				position = { x = 50 y = 5 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "[?MOD_cWT_var_ECON_menu_type]"
+			}
+		}
+
+		containerWindowType = { name = "ECON_cWT_replacement_text"
+			position = { x = 0 y = 0 }
+			size = { width = 500 height = 30 }
+		
+			# background = { name = "ECON_cWT_replacement_text_bg" #quadTextureSprite = "GFX_MOD_cWT_blue_bg_cTST" }
+		
+			buttonType = { name = "ECON_cWT_UI_replacement_text"
+				text = "ECONOMIC CONTROL PANEL"	quadTextureSprite = "GFX_ECON_cWT_blue_bg_cTST"
+
+				position = { x = 0 y = 0 }	size = { width = 500 height = 30 }
+				orientation = UPPER_LEFT
+				font = hoi_20b
+			}
+		}
+	}
+	
+	containerWindowType = { name = "ECON_cWT"
+		position = { x = 0 y = 40 }
+		size = { width = 100% height = 100% }
+		orientation = UPPER_LEFT
+		origo = upper_left
+
+		background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+		containerWindowType = { name = "ECON_cWT_inflation"
+			position = { x = 5% y = 10 } size = { width = 30% height = 40% }
+			background = { name = "ECON_cWT_inflation_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+			
+			containerWindowType = { name = "ECON_cWT_inflation_graph"
+				position = { x = 5% y = 5% }	size = { width = 90% height = 50% }
+				background = { name = "b"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+				instantTextBoxType = { name = "ECON_cWT_inflation_graph_text"
+					position = { x = 0% y = 0 }	maxWidth = 180%
+					format = centre	font = hoi_18mbs
+					text = "Inflation [?ECON_arr_nat_inflation_pct_monthly^1|-%]"
+				}
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_inflation_set_text"
+				position = { x = 5 y = 165 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Set rate:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_inflation_set"
+				position = { x = 110 y = 165 }	maxWidth = 100
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_inflation_pct_monthly^0|-%]"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_inflation_mult_text"
+				position = { x = 5 y = 180 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Multiplier:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_inflation_mult"
+				position = { x = 110 y = 180 }	maxWidth = 100
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_inflation_modifier_pct_monthly^0|-] x"
+			}
+
+			buttonType = { name = "ECON_cWT_inflation_fiscal_policy_button"	# ECON_cWT_inflation_fiscal_policy_menu
+				position = { x = 70 y = 250 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Fisc. Pol."
+				pdx_tooltip = "ECON_tt_inflation_fiscal_policy_menu"
+			}
+
+			#buttonType = { name = "ECON_cWT_inflation_Weimar_button"	# ECON_cWT_inflation_Weimar_menu [basically money printing]
+			#	position = { x = 135 y = 250 }
+			#	quadTextureSprite = "GFX_ECON_cWT_btn"
+			#	orientation = UPPER_LEFT
+			#	
+			#	buttonFont = hoi_16mbs
+			#	buttonText = "Issue"
+			#	pdx_tooltip = "ECON_tt_inflation_Weimar_menu"
+			#}
+		}
+
+		containerWindowType = { name = "ECON_cWT_GDP"
+			position = { x = 35% y = 10 } size = { width = 30% height = 40% }
+			background = { name = "ECON_cWT_GDP_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+			containerWindowType = { name = "ECON_cWT_GDP_graph"
+				position = { x = 5% y = 5% }	size = { width = 90% height = 50% }
+				background = { name = "b"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+				instantTextBoxType = { name = "ECON_cWT_GDP_graph_text"
+					position = { x = 44% y = 0 }	maxWidth = 100%
+					format = centre	font = hoi_18mbs
+					text = "GDP [?ECON_arr_nat_GDP_B^1|+^] B"
+				}
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_nominal_text"
+				position = { x = 5 y = 165 }	maxWidth = 100
+				format = right font = Arial12
+				text = "GDP (nom.) growth:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_GDP_nominal"
+				position = { x = 110 y = 165 }	maxWidth = 100
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_GDP_growth_pct^0|+%]"
+				pdx_tooltip = "ECON_tt_GDP_growth"	pdx_tooltip_delayed = "ECON_tt_GDP_growth_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_inflation_text"
+				position = { x = 5 y = 180 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Inflation:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_GDP_inflation"
+				position = { x = 110 y = 180 }	maxWidth = 90
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_inflation_pct_monthly^1|-%]"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_line_text_because_reasons"
+				position = { x = 110 y = 195 }	maxWidth = 50
+				format = left font = Arial12
+				text = "________"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_growth_text"
+				position = { x = 5 y = 210 }	maxWidth = 100
+				format = right font = Arial12
+				text = "GDP (real) growth:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_GDP_growth"
+				position = { x = 110 y = 210 }	maxWidth = 90	maxHeight = 16
+				format = left font = hoi_16mbs
+				text = "[?ECON_arr_nat_GDP_growth_pct^1|+%]"
+				pdx_tooltip = "ECON_tt_GDP_real_growth"	pdx_tooltip_delayed = "ECON_tt_GDP_real_growth_delayed"
+				#pdx_tooltip = "ECON_tt_GDP_real_per_capita"	pdx_tooltip_delayed = "ECON_tt_GDP_real_per_capita_delayed"
+			}
+
+			buttonType = { name = "ECON_cWT_GDP_econ_laws_button"
+				position = { x = 10 y = 250 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Law"
+				pdx_tooltip = "ECON_tt_GDP_Law_menu"
+			}
+
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_button"	# ECON_cWT_GDP_PU_distrib_menu
+				position = { x = 135 y = 250 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Distrib."
+				pdx_tooltip = "ECON_tt_GDP_PU_menu"
+			}
+		}
+		containerWindowType = { name = "ECON_cWT_RSV"
+			position = { x = 65% y = 10 } size = { width = 30% height = 40% }
+			background = { name = "ECON_cWT_RSV_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+			
+			containerWindowType = { name = "ECON_cWT_RSV_graph"
+				position = { x = 5% y = 5% }	size = { width = 90% height = 50% }
+				background = { name = "b"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+				instantTextBoxType = { name = "ECON_cWT_RSV_graph_text"
+					position = { x = 0% y = 0 }	maxWidth = 180
+					format = centre	font = hoi_18mbs
+					text = "[MOD_cWT_RSV_graph_actual_state_of_the_treasury]"
+				}
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_RSV_revenue_text"
+				position = { x = 5 y = 165 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Revenue:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_RSV_revenue"
+				position = { x = 110 y = 165 }	maxWidth = 90
+				format = left font = hoi_16mbs
+				text = "[?ECON_var_nat_REV_B|+^] B"
+				pdx_tooltip = "ECON_tt_RSV_revenue"	pdx_tooltip_delayed = "ECON_tt_RSV_revenue_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_RSV_expense_text"
+				position = { x = 5 y = 180 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Expense:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_RSV_expense"
+				position = { x = 110 y = 180 }	maxWidth = 90
+				format = left font = hoi_16mbs
+				text = "[?ECON_var_nat_EXP_B|-^] B"
+				pdx_tooltip = "ECON_tt_RSV_spending"	pdx_tooltip_delayed = "ECON_tt_RSV_spending_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_line_text_because_reasons"
+				position = { x = 110 y = 195 }	maxWidth = 50
+				format = left font = Arial12
+				text = "________"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_RSV_budget_text"
+				position = { x = 5 y = 210 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Budget:"
+			}
+			instantTextBoxType = { name = "ECON_cWT_RSV_budget"
+				position = { x = 110 y = 210 }	maxWidth = 90
+				format = left font = hoi_16mbs
+				text = "[?ECON_var_nat_RSV_budget_B|+^] B"
+			}
+
+			buttonType = { name = "ECON_cWT_RSV_civ_spending_button"
+				position = { x = 10 y = 250 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Civ."
+				pdx_tooltip = "ECON_tt_RSV_civ_spending_menu"	# Does your nation need its Parliament to pass spending laws?
+			}
+
+			buttonType = { name = "ECON_cWT_RSV_mil_spending_button"
+				position = { x = 135 y = 250 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Mil."
+				pdx_tooltip = "ECON_tt_RSV_mil_spending_menu"	# Does your nation need its Parliament to pass spending laws?
+			}
+		}
+	}
+
+	containerWindowType = { name = "ECON_cWT_duplicate"
+		position = { x = 5% y = 48% }
+		size = { width = 90% height = 50% }
+		orientation = UPPER_LEFT
+		origo = upper_left
+
+		background = { name = "ECON_cWT_duplicate_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+		containerWindowType = { name = "ECON_cWT_duplicate_current"
+			position = { x = 2 y = 2 } size = { width = 99% height = 30 }
+			background = { name = "ECON_cWT_duplicate_current_bg"	quadTextureSprite = "GFX_ECON_cWT_blue_bg_cTST" }
+
+			instantTextBoxType = { name = "ECON_cWT_duplicate_UI_current"
+				position = { x = 10 y = 4 } maxWidth = 585
+				format = left font = hoi_20b
+				text = "[MOD_cWT_var_ECON_alt_menu_cur_text]"
+			}
+		}
+	}
+		containerWindowType = { name = "ECON_cWT_GDP_PU_distrib_menu"
+			position = { x = 8% y = 55% }	size = { width = 84% height = 40% }
+
+			#background = { name = "ECON_cWT_GDP_PU_distrib_menu_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+			
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_total_text"
+				position = { x = 15 y = 90 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Production Units"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_total"
+				position = { x = 125 y = 88 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_var_nat_PU_total]"
+				pdx_tooltip = "ECON_tt_GDP_PU_distrib_menu_total"
+				pdx_tooltip_delayed = "ECON_tt_GDP_PU_distrib_menu_total_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_consumer_goods_text"
+				position = { x = 15 y = 115 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Consumer Goods"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_consumer_goods"
+				position = { x = 125 y = 113 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^5]"
+				pdx_tooltip = "ECON_tt_GDP_PU_distrib_menu_consumer_goods"
+				pdx_tooltip_delayed = "ECON_tt_GDP_PU_distrib_menu_consumer_goods_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_line_text_because_reasons"
+				position = { x = 125 y = 135 }	maxWidth = 50
+				format = left font = Arial12
+				text = "________"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_unassigned_text"
+				position = { x = 15 y = 154 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Not Assigned"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_unassigned"
+				position = { x = 125 y = 150 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^0]"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_text"
+				position = { x = 195 y = 45 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Assign to Civ."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ"
+				position = { x = 305 y = 43 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^2]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_1"
+					position = { x = 370 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_2"
+					position = { x = 405 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_5"
+					position = { x = 440 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_10"
+					position = { x = 475 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_1"
+					position = { x = 370 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_2"
+					position = { x = 405 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_5"
+					position = { x = 440 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_10"
+					position = { x = 475 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-10"
+				}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_text"
+				position = { x = 195 y = 125 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Assign to Mil."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil"
+				position = { x = 305 y = 123 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^3]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_1"
+					position = { x = 370 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_2"
+					position = { x = 405 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_5"
+					position = { x = 440 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_10"
+					position = { x = 475 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_1"
+					position = { x = 370 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_2"
+					position = { x = 405 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_5"
+					position = { x = 440 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_10"
+					position = { x = 475 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-10"
+				}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_text"
+				position = { x = 195 y = 205 }	maxWidth = 100
+				format = right font = Arial12
+				text = "Assign to Dock."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav"
+				position = { x = 305 y = 203 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_PU_assignment^4]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_1"
+					position = { x = 370 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_2"
+					position = { x = 405 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_5"
+					position = { x = 440 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_10"
+					position = { x = 475 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_1"
+					position = { x = 370 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_2"
+					position = { x = 405 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_5"
+					position = { x = 440 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_10"
+					position = { x = 475 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+					buttonFont = Arial12	buttonText = "-10"
+				}
+		}
+		containerWindowType = { name = "ECON_cWT_inflation_fiscal_policy_menu"
+			position = { x = 8% y = 55% }	size = { width = 84% height = 40% }
+
+			# PLEASE ADD DEBT SERVICING MEASURES
+			buttonType = {	name = "ECON_cWT_inflation_fiscal_policy_menu_monetary_policy_sub_button"
+				position = { x = 0 y = 0 }	#size = { width = 40 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs
+				buttonText = "Macro."
+			}
+			buttonType = {	name = "ECON_cWT_inflation_fiscal_policy_menu_taxation_proposal_sub_button"
+				position = { x = 65 y = 0 }	#size = { width = 40 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs
+				buttonText = "Tax."
+			}
+
+		}
+			containerWindowType = {	name = "ECON_cWT_inflation_fiscal_policy_menu_monetary_policy_sub"
+				position = { x = 6% y = 58% }	size = { width = 88% height = 38% }
+				
+				background = { name = "ECON_cWT_inflation_fiscal_policy_menu_monetary_policy_sub_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+				instantTextBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_text"
+					position = { x = 20 y = 10 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Money Printing"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar"
+					position = { x = 130 y = 10 }	size = { width = 40 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "fig."
+				}
+					buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_plus_1"
+						position = { x = 370 y = 10 }	size = { width = 30 height = 20 } 
+						quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+						buttonFont = Arial12	buttonText = "+1"
+					}
+					buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_plus_2"
+						position = { x = 405 y = 10 }	size = { width = 30 height = 20 } 
+						quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+						buttonFont = Arial12	buttonText = "+2"
+					}
+					buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_plus_5"
+						position = { x = 440 y = 10 }	size = { width = 30 height = 20 } 
+						quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+						buttonFont = Arial12	buttonText = "+5"
+					}
+					buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_plus_10"
+						position = { x = 475 y = 10 }	size = { width = 30 height = 20 } 
+						quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+						buttonFont = Arial12	buttonText = "+10"
+					}
+					buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_minus_1"
+						position = { x = 370 y = 34 }	size = { width = 30 height = 20 } 
+						quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+						buttonFont = Arial12	buttonText = "-1"
+					}
+					buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_minus_2"
+						position = { x = 405 y = 34 }	size = { width = 30 height = 20 } 
+						quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+						buttonFont = Arial12	buttonText = "-2"
+					}
+					buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_minus_5"
+						position = { x = 440 y = 34 }	size = { width = 30 height = 20 } 
+						quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+						buttonFont = Arial12	buttonText = "-5"
+					}
+					buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_Weimar_minus_10"
+						position = { x = 475 y = 34 }	size = { width = 30 height = 20 } 
+						quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+						buttonFont = Arial12	buttonText = "-10"
+					}
+			
+				
+				instantTextBoxType = { name = "ECON_cWT_inflation_fiscal_policy_menu_interest_text"
+					position = { x = 20 y = 60 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Interest"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_interest"
+					position = { x = 130 y = 60 }	size = { width = 40 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_sources_B^2|-^] B"
+				}
+				buttonType = { name = "ECON_cWT_inflation_fiscal_policy_menu_interest_pct"
+					position = { x = 180 y = 60 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_var_nat_EXP_interest_pct|%1]"
+				}
+			}
+			containerWindowType = { name = "ECON_cWT_inflation_fiscal_policy_menu_taxation_proposal_sub"
+				position = { x = 6%	y = 58% }	size = { width = 88% height = 38% }
+
+				background = { name = "ECON_cWT_inflation_fiscal_policy_menu_taxation_proposal_sub_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_text"
+					position = { x = 20 y = 17 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Income"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income"
+					position = { x = 130 y = 15 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^1|+^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_text"
+					position = { x = 200 y = 17 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate"
+					position = { x = 240 y = 15 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^1|1+%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan"
+					position = { x = 425 y = 15 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^1|1+%]"	# display variable to be modified & sent to execute here
+				}
+					# cut taxes
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.1%"
+							position = { x = 320 y = 5 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.2%"
+							position = { x = 355 y = 5 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.2"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.5%"
+							position = { x = 390 y = 5 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_1%"
+							position = { x = 320 y = 25 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_5%"
+							position = { x = 355 y = 25 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_10%"
+							position = { x = 390 y = 25 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-10"
+						}
+					# raise taxes
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.1%"
+							position = { x = 480 y = 5 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.2%"
+							position = { x = 515 y = 5 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.2"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.5%"
+							position = { x = 550 y = 5 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_1%"
+							position = { x = 480 y = 25 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_5%"
+							position = { x = 515 y = 25 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_10%"
+							position = { x = 550 y = 25 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+10"
+						}
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_text"
+					position = { x = 20 y = 67 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Poverty effective"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty"
+					position = { x = 130 y = 65 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^2|+^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_text"
+					position = { x = 200 y = 67 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate"
+					position = { x = 240 y = 65 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^2|1+%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan"
+					position = { x = 425 y = 65 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^2|1+%]"	# display variable to be modified & sent to execute here
+				}
+					# cut taxes
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.1%"
+							position = { x = 320 y = 55 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.2%"
+							position = { x = 355 y = 55 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.2"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.5%"
+							position = { x = 390 y = 55 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_1%"
+							position = { x = 320 y = 75 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_5%"
+							position = { x = 355 y = 75 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_10%"
+							position = { x = 390 y = 75 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-10"
+						}
+					# raise taxes
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.1%"
+							position = { x = 480 y = 55 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.2%"
+							position = { x = 515 y = 55 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.2"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.5%"
+							position = { x = 550 y = 55 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_1%"
+							position = { x = 480 y = 75 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_5%"
+							position = { x = 515 y = 75 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_10%"
+							position = { x = 550 y = 75 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+10"
+						}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_text"
+					position = { x = 20 y = 117 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Business"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business"
+					position = { x = 130 y = 115 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^3|+^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_text"
+					position = { x = 200 y = 117 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate"
+					position = { x = 240 y = 115 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^3|1+%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan"
+					position = { x = 425 y = 115 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^3|1+%]"	# display variable to be modified & sent to execute here
+				}
+					# cut taxes
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.1%"
+							position = { x = 320 y = 105 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.2%"
+							position = { x = 355 y = 105 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.2"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.5%"
+							position = { x = 390 y = 105 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_1%"
+							position = { x = 320 y = 125 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_5%"
+							position = { x = 355 y = 125 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_10%"
+							position = { x = 390 y = 125 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-10"
+						}
+					# raise taxes
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.1%"
+							position = { x = 480 y = 105 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.2%"
+							position = { x = 515 y = 105 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.2"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.5%"
+							position = { x = 550 y = 105 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_1%"
+							position = { x = 480 y = 125 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_5%"
+							position = { x = 515 y = 125 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_10%"
+							position = { x = 550 y = 125 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+10"
+						}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_text"
+					position = { x = 20 y = 167 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Tariff"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_income"
+					position = { x = 130 y = 165 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^4|+^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate_text"
+					position = { x = 200 y = 167 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate"
+					position = { x = 240 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^4|1+%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate_plan"
+					position = { x = 425 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^4|1+%]"	# display variable to be modified & sent to execute here
+				}
+					# cut taxes
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.1%"
+							position = { x = 320 y = 155 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.2%"
+							position = { x = 355 y = 155 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.2"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.5%"
+							position = { x = 390 y = 155 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-0.5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_1%"
+							position = { x = 320 y = 175 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_5%"
+							position = { x = 355 y = 175 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_10%"
+							position = { x = 390 y = 175 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "-10"
+						}
+					# raise taxes
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.1%"
+							position = { x = 480 y = 155 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.2%"
+							position = { x = 515 y = 155 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.2"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.5%"
+							position = { x = 550 y = 155 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+0.5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_1%"
+							position = { x = 480 y = 175 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+1"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_5%"
+							position = { x = 515 y = 175 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+5"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_10%"
+							position = { x = 550 y = 175 }	size = { width = 30 height = 20 } 
+							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
+
+							buttonFont = Arial12	buttonText = "+10"
+						}
+
+				instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_line_text_because_reasons"
+					position = { x = 20 y = 190 }	maxWidth = 175
+					format = left font = Arial12
+					text = "_____________________________"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_misc_text"
+					position = { x = 20 y = 217 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Miscellaneous"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_misc_income"
+					position = { x = 130 y = 215 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^4|+^] B"
+				}
+				
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_reset_button"
+					position = { x = 418 y = 215 }
+					quadTextureSprite = "GFX_ECON_cWT_btn"
+					orientation = UPPER_LEFT
+					
+					buttonFont = hoi_16mbs
+					buttonText = "Reset"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_exec_button"	# Send to Central Bank? Voted through Parliament? Both?
+					position = { x = 525 y = 215 }
+					quadTextureSprite = "GFX_ECON_cWT_btn"
+					orientation = UPPER_LEFT
+					
+					buttonFont = hoi_16mbs
+					buttonText = "Exec."
+				}
+			}
+		
+
+		containerWindowType = { name = "ECON_cWT_RSV_civ_spending_menu"
+			position = { x = 8% y = 55% }	size = { width = 84% height = 40% }
+			
+			instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_total_text"
+				position = { x = 0 y = 10 }	maxWidth = 100
+				format = right	font = Arial12
+				text = "Total"
+			}
+			buttonType = { name = "ECON_cWT_RSV_civ_spending_total"
+				position = { x = 110 y = 10 }	size = { width = 60 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_sources_B^0|-^] B"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_security_text"
+				position = { x = 20 y = 50 }	maxWidth = 100
+				format = right	font = Arial12
+				text = "Security"
+			}
+			buttonType = { name = "ECON_cWT_RSV_civ_spending_security"
+				position = { x = 150 y = 50 }	size = { width = 60 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_SEC_B^99|-^] B"
+			}
+			buttonType = { name = "ECON_cWT_RSV_civ_spending_security_button"
+				position = { x = 220 y = 50 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Access..."
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_social_text"
+				position = { x = 20 y = 70 }	maxWidth = 100
+				format = right	font = Arial12
+				text = "Social"
+			}
+			buttonType = { name = "ECON_cWT_RSV_civ_spending_social"
+				position = { x = 150 y = 70 }	size = { width = 60 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_SOCL_B^99|-^] B"
+			}
+			buttonType = { name = "ECON_cWT_RSV_civ_spending_social_button"
+				position = { x = 220 y = 70 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Access..."
+			}
+		}
+			containerWindowType = { name = "ECON_cWT_RSV_civ_spending_menu_security_sub"
+				position = { x = 8% y = 55% }	size = { width = 84% height = 40% }
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_menu_security_sub_policing_text"
+					position = { x = 280 y = 70 }	maxWidth = 100
+					format = centre	font = Arial12
+					text = "Policing"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_security_sub_policing"
+					position = { x = 310 y = 85 }	size = { width = 40 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_SEC_B^5|-^] B"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_security_sub_policing_mod"
+					position = { x = 360 y = 85 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_SEC_spending_modifier_pct^5|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_menu_security_sub_prison_text"
+					position = { x = 280 y = 110 }	maxWidth = 100
+					format = centre	font = Arial12
+					text = "Prison"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_security_sub_prison"
+					position = { x = 310 y = 125 }	size = { width = 40 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_SEC_B^6|-^] B"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_security_sub_prison_mod"
+					position = { x = 360 y = 125 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_SEC_spending_modifier_pct^6|+1%]"
+				}
+			}
+			containerWindowType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub"
+				position = { x = 8% y = 55% }	size = { width = 84% height = 40% }
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_education_text"
+					position = { x = 280 y = 70 }	maxWidth = 100
+					format = centre	font = Arial12
+					text = "Education"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_education"
+					position = { x = 310 y = 85 }	size = { width = 40 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_SOCL_B^0|-^] B"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_education_mod"
+					position = { x = 360 y = 85 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_SOCL_spending_modifier_pct^0|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_healthcare_text"
+					position = { x = 280 y = 110 }	maxWidth = 100
+					format = centre	font = Arial12
+					text = "Healthcare"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_healthcare"
+					position = { x = 310 y = 125 }	size = { width = 40 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_SOCL_B^1|-^] B"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_healthcare_mod"
+					position = { x = 360 y = 125 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_SOCL_spending_modifier_pct^1|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_pensions_text"
+					position = { x = 280 y = 150 }	maxWidth = 100
+					format = centre	font = Arial12
+					text = "Pensions"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_pensions"
+					position = { x = 310 y = 165 }	size = { width = 40 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_SOCL_B^2|-^] B"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_pensions_mod"
+					position = { x = 360 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_SOCL_spending_modifier_pct^2|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_benefits_text"
+					position = { x = 280 y = 190 }	maxWidth = 100
+					format = centre	font = Arial12
+					text = "Benefits"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_benefits"
+					position = { x = 310 y = 205 }	size = { width = 40 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_SOCL_B^3|-^] B"
+				}
+				buttonType = { name = "ECON_cWT_RSV_civ_spending_menu_social_sub_benefits_mod"
+					position = { x = 360 y = 205 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_SOCL_spending_modifier_pct^3|+1%]"
+				}
+			}
+
+		containerWindowType = { name = "ECON_cWT_RSV_mil_spending_menu"
+			position = { x = 8% y = 55% }	size = { width = 84% height = 40% }
+			
+			instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_total_text"
+				position = { x = -60 y = 10 }	maxWidth = 100
+				format = right	font = Arial12
+				text = "Total"
+			}
+			buttonType = { name = "ECON_cWT_RSV_mil_spending_total"
+				position = { x = 50 y = 10 }	size = { width = 60 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_sources_B^1|-^] B"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_army_text"
+				position = { x = -40 y = 50 }	maxWidth = 100
+				format = right	font = Arial12
+				text = "Army"
+			}
+			buttonType = { name = "ECON_cWT_RSV_mil_spending_army"
+				position = { x = 90 y = 50 }	size = { width = 60 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_B^0|-^] B"
+			}
+			buttonType = { name = "ECON_cWT_RSV_mil_spending_army_button"
+				position = { x = 160 y = 50 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Details..."
+			}
+			instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_navy_text"
+				position = { x = -40 y = 70 }	maxWidth = 100
+				format = right	font = Arial12
+				text = "Navy"
+			}
+			buttonType = { name = "ECON_cWT_RSV_mil_spending_navy"
+				position = { x = 90 y = 70 }	size = { width = 60 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_B^1|-^] B"
+			}
+			buttonType = { name = "ECON_cWT_RSV_mil_spending_navy_button"
+				position = { x = 160 y = 70 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Details..."
+			}
+			instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_air_text"
+				position = { x = -40 y = 90 }	maxWidth = 100
+				format = right	font = Arial12
+				text = "Air Force"
+			}
+			buttonType = { name = "ECON_cWT_RSV_mil_spending_air"
+				position = { x = 90 y = 90 }	size = { width = 60 height = 20 }
+				quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+				buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_B^2|-^] B"
+			}
+			buttonType = { name = "ECON_cWT_RSV_mil_spending_air_button"
+				position = { x = 160 y = 90 }
+				quadTextureSprite = "GFX_ECON_cWT_btn"
+				orientation = UPPER_LEFT
+				
+				buttonFont = hoi_16mbs
+				buttonText = "Details..."
+			}
+		}
+			containerWindowType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub"
+				position = { x = 41% y = 58% }	size = { width = 52% height = 38% }
+
+				background = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+				clipping = yes	verticalScrollbar = "right_vertical_slider"	autohide_scrollbars = yes	margin = { bottom = 10 }
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_infantry_text"
+					position = { x = 0 y = 9 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Infantry Bns & Inf. Support Coys"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_infantry"
+					position = { x = 110 y = 15 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^0|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_infantry_rate_text"
+					position = { x = 180 y = 17 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_infantry_mod_gen"
+					position = { x = 220 y = 15 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_infantry_mod_spec"
+					position = { x = 270 y = 15 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^0|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_cavalry_text"
+					position = { x = 0 y = 39 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Cavalry, Light Inf. & Irregular Bns"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_cavalry"
+					position = { x = 110 y = 45 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^1|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_cavalry_rate_text"
+					position = { x = 180 y = 47 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_cavalry_mod_gen"
+					position = { x = 220 y = 45 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_cavalry_mod_spec"
+					position = { x = 270 y = 45 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^1|+1%]"
+				}
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_sf_text"
+					position = { x = 0 y = 77 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Special Force Bns"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_sf"
+					position = { x = 110 y = 75 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^2|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_sf_rate_text"
+					position = { x = 180 y = 77 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_sf_mod_gen"
+					position = { x = 220 y = 75 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_sf_mod_spec"
+					position = { x = 270 y = 75 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^2|+1%]"
+				}
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_motorised_text"
+					position = { x = 0 y = 99 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Motorised Bns & Mot. Support Coys"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_motorised"
+					position = { x = 110 y = 105 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^3|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_motorised_rate_text"
+					position = { x = 180 y = 107 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_motorised_mod_gen"
+					position = { x = 220 y = 105 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_motorised_mod_spec"
+					position = { x = 270 y = 105 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^3|+1%]"
+				}
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_apc_text"
+					position = { x = 0 y = 137 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "APC Bns"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_apc"
+					position = { x = 110 y = 135 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^4|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_apc_rate_text"
+					position = { x = 180 y = 137 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_apc_mod_gen"
+					position = { x = 220 y = 135 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_apc_mod_spec"
+					position = { x = 270 y = 135 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^4|+1%]"
+				}
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_ifv_text"
+					position = { x = 0 y = 159 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "IFV & Light Armoured Bns"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_ifv"
+					position = { x = 110 y = 165 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^5|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_ifv_rate_text"
+					position = { x = 180 y = 167 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_ifv_mod_gen"
+					position = { x = 220 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_ifv_mod_spec"
+					position = { x = 270 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^5|+1%]"
+				}
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_mbt_text"
+					position = { x = 0 y = 197 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "MBT Bns"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_mbt"
+					position = { x = 110 y = 195 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^6|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_mbt_rate_text"
+					position = { x = 180 y = 197 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_mbt_mod_gen"
+					position = { x = 220 y = 195 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_mbt_mod_spec"
+					position = { x = 270 y = 195 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^6|+1%]"
+				}
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_heli_text"
+					position = { x = 0 y = 227 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Helicopter Support Coys"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_heli"
+					position = { x = 110 y = 225 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^7|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_heli_rate_text"
+					position = { x = 180 y = 227 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_heli_mod_gen"
+					position = { x = 220 y = 225 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_heli_mod_spec"
+					position = { x = 270 y = 225 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^7|+1%]"
+				}
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_spt_text"
+					position = { x = 0 y = 257 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Support Coys"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_spt"
+					position = { x = 110 y = 255 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_GROUND_sorted_B^8|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_infantry_rate_text"
+					position = { x = 180 y = 257 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_spt_mod_gen"
+					position = { x = 220 y = 255 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_army_sub_spt_mod_spec"
+					position = { x = 270 y = 255 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_unit_modifier_pct^8|+1%]"
+				}
+			}
+			containerWindowType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub"
+				position = { x = 41% y = 58% }	size = { width = 52% height = 38% }
+
+				background = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+				clipping = yes	verticalScrollbar = "right_vertical_slider"	autohide_scrollbars = yes	margin = { bottom = 10 }
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_submarines_text"
+					position = { x = 0 y = 17 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Submarines"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_submarines"
+					position = { x = 110 y = 15 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_NAVAL_sorted_B^0|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_submarines_rate_text"
+					position = { x = 180 y = 17 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_submarines_mod_gen"
+					position = { x = 220 y = 15 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_submarines_mod_spec"
+					position = { x = 270 y = 15 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^0|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_corvettes_frigates_text"
+					position = { x = 0 y = 47 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Corvettes & Frigates"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_corvettes_frigates"
+					position = { x = 110 y = 45 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_NAVAL_sorted_B^1|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_corvettes_frigates_rate_text"
+					position = { x = 180 y = 47 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_corvettes_frigates_mod_gen"
+					position = { x = 220 y = 45 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_corvettes_frigates_mod_spec"
+					position = { x = 270 y = 45 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^1|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_destroyers_text"
+					position = { x = 0 y = 77 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Destroyers"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_destroyers"
+					position = { x = 110 y = 75 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_NAVAL_sorted_B^2|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_destroyers_rate_text"
+					position = { x = 180 y = 77 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_destroyers_mod_gen"
+					position = { x = 220 y = 75 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_destroyers_mod_spec"
+					position = { x = 270 y = 75 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^2|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_cruisers_text"
+					position = { x = 0 y = 107 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Cruisers"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_cruisers"
+					position = { x = 110 y = 105 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_NAVAL_sorted_B^3|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_cruisers_rate_text"
+					position = { x = 180 y = 107 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_cruisers_mod_gen"
+					position = { x = 220 y = 105 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_cruisers_mod_spec"
+					position = { x = 270 y = 105 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^3|+1%]"
+				}
+				
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_battlecruisers_battleships_text"
+					position = { x = 0 y = 129 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Battlecruisers & Battleships"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_battlecruisers_battleships"
+					position = { x = 110 y = 135 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_NAVAL_sorted_B^4|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_battlecruisers_battleships_rate_text"
+					position = { x = 180 y = 137 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_battlecruisers_battleships_mod_gen"
+					position = { x = 220 y = 135 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_battlecruisers_battleships_mod_spec"
+					position = { x = 270 y = 135 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^4|+1%]"
+				}
+				
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_aircraft_carriers_text"
+					position = { x = 0 y = 167 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Aircraft Carriers"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_aircraft_carriers"
+					position = { x = 110 y = 165 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_NAVAL_sorted_B^5|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_aircraft_carriers_rate_text"
+					position = { x = 180 y = 167 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_aircraft_carriers_mod_gen"
+					position = { x = 220 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_navy_sub_aircraft_carriers_mod_spec"
+					position = { x = 270 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_ships_modifier_pct^5|+1%]"
+				}
+			}
+			containerWindowType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub"
+				position = { x = 41% y = 58% }	size = { width = 52% height = 38% }
+
+				background = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_bg"	quadTextureSprite = "GFX_ECON_cWT_bg_cTST" }
+
+				clipping = yes	verticalScrollbar = "right_vertical_slider"	autohide_scrollbars = yes	margin = { bottom = 10 }
+				
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_fighters_text"
+					position = { x = 0 y = 17 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Fighters"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_fighters"
+					position = { x = 110 y = 15 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_AIR_sorted_B^0|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_submarines_rate_text"
+					position = { x = 180 y = 17 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_fighters_mod_gen"
+					position = { x = 220 y = 15 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_fighters_mod_spec"
+					position = { x = 270 y = 15 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^0|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_attackers_text"
+					position = { x = 0 y = 47 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Attackers"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_attackers"
+					position = { x = 110 y = 45 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_AIR_sorted_B^1|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_attackers_rate_text"
+					position = { x = 180 y = 47 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_attackers_mod_gen"
+					position = { x = 220 y = 45 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_attackers_mod_spec"
+					position = { x = 270 y = 45 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^1|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_interceptors_text"
+					position = { x = 0 y = 77 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Interceptors"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_interceptors"
+					position = { x = 110 y = 75 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_AIR_sorted_B^2|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_interceptors_rate_text"
+					position = { x = 180 y = 77 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_interceptors_mod_gen"
+					position = { x = 220 y = 75 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_interceptors_mod_spec"
+					position = { x = 270 y = 75 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^2|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_naval_text"
+					position = { x = 0 y = 107 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Naval Bombers"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_naval"
+					position = { x = 110 y = 105 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_AIR_sorted_B^3|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_naval_rate_text"
+					position = { x = 180 y = 107 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_naval_mod_gen"
+					position = { x = 220 y = 105 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_naval_mod_spec"
+					position = { x = 270 y = 105 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^3|+1%]"
+				}
+				
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_multiroles_text"
+					position = { x = 0 y = 137 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Multiroles"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_multiroles"
+					position = { x = 110 y = 135 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_AIR_sorted_B^4|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_multiroles_rate_text"
+					position = { x = 180 y = 137 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_multiroles_mod_gen"
+					position = { x = 220 y = 135 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_multiroles_mod_spec"
+					position = { x = 270 y = 135 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^4|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_tac_bombers_text"
+					position = { x = 0 y = 167 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Tactical Bombers"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_tac_bombers"
+					position = { x = 110 y = 165 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_AIR_sorted_B^5|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_tac_bombers_rate_text"
+					position = { x = 180 y = 167 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_tac_bombers_mod_gen"
+					position = { x = 220 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_tac_bombers_mod_spec"
+					position = { x = 270 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^5|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_strat_bombers_text"
+					position = { x = 0 y = 197 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Strategic Bombers"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_strat_bombers"
+					position = { x = 110 y = 195 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_AIR_sorted_B^6|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_strat_bombers_rate_text"
+					position = { x = 180 y = 197 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_strat_bombers_mod_gen"
+					position = { x = 220 y = 195 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_strat_bombers_mod_spec"
+					position = { x = 270 y = 195 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^5|+1%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_transports_text"
+					position = { x = 0 y = 167 }	maxWidth = 100
+					format = right	font = Arial12
+					text = "Transports"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_transports"
+					position = { x = 110 y = 165 }	size = { width = 60 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_EXP_military_AIR_sorted_B^7|-^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_transports_rate_text"
+					position = { x = 180 y = 167 }	maxWidth = 30
+					format = right	font = Arial12
+					text = "> rate"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_transports_mod_gen"
+					position = { x = 220 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^99|+1%]"
+				}
+				buttonType = { name = "ECON_cWT_RSV_mil_spending_menu_air_force_sub_transports_mod_spec"
+					position = { x = 270 y = 165 }	size = { width = 50 height = 20 }
+					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
+
+					buttonFont = hoi_16mbs	buttonText = "[?POLICIES_arr_nat_ARM_spending_air_modifier_pct^7|+1%]"
+				}
+			}
+}
