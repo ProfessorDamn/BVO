@@ -1,0 +1,7 @@
+scripted_gui = {
+	PROV_cWT_basics = { window_name = "PROV_cWT_basics"
+		context_type = selected_state_context	parent_window_token = selected_state_view
+
+		visible = { always = yes }
+	}
+}
