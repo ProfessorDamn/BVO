@@ -1,0 +1,13 @@
+# MOD_cWT_var_POL_parliament_disp_type [1 = Westminster block]
+
+on_actions = {
+	on_startup = {
+		effect = {
+			IF = { limit = { check_variable = { MOD_cWT_var_POL_parliament_disp_type = 0 } } set_variable = { MOD_cWT_var_POL_parliament_disp_type = 1 } }
+			SWE = {
+				# You can put this in the country's history file alternatively too.
+				parliament_gui_initial = yes
+			}
+		}
+	}
+}
