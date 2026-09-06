@@ -1,0 +1,14 @@
+defined_text = {
+	name = MOD_cWT_var_ECON_alt_menu_cur_text
+		text = { trigger = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 0 } } localization_key = ECON_tt_alt_cur_0 }
+		text = { trigger = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 1 } } localization_key = ECON_tt_alt_cur_1 }
+		text = { trigger = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 2 } } localization_key = ECON_tt_alt_cur_2 }
+		text = { trigger = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 3 } } localization_key = ECON_tt_alt_cur_3 }
+		text = { trigger = { check_variable = { MOD_cWT_var_ECON_alt_menu_cur = 4 } } localization_key = ECON_tt_alt_cur_4 }
+}
+defined_text = {
+	name = MOD_cWT_RSV_graph_actual_state_of_the_treasury
+		text = { trigger = { check_variable = { ECON_var_nat_RSV_liquid_B < 0 } } localization_key = ECON_tt_deficit }
+		text = { trigger = { check_variable = { ECON_var_nat_RSV_liquid_B > 0 } } localization_key = ECON_tt_surplus }
+		text = { localization_key = ECON_tt_moneygod }
+}

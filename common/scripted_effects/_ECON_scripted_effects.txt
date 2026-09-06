@@ -1,0 +1,5 @@
+ECON_sE_PU_civ_allocate_1 = {
+	FROM = { subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = 1 }
+			 add_to_variable = { ECON_arr_nat_PU_assignment^1 = 1 } add_to_variable = { ECON_arr_nat_PU_assignment^2 = 1 }
+
+			 add_offsite_building = { type = industrial_complex level = 1 } } }

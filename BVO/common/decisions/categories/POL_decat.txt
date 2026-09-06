@@ -1,4 +1,0 @@
-POL_decisions = {
-	priority = 0
-	allowed = { always = yes }
-}

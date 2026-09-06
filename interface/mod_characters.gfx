@@ -1,0 +1,10 @@
+# FOLLOW https://docs.google.com/document/d/1OX5LC3TNFXZjQ9fVTyGe0NWKQrCiEhc_fmZglmvGtW8/, then #
+## 1. SAVE PRE-BACKGROUND FINISHED DRAWING IN A .PDN FILE;
+## 2. Adjustments > Posterise > every slider to 9.
+spriteTypes = {
+# SWEDEN
+  # Statesmen
+	spriteType = { name = "GFX_SWE_portrait_leader_Olof_Palme_1968"
+		textureFile = "gfx/characters/SWE/portrait_leader_Olof_Palme_1968_merged.dds"
+	}
+}

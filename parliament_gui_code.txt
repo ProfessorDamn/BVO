@@ -1,0 +1,262 @@
+
+### Insert as a top-level container in your .gui file
+
+containerWindowType = {
+	name = "GFX_POL_parliament_container_seat"
+	position = { x = 0 y = 0 }
+
+	iconType = { 
+		name = "GFX_POL_parliament_gui_seats"
+		quadTextureSprite = "GFX_POL_parliament_icon_seat"
+		pdx_tooltip = "MP"
+	}
+}
+
+
+
+### Insert where you want the diagram to go, feel free to adjust position etc
+
+
+# LEAVE THESE COMMENTS IN SO YOU CAN REGENERATE THIS DIAGRAM
+# IF THE SCRIPT IS IMPROVED DOWN THE LINE
+# YOU HAVE BEEN WARNED
+# Spread: 2.75
+# First Row Radius: 3.52
+# Total Delegates: 100
+gridboxtype = {
+	name = "GFX_POL_parliament_container_diagram"
+	position = { x = 0 y = 0 }
+	size = { width = 100%% height = 100%% }
+	slotsize = { width = 100%% height = 0 }
+	max_slots_horizontal = 1
+	add_horizontal = no
+}
+
+
+
+### Insert into the scripted GUI for the container which holds the parliament_diagram gridboxtype
+
+dynamic_lists = {
+	GFX_POL_parliament_container_diagram = {
+		array = POL_arr_nat_parliament_xpos
+		change_scope = no
+		entry_container = GFX_POL_parliament_container_seat
+		index = seat_idx
+	}
+}
+
+properties = {
+	GFX_POL_parliament_gui_seats = {
+		x = POL_arr_nat_parliament_xpos^seat_idx
+		y = POL_arr_nat_parliament_ypos^seat_idx
+		frame = POL_arr_nat_parliament_name^seat_idx
+	}
+}
+
+
+
+### Insert into a history file or scripted effect, this sets up all of the seat positions
+### Note that you'll need to fill out POL_arr_nat_parliament_name yourself with the proper frames for each seat
+add_to_array = { POL_arr_nat_parliament_xpos = 0 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 17 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 34 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 52 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 69 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 86 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 3 }
+add_to_array = { POL_arr_nat_parliament_ypos = 130 }
+add_to_array = { POL_arr_nat_parliament_xpos = 21 }
+add_to_array = { POL_arr_nat_parliament_ypos = 129 }
+add_to_array = { POL_arr_nat_parliament_xpos = 38 }
+add_to_array = { POL_arr_nat_parliament_ypos = 130 }
+add_to_array = { POL_arr_nat_parliament_xpos = 56 }
+add_to_array = { POL_arr_nat_parliament_ypos = 130 }
+add_to_array = { POL_arr_nat_parliament_xpos = 9 }
+add_to_array = { POL_arr_nat_parliament_ypos = 109 }
+add_to_array = { POL_arr_nat_parliament_xpos = 74 }
+add_to_array = { POL_arr_nat_parliament_ypos = 131 }
+add_to_array = { POL_arr_nat_parliament_xpos = 27 }
+add_to_array = { POL_arr_nat_parliament_ypos = 109 }
+add_to_array = { POL_arr_nat_parliament_xpos = 92 }
+add_to_array = { POL_arr_nat_parliament_ypos = 132 }
+add_to_array = { POL_arr_nat_parliament_xpos = 45 }
+add_to_array = { POL_arr_nat_parliament_ypos = 110 }
+add_to_array = { POL_arr_nat_parliament_xpos = 17 }
+add_to_array = { POL_arr_nat_parliament_ypos = 90 }
+add_to_array = { POL_arr_nat_parliament_xpos = 65 }
+add_to_array = { POL_arr_nat_parliament_ypos = 109 }
+add_to_array = { POL_arr_nat_parliament_xpos = 37 }
+add_to_array = { POL_arr_nat_parliament_ypos = 89 }
+add_to_array = { POL_arr_nat_parliament_xpos = 84 }
+add_to_array = { POL_arr_nat_parliament_ypos = 112 }
+add_to_array = { POL_arr_nat_parliament_xpos = 56 }
+add_to_array = { POL_arr_nat_parliament_ypos = 91 }
+add_to_array = { POL_arr_nat_parliament_xpos = 28 }
+add_to_array = { POL_arr_nat_parliament_ypos = 71 }
+add_to_array = { POL_arr_nat_parliament_xpos = 50 }
+add_to_array = { POL_arr_nat_parliament_ypos = 71 }
+add_to_array = { POL_arr_nat_parliament_xpos = 103 }
+add_to_array = { POL_arr_nat_parliament_ypos = 115 }
+add_to_array = { POL_arr_nat_parliament_xpos = 78 }
+add_to_array = { POL_arr_nat_parliament_ypos = 91 }
+add_to_array = { POL_arr_nat_parliament_xpos = 42 }
+add_to_array = { POL_arr_nat_parliament_ypos = 55 }
+add_to_array = { POL_arr_nat_parliament_xpos = 70 }
+add_to_array = { POL_arr_nat_parliament_ypos = 75 }
+add_to_array = { POL_arr_nat_parliament_xpos = 98 }
+add_to_array = { POL_arr_nat_parliament_ypos = 96 }
+add_to_array = { POL_arr_nat_parliament_xpos = 65 }
+add_to_array = { POL_arr_nat_parliament_ypos = 55 }
+add_to_array = { POL_arr_nat_parliament_xpos = 57 }
+add_to_array = { POL_arr_nat_parliament_ypos = 40 }
+add_to_array = { POL_arr_nat_parliament_xpos = 94 }
+add_to_array = { POL_arr_nat_parliament_ypos = 76 }
+add_to_array = { POL_arr_nat_parliament_xpos = 86 }
+add_to_array = { POL_arr_nat_parliament_ypos = 61 }
+add_to_array = { POL_arr_nat_parliament_xpos = 118 }
+add_to_array = { POL_arr_nat_parliament_ypos = 102 }
+add_to_array = { POL_arr_nat_parliament_xpos = 83 }
+add_to_array = { POL_arr_nat_parliament_ypos = 42 }
+add_to_array = { POL_arr_nat_parliament_xpos = 75 }
+add_to_array = { POL_arr_nat_parliament_ypos = 28 }
+add_to_array = { POL_arr_nat_parliament_xpos = 115 }
+add_to_array = { POL_arr_nat_parliament_ypos = 83 }
+add_to_array = { POL_arr_nat_parliament_xpos = 104 }
+add_to_array = { POL_arr_nat_parliament_ypos = 50 }
+add_to_array = { POL_arr_nat_parliament_xpos = 113 }
+add_to_array = { POL_arr_nat_parliament_ypos = 65 }
+add_to_array = { POL_arr_nat_parliament_xpos = 94 }
+add_to_array = { POL_arr_nat_parliament_ypos = 18 }
+add_to_array = { POL_arr_nat_parliament_xpos = 103 }
+add_to_array = { POL_arr_nat_parliament_ypos = 32 }
+add_to_array = { POL_arr_nat_parliament_xpos = 136 }
+add_to_array = { POL_arr_nat_parliament_ypos = 93 }
+add_to_array = { POL_arr_nat_parliament_xpos = 114 }
+add_to_array = { POL_arr_nat_parliament_ypos = 10 }
+add_to_array = { POL_arr_nat_parliament_xpos = 125 }
+add_to_array = { POL_arr_nat_parliament_ypos = 43 }
+add_to_array = { POL_arr_nat_parliament_xpos = 135 }
+add_to_array = { POL_arr_nat_parliament_ypos = 76 }
+add_to_array = { POL_arr_nat_parliament_xpos = 124 }
+add_to_array = { POL_arr_nat_parliament_ypos = 26 }
+add_to_array = { POL_arr_nat_parliament_xpos = 134 }
+add_to_array = { POL_arr_nat_parliament_ypos = 58 }
+add_to_array = { POL_arr_nat_parliament_xpos = 135 }
+add_to_array = { POL_arr_nat_parliament_ypos = 6 }
+add_to_array = { POL_arr_nat_parliament_xpos = 146 }
+add_to_array = { POL_arr_nat_parliament_ypos = 39 }
+add_to_array = { POL_arr_nat_parliament_xpos = 145 }
+add_to_array = { POL_arr_nat_parliament_ypos = 22 }
+add_to_array = { POL_arr_nat_parliament_xpos = 156 }
+add_to_array = { POL_arr_nat_parliament_ypos = 91 }
+add_to_array = { POL_arr_nat_parliament_xpos = 156 }
+add_to_array = { POL_arr_nat_parliament_ypos = 56 }
+add_to_array = { POL_arr_nat_parliament_xpos = 156 }
+add_to_array = { POL_arr_nat_parliament_ypos = 5 }
+add_to_array = { POL_arr_nat_parliament_xpos = 156 }
+add_to_array = { POL_arr_nat_parliament_ypos = 73 }
+add_to_array = { POL_arr_nat_parliament_xpos = 167 }
+add_to_array = { POL_arr_nat_parliament_ypos = 22 }
+add_to_array = { POL_arr_nat_parliament_xpos = 167 }
+add_to_array = { POL_arr_nat_parliament_ypos = 39 }
+add_to_array = { POL_arr_nat_parliament_xpos = 178 }
+add_to_array = { POL_arr_nat_parliament_ypos = 6 }
+add_to_array = { POL_arr_nat_parliament_xpos = 178 }
+add_to_array = { POL_arr_nat_parliament_ypos = 58 }
+add_to_array = { POL_arr_nat_parliament_xpos = 189 }
+add_to_array = { POL_arr_nat_parliament_ypos = 26 }
+add_to_array = { POL_arr_nat_parliament_xpos = 177 }
+add_to_array = { POL_arr_nat_parliament_ypos = 76 }
+add_to_array = { POL_arr_nat_parliament_xpos = 188 }
+add_to_array = { POL_arr_nat_parliament_ypos = 43 }
+add_to_array = { POL_arr_nat_parliament_xpos = 199 }
+add_to_array = { POL_arr_nat_parliament_ypos = 10 }
+add_to_array = { POL_arr_nat_parliament_xpos = 176 }
+add_to_array = { POL_arr_nat_parliament_ypos = 93 }
+add_to_array = { POL_arr_nat_parliament_xpos = 210 }
+add_to_array = { POL_arr_nat_parliament_ypos = 32 }
+add_to_array = { POL_arr_nat_parliament_xpos = 219 }
+add_to_array = { POL_arr_nat_parliament_ypos = 18 }
+add_to_array = { POL_arr_nat_parliament_xpos = 199 }
+add_to_array = { POL_arr_nat_parliament_ypos = 65 }
+add_to_array = { POL_arr_nat_parliament_xpos = 208 }
+add_to_array = { POL_arr_nat_parliament_ypos = 50 }
+add_to_array = { POL_arr_nat_parliament_xpos = 197 }
+add_to_array = { POL_arr_nat_parliament_ypos = 83 }
+add_to_array = { POL_arr_nat_parliament_xpos = 238 }
+add_to_array = { POL_arr_nat_parliament_ypos = 28 }
+add_to_array = { POL_arr_nat_parliament_xpos = 229 }
+add_to_array = { POL_arr_nat_parliament_ypos = 42 }
+add_to_array = { POL_arr_nat_parliament_xpos = 195 }
+add_to_array = { POL_arr_nat_parliament_ypos = 102 }
+add_to_array = { POL_arr_nat_parliament_xpos = 227 }
+add_to_array = { POL_arr_nat_parliament_ypos = 61 }
+add_to_array = { POL_arr_nat_parliament_xpos = 218 }
+add_to_array = { POL_arr_nat_parliament_ypos = 76 }
+add_to_array = { POL_arr_nat_parliament_xpos = 255 }
+add_to_array = { POL_arr_nat_parliament_ypos = 40 }
+add_to_array = { POL_arr_nat_parliament_xpos = 247 }
+add_to_array = { POL_arr_nat_parliament_ypos = 55 }
+add_to_array = { POL_arr_nat_parliament_xpos = 215 }
+add_to_array = { POL_arr_nat_parliament_ypos = 96 }
+add_to_array = { POL_arr_nat_parliament_xpos = 243 }
+add_to_array = { POL_arr_nat_parliament_ypos = 75 }
+add_to_array = { POL_arr_nat_parliament_xpos = 271 }
+add_to_array = { POL_arr_nat_parliament_ypos = 55 }
+add_to_array = { POL_arr_nat_parliament_xpos = 235 }
+add_to_array = { POL_arr_nat_parliament_ypos = 91 }
+add_to_array = { POL_arr_nat_parliament_xpos = 210 }
+add_to_array = { POL_arr_nat_parliament_ypos = 115 }
+add_to_array = { POL_arr_nat_parliament_xpos = 263 }
+add_to_array = { POL_arr_nat_parliament_ypos = 71 }
+add_to_array = { POL_arr_nat_parliament_xpos = 285 }
+add_to_array = { POL_arr_nat_parliament_ypos = 71 }
+add_to_array = { POL_arr_nat_parliament_xpos = 257 }
+add_to_array = { POL_arr_nat_parliament_ypos = 91 }
+add_to_array = { POL_arr_nat_parliament_xpos = 229 }
+add_to_array = { POL_arr_nat_parliament_ypos = 112 }
+add_to_array = { POL_arr_nat_parliament_xpos = 276 }
+add_to_array = { POL_arr_nat_parliament_ypos = 89 }
+add_to_array = { POL_arr_nat_parliament_xpos = 248 }
+add_to_array = { POL_arr_nat_parliament_ypos = 109 }
+add_to_array = { POL_arr_nat_parliament_xpos = 296 }
+add_to_array = { POL_arr_nat_parliament_ypos = 90 }
+add_to_array = { POL_arr_nat_parliament_xpos = 267 }
+add_to_array = { POL_arr_nat_parliament_ypos = 110 }
+add_to_array = { POL_arr_nat_parliament_xpos = 221 }
+add_to_array = { POL_arr_nat_parliament_ypos = 132 }
+add_to_array = { POL_arr_nat_parliament_xpos = 285 }
+add_to_array = { POL_arr_nat_parliament_ypos = 109 }
+add_to_array = { POL_arr_nat_parliament_xpos = 239 }
+add_to_array = { POL_arr_nat_parliament_ypos = 131 }
+add_to_array = { POL_arr_nat_parliament_xpos = 304 }
+add_to_array = { POL_arr_nat_parliament_ypos = 109 }
+add_to_array = { POL_arr_nat_parliament_xpos = 256 }
+add_to_array = { POL_arr_nat_parliament_ypos = 130 }
+add_to_array = { POL_arr_nat_parliament_xpos = 275 }
+add_to_array = { POL_arr_nat_parliament_ypos = 130 }
+add_to_array = { POL_arr_nat_parliament_xpos = 292 }
+add_to_array = { POL_arr_nat_parliament_ypos = 129 }
+add_to_array = { POL_arr_nat_parliament_xpos = 310 }
+add_to_array = { POL_arr_nat_parliament_ypos = 130 }
+add_to_array = { POL_arr_nat_parliament_xpos = 226 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 244 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 261 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 278 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 295 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+add_to_array = { POL_arr_nat_parliament_xpos = 313 }
+add_to_array = { POL_arr_nat_parliament_ypos = 151 }
+
+
+

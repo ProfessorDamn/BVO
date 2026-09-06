@@ -1,0 +1,8 @@
+POL_decisions = {
+	POL_mission_LEG_vote_timeout = {
+        activation = { always = no }    # handled by activate_mission
+        available = { always = no }
+        days_mission_timeout = POL_var_nat_LEG_laws_days_voting
+        timeout_effect = { POL_se_LEG_vote_finished = yes }
+    }
+}

@@ -1,0 +1,4 @@
+ECON_decisions = {
+	priority = 100
+	allowed = { always = yes }
+}

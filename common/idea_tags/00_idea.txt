@@ -1,0 +1,261 @@
+idea_categories = {
+	# ledger can be define for idea > idea slot > idea category
+	# first one overrides the others
+	# multiple ledgers can be defined, in that case will show on all
+	# possible values : army, air, navy, military (shows on all military ledgers), civilian, all (shows up everywhere), hidden (does not show up)
+	
+	
+	hidden_ideas = {
+		hidden = yes
+	
+		cost = 0
+		removal_cost = -1
+		
+		ledger = hidden
+	}
+
+	country = {
+		type = national_spirit
+		
+		cost = 0
+		removal_cost = -1
+		
+		ledger = hidden
+	}
+	
+	government = {
+		character_slot = political_advisor
+		character_slot = political_advisor
+		character_slot = political_advisor
+		
+		ledger = civilian
+		
+		cost = 150
+		removal_cost = 0
+	}
+
+	POLICIES_cat_ECON = {
+		# Taxes & weight presented as text and changed in separate econ management GUI.
+		# Effects should be done by dynamic modifiers.
+		slot = economy	# mobilisation
+		slot = trade_laws
+
+		cost = 0	removal_cost = -1
+		ledger = civilian
+	}
+
+	POLICIES_cat_SEC = {
+		slot = POLICIES_cat_SEC_freedom_press
+		slot = POLICIES_cat_SEC_freedom_assembly
+		slot = POLICIES_cat_SEC_religion_attitude
+		slot = POLICIES_cat_SEC_immigration
+		slot = POLICIES_cat_SEC_police
+		slot = POLICIES_cat_SEC_prison
+
+		cost = 0	removal_cost = -1
+		ledger = civilian
+	}
+
+	POLICIES_cat_LABOUR = {
+		slot = POLICIES_cat_LABOUR_hours
+		slot = POLICIES_cat_LABOUR_min_wage
+		slot = POLICIES_cat_LABOUR_unionisation
+		slot = POLICIES_cat_LABOUR_safety
+
+		cost = 0	removal_cost = -1
+		ledger = civilian
+	}
+
+	POLICIES_cat_SOCL = {
+		slot = POLICIES_cat_SOCL_education
+		slot = POLICIES_cat_SOCL_healthcare
+		slot = POLICIES_cat_SOCL_pension
+		slot = POLICIES_cat_SOCL_benefits
+		
+		cost = 0	removal_cost = -1
+		ledger = civilian
+	}
+
+	POLICIES_cat_MIL = {	# professionalism should be in soc. dev.
+		slot = mobilization_laws
+		slot = POLICIES_cat_MIL_maintenance
+		slot = POLICIES_cat_MIL_training
+		slot = POLICIES_cat_MIL_oversight
+		slot = POLICIES_cat_MIL_exemptions
+
+		cost = 0	removal_cost = -1
+		ledger = civilian
+	}
+	
+	research_production = {
+		slot = tank_manufacturer
+		slot = naval_manufacturer
+		slot = aircraft_manufacturer
+		slot = materiel_manufacturer
+		slot = industrial_concern
+		character_slot = theorist
+
+		ledger = civilian
+		
+		cost = 150
+		removal_cost = 0
+	}
+	
+	military_staff = {
+		character_slot = army_chief 
+		character_slot = navy_chief 
+		character_slot = air_chief
+		character_slot = high_command
+		character_slot = high_command
+		character_slot = high_command
+		
+		ledger = invalid # must be overridden
+		
+		cost = 150
+		removal_cost = 0
+	}
+
+	academy_spirit = {
+		type = army_spirit
+
+		cost = 20
+		removal_cost = -1
+		
+		politics_tab = no
+		
+		ledger = hidden
+
+		slot = academy_spirit
+	}
+
+	army_spirit = {
+		type = army_spirit
+
+		cost = 35
+		removal_cost = -1
+		
+		politics_tab = no
+		
+		ledger = hidden
+		slot = army_spirit
+	}
+
+	division_command_spirit = {
+		type = army_spirit
+		
+		cost = 50
+		removal_cost = -1
+		
+		politics_tab = no
+		
+		ledger = hidden
+		slot = division_command_spirit
+	}
+
+	naval_academy_spirit = {
+		type = navy_spirit
+
+		cost = 20
+		removal_cost = -1
+		
+		politics_tab = no
+		
+		ledger = hidden
+		slot = naval_academy_spirit
+	}
+
+	navy_spirit = {
+		type = navy_spirit
+
+		cost = 35
+		removal_cost = -1
+		
+		politics_tab = no
+		
+		ledger = hidden
+		slot = navy_spirit
+	}
+
+	naval_command_spirit = {
+		type = navy_spirit
+		
+		cost = 50
+		removal_cost = -1
+		
+		politics_tab = no
+		
+		ledger = hidden
+		slot = naval_command_spirit
+	}
+
+	air_force_academy_spirit = {
+		type = air_spirit
+
+		cost = 50
+		removal_cost = -1
+		
+		politics_tab = no
+		
+		ledger = hidden
+		slot = air_force_academy_spirit
+	}
+
+	air_force_spirit = {
+		type = air_spirit
+
+		cost = 50
+		removal_cost = -1
+		
+		politics_tab = no
+		
+		ledger = hidden
+		slot = air_force_spirit
+	}
+
+	air_force_command_spirit = {
+		type = air_spirit
+		
+		politics_tab = no
+		
+		cost = 50
+		removal_cost = -1
+		
+		ledger = hidden
+		slot = air_force_command_spirit
+	}
+}
+
+
+slot_ledgers = {
+	army_chief = army
+	navy_chief = navy
+	air_chief = air
+	
+	tank_manufacturer = army
+	naval_manufacturer = navy
+	aircraft_manufacturer = air
+	
+	theorist = invalid # must be overridden
+	high_command = invalid # must be overridden
+	
+	
+	mobilization_laws = civilian
+
+	POLICIES_cat_ECON_income_tax = civilian
+	POLICIES_cat_ECON_income_tax_weight = civilian
+	POLICIES_cat_ECON_business_tax = civilian
+	POLICIES_cat_SEC_freedom_press = civilian
+	POLICIES_cat_SEC_freedom_assembly = civilian
+	POLICIES_cat_SEC_religion_attitude = civilian
+	POLICIES_cat_SEC_immigration = civilian
+	POLICIES_cat_SEC_police = civilian
+	POLICIES_cat_SEC_prison = civilian
+	POLICIES_cat_LABOUR_hours = civilian
+	POLICIES_cat_LABOUR_min_wage = civilian
+	POLICIES_cat_LABOUR_unionisation = civilian
+	POLICIES_cat_LABOUR_safety = civilian
+	POLICIES_cat_SOCL_education = civilian
+	POLICIES_cat_SOCL_healthcare = civilian
+	POLICIES_cat_SOCL_pension = civilian
+	POLICIES_cat_SOCL_benefits = civilian
+}
