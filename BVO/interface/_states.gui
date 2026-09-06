@@ -1,0 +1,26 @@
+guiTypes = {
+	containerWindowType = { name = "PROV_cWT_basics"
+		position = { x = 106% y = -41 }	size = { width = 150 height = 200 }
+		orientation = LOWER_LEFT	origo = upper_left
+
+		background = { name = "PROV_cWT_basics_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+		
+		# some instanttextboxes here
+		instantTextBoxType = { name = "PROV_cWT_basics_state_GDP"
+			position = { x = 25 y = 10 }	orientation = UPPER_LEFT	maxWidth = 60	maxHeight = 15
+
+			font = "DOSVGA_15"	format = centre
+			text = "[?ECON_var_state_GDP_nominal_B|^]"
+		}
+		# party 1 support, party 2 support, so on.
+		# deeper information toggler here
+		buttonType = { name = "PROV_cWT_toggle_button"
+			position = { x = 0 y = 125 }
+			quadTextureSprite = "GFX_MOD_cWT_DOS_btn_100x25"
+			orientation = UPPER_LEFT
+			
+			buttonFont = "DOSVGA_16"
+			buttonText = "ow"
+		}
+	}
+}
