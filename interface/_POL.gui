@@ -158,11 +158,16 @@ guiTypes = {
 							font = "DOSVGA_20"	format = right
 							text = "[?POL_var_nat_LEG_seats_coalition]"
 						}
-						gridBoxType = { name = "POL_cWT_content_legislative_coalitions_gridbox_govt"
+						containerWindowType = { name = "POL_cWT_content_legislative_coalitions_gridbox_govt_scroll"
+							position = { x = 0 y = 25 } size = { width = 225 height = 100%% } 
+							verticalScrollbar = "left_vertical_slider"	autohide_scrollbars = yes
 							background = { name = "POL_cWT_content_legislature_coal_govt_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
-							position = { x = 0 y = 25 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
-							max_slots_vertical = 20
-							add_horizontal = no
+
+							gridBoxType = { name = "POL_cWT_content_legislative_coalitions_gridbox_govt"
+								position = { x = 0 y = 0 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
+								max_slots_vertical = 20
+								add_horizontal = no
+							}
 						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_coalitions_seats_nongovt_text"
 							position = { x = 485 y = 5 }	orientation = UPPER_LEFT	maxWidth = 140 maxHeight = 15
@@ -181,12 +186,18 @@ guiTypes = {
 							font = "DOSVGA_20"	format = left
 							text = "[?POL_var_nat_LEG_seats_noncoalition]"	# change later
 						}
-						gridBoxType = { name = "POL_cWT_content_legislative_coalitions_gridbox_nongovt"
+						containerWindowType = { name = "POL_cWT_content_legislative_coalitions_gridbox_nongovt_scroll"
+							position = { x = 405 y = 25 } size = { width = 225 height = 100%% } 
+							verticalScrollbar = "right_vertical_slider"	autohide_scrollbars = yes	
 							background = { name = "POL_cWT_content_legislature_coal_nongovt_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
-							position = { x = 405 y = 25 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
-							max_slots_vertical = 20
-							add_horizontal = no
+
+							gridBoxType = { name = "POL_cWT_content_legislative_coalitions_gridbox_nongovt"
+								position = { x = 0 y = 0 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
+								max_slots_vertical = 20
+								add_horizontal = no
+							}
 						}
+						
 					# sep. party interaction elements
 					# legislation
 					containerWindowType = { name = "POL_cWT_content_legislative_coalitions_law"
@@ -265,11 +276,16 @@ guiTypes = {
 							font = "DOSVGA_20"	format = right
 							text = "[?POL_var_nat_LEG_seats_coalition]"
 						}
-						gridBoxType = { name = "POL_cWT_content_legislative_relations_gridbox_govt"
+						containerWindowType = { name = "POL_cWT_content_legislative_relations_gridbox_govt_scroll"
+							position = { x = 0 y = 25 } size = { width = 225 height = 100%% } 
+							verticalScrollbar = "left_vertical_slider"	autohide_scrollbars = yes
 							background = { name = "POL_cWT_content_legislature_coal_govt_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
-							position = { x = 0 y = 25 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
-							max_slots_vertical = 20
-							add_horizontal = no
+
+							gridBoxType = { name = "POL_cWT_content_legislative_relations_gridbox_govt"
+								position = { x = 0 y = 0 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
+								max_slots_vertical = 20
+								add_horizontal = no
+							}
 						}
 						instantTextBoxType = { name = "POL_cWT_content_legislative_relations_seats_nongovt_text"
 							position = { x = 485 y = 5 }	orientation = UPPER_LEFT	maxWidth = 140 maxHeight = 15
@@ -288,11 +304,16 @@ guiTypes = {
 							font = "DOSVGA_20"	format = left
 							text = "[?POL_var_nat_LEG_seats_noncoalition]"	# change later
 						}
-						gridBoxType = { name = "POL_cWT_content_legislative_relations_gridbox_nongovt"
+						containerWindowType = { name = "POL_cWT_content_legislative_coalitions_gridbox_govt_scroll"
+							position = { x = 405 y = 25 } size = { width = 225 height = 100%% } 
+							verticalScrollbar = "right_vertical_slider"	autohide_scrollbars = yes
 							background = { name = "POL_cWT_content_legislature_coal_nongovt_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
-							position = { x = 405 y = 25 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
-							max_slots_vertical = 20
-							add_horizontal = no
+
+							gridBoxType = { name = "POL_cWT_content_legislative_relations_gridbox_nongovt"
+								position = { x = 0 y = 0 } size = { width = 225 height = 100%% } slotsize = { width = 225 height = 50 }
+								max_slots_vertical = 20
+								add_horizontal = no
+							}
 						}
 					# sep. party interaction elements
 					# legislation

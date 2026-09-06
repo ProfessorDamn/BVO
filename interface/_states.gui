@@ -1,26 +1,86 @@
 guiTypes = {
 	containerWindowType = { name = "PROV_cWT_basics"
-		position = { x = 106% y = -41 }	size = { width = 150 height = 200 }
+		position = { x = 107% y = -41 }	size = { width = 150 height = 250 }
 		orientation = LOWER_LEFT	origo = upper_left
 
 		background = { name = "PROV_cWT_basics_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 		
 		# some instanttextboxes here
-		instantTextBoxType = { name = "PROV_cWT_basics_state_GDP"
-			position = { x = 25 y = 10 }	orientation = UPPER_LEFT	maxWidth = 60	maxHeight = 15
+		containerWindowType = { name = "PROV_cWT_basics_ECON"
+			position = { x = 5 y = 5 }	size = { width = 140 height = 45 }
+			background = { name = "PROV_cWT_basics_ECON_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 
-			font = "DOSVGA_15"	format = centre
-			text = "[?ECON_var_state_GDP_nominal_B|^]"
+
+			instantTextBoxType = { name = "PROV_cWT_basics_ECON_text"
+				position = { x = 5 y = 5 }	orientation = UPPER_LEFT	maxWidth = 130	maxHeight = 15
+
+				font = "DOSVGA_15"	format = left
+				text = "ECONOMY"
+			}
+			
+			# GDP
+			instantTextBoxType = { name = "PROV_cWT_basics_ECON_GDP_text"
+				position = { x = 5 y = 25 }	orientation = UPPER_LEFT	maxWidth = 30	maxHeight = 15
+
+				font = "DOSVGA_12"	format = left
+				text = "GDP"
+			}
+			instantTextBoxType = { name = "PROV_cWT_basics_ECON_GDP"
+				position = { x = 35 y = 25 }	orientation = UPPER_LEFT	maxWidth = 60	maxHeight = 15
+
+				font = "DOSVGA_15"	format = left
+				text = "[?ECON_var_state_GDP_nominal_B|^]"
+			}
+			# economic background of state whatever
 		}
-		# party 1 support, party 2 support, so on.
-		# deeper information toggler here
-		buttonType = { name = "PROV_cWT_toggle_button"
-			position = { x = 0 y = 125 }
+		containerWindowType = { name = "PROV_cWT_basics_POL"
+			position = { x = 5 y = 45 }	size = { width = 140 height = 150 }
+			background = { name = "PROV_cWT_basics_POL_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+
+			instantTextBoxType = { name = "PROV_cWT_basics_POL_text"
+				position = { x = 5 y = 5 }	orientation = UPPER_LEFT	maxWidth = 130	maxHeight = 15
+
+				font = "DOSVGA_15"	format = left
+				text = "POLITICS"
+			}
+		}
+		buttonType = { name = "PROV_cWT_basics_POL_toggle_button"
+			position = { x = 10 y = 65 }
 			quadTextureSprite = "GFX_MOD_cWT_DOS_btn_100x25"
 			orientation = UPPER_LEFT
 			
 			buttonFont = "DOSVGA_16"
-			buttonText = "ow"
+			buttonText = "Support"
 		}
 	}
+		# party 1 support, party 2 support, so on.
+		containerWindowType = { name = "PROV_cWT_POL"
+			background = { name = "PROV_cWT_POL_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+			position = { x = 107% y = -141 } size = { width = 150 height = 100 }
+			orientation = LOWER_LEFT	origo = upper_left
+			verticalScrollbar = "left_vertical_slider"	autohide_scrollbars = yes	margin = { left = -35 }
+
+			gridBoxType = { name = "PROV_cWT_POL_gridbox"
+				position = { x = 5 y = 0 }	size = { width = 140 height = 100 } slotsize = { width = 70 height = 25 }
+				max_slots_vertical = 20
+				max_slots_horizontal = 2 } 
+		}
+			containerWindowType = { name = "PROV_cWT_POL_gridbox_entry"
+				position = { x = 0 y = 0 }	size = { width = 70 height = 25 }
+				buttonType = { name = "del"	
+					position = { x = 0 y = 0 }	size = { width = 70 height = 25 }
+					quadTextureSprite = "GFX_MOD_cWT_DOS_bgr"	orientation = UPPER_LEFT
+					pdx_tooltip = "PROV_cWT_POL_gridbox_party_name_tt" }
+				
+				iconType = { name = "parliament_member_icon"
+					spriteType = "GFX_POL_parliament_icon_parties"
+					position = { x = 0 y = 0 }	alwaystransparent = yes }
+				instantTextBoxType = { name = "PROV_cWT_POL_gridbox_entry_party_popularity_text"
+					position = { x = 25 y = 5 }	orientation = UPPER_LEFT	maxWidth = 45	maxHeight = 15	alwaystransparent = yes
+
+					font = "DOSVGA_12"	format = centre
+					text = "[?v]"
+				}
+			}
 }

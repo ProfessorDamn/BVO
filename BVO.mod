@@ -4,4 +4,4 @@ tags={
 }
 name="BVO0"
 supported_version="1.19.2.0"
-path="C:/Users/Administrator/Documents/Paradox Interactive/Hearts of Iron IV/mod/BVO"
+path="C:/Users/THIS PC/Documents/Paradox Interactive/Hearts of Iron IV/mod/BVO"
