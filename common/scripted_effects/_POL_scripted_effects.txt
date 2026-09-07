@@ -69,7 +69,22 @@ parliament_gui_initial = {
 
 # party support scripted effects:
 # state - get percentage array, divide by population, save division to population array
+POL_se_LEG_elections_state_support = {	# RUN IN STATE SCOPE
+	IF = { limit = { NOT = { has_variable = POL_arr_nat_LEG_parties_support_pct } } }	# allowed to expire, basically
+	ELSE = {
+		#clear_array = POL_arr_nat_LEG_parties_support_K
+		for_each_loop = { array = POL_arr_nat_LEG_parties_support_pct
+			index = i	value = v
+
+			set_variable = { POL_arr_nat_LEG_parties_support_K^i = manpower }
+			multiply_variable = { POL_arr_nat_LEG_parties_support_K^i = POL_arr_nat_LEG_parties_support_pct^i }
+		}
+	}
+}
 # national - get state population arrays, add them up, divide by total population,
+POL_se_LEG_elections_national_support = {
+
+}
 #			 save division to national percentage array, then update party popularities
 #			 or think of a way to override that variable idk
 

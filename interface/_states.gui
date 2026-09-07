@@ -71,7 +71,7 @@ guiTypes = {
 				buttonType = { name = "del"	
 					position = { x = 0 y = 0 }	size = { width = 70 height = 25 }
 					quadTextureSprite = "GFX_MOD_cWT_DOS_bgr"	orientation = UPPER_LEFT
-					pdx_tooltip = "PROV_cWT_POL_gridbox_party_name_tt" }
+					pdx_tooltip = "[GetParliamentPartyName]" }
 				
 				iconType = { name = "parliament_member_icon"
 					spriteType = "GFX_POL_parliament_icon_parties"
@@ -80,7 +80,7 @@ guiTypes = {
 					position = { x = 25 y = 5 }	orientation = UPPER_LEFT	maxWidth = 45	maxHeight = 15	alwaystransparent = yes
 
 					font = "DOSVGA_12"	format = centre
-					text = "[?v]"
+					text = "POL_tt_nat_LEG_parties_support_pct_setup"
 				}
 			}
 }

@@ -6,20 +6,20 @@ scripted_gui = {
 
 		effects = {
 			PROV_cWT_basics_POL_toggle_button_click = {
-				IF = { limit = { check_variable = { FROM.MOD_cWT_var_PROV_basics = 0 } }	set_variable = { FROM.MOD_cWT_var_PROV_basics = 1 } }
-				ELSE = { set_variable = { FROM.MOD_cWT_var_PROV_basics = 0 } }
+				IF = { limit = { check_variable = { ROOT.FROM.MOD_cWT_var_PROV_basics = 0 } }	set_variable = { ROOT.FROM.MOD_cWT_var_PROV_basics = 1 } }
+				ELSE = { set_variable = { ROOT.FROM.MOD_cWT_var_PROV_basics = 0 } }
 			}
 		}
 	}
 		PROV_cWT_POL = { window_name = "PROV_cWT_POL"
 			context_type = selected_state_context	parent_window_token = selected_state_view
 
-			visible = { check_variable = { FROM.MOD_cWT_var_PROV_basics = 1 } }
+			visible = { check_variable = { ROOT.FROM.MOD_cWT_var_PROV_basics = 1 } }
 				
 			dynamic_lists = {
 				PROV_cWT_POL_gridbox = {
 					array = ROOT.POL_arr_nat_LEG_parties	index = i	value = v
-					change_scope = yes
+					change_scope = no
 					entry_container = PROV_cWT_POL_gridbox_entry
 				}
 			}

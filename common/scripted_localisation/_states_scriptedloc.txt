@@ -1,0 +1,9 @@
+
+defined_text = { name = POL_cWT_content_states_party_support_setup
+	text = { trigger = { 
+		set_temp_variable = { w = v }
+		subtract_from_temp_variable = { w = 1 }
+		#log = "[?v], [?w]" 
+		}
+	localization_key = POL_tt_nat_LEG_parties_support_pct }
+}
