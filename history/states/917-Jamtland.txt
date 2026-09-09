@@ -1,0 +1,43 @@
+state = {
+	id = 917
+	name = "STATE_917"
+	
+	manpower = 65000
+	state_category = rural
+
+	resources = {
+		steel = 20
+	}
+
+	history = {
+		victory_points = {	
+			11148 1
+		}
+		owner = SWE
+		add_core_of = SWE
+		add_core_of = SMI
+
+		# ECONS
+		set_variable = { ECON_var_state_GDP_nominal_B = 2 }
+		# POLITS
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.017 } # com
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.208 } # soc
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.3600 } # prog
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.149 } # soclib
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.1426 } # marktlib
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.100 } # con
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.015 } # pat
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0 } # desp
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0 } # nat
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0 } # fasc
+		
+		buildings = {
+			infrastructure = 2
+		}
+	}
+
+	provinces = {
+		46 113 168 3039 3111 3162 6010 6129 6185 9066 9154 9171 9229 11049 11052 11116 11148 11187 13117 
+	}
+	local_supplies=0.000
+}

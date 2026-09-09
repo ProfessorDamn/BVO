@@ -1,0 +1,49 @@
+state = {
+	id = 913
+	name = "STATE_913"
+	manpower = 505226
+	state_category = town
+	resources = {
+		steel = 3
+	}
+
+	history={
+		owner = SWE
+		add_core_of = SWE
+		victory_points = {
+			11380 1 
+		}
+		victory_points = {
+			9393 2 
+		}
+
+		# ECONS
+		set_variable = { ECON_var_state_GDP_nominal_B = 2 }
+		# POLITS
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.017 } # com
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.208 } # soc
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.3600 } # prog
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.149 } # soclib
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.1426 } # marktlib
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.100 } # con
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0.015 } # pat
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0 } # desp
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0 } # nat
+		add_to_array = { POL_arr_state_LEG_parties_support_pct = 0 } # fasc
+
+		buildings = {
+			infrastructure = 3
+			industrial_complex = 1
+			air_base = 2
+			11380 = {
+				naval_base = 1
+			}
+		}
+	}
+
+	provinces = {
+		6311 6397 9308 9393 11289 11311 11380 11390 13095 13264 13265
+	}
+	
+	local_supplies = 11
+}

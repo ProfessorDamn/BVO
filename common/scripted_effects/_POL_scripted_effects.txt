@@ -69,21 +69,43 @@ parliament_gui_initial = {
 
 # party support scripted effects:
 # state - get percentage array, divide by population, save division to population array
-POL_se_LEG_elections_state_support = {	# RUN IN STATE SCOPE
-	IF = { limit = { NOT = { has_variable = POL_arr_nat_LEG_parties_support_pct } } }	# allowed to expire, basically
-	ELSE = {
-		#clear_array = POL_arr_nat_LEG_parties_support_K
-		for_each_loop = { array = POL_arr_nat_LEG_parties_support_pct
+POL_se_LEG_elections_state_support = {
+	every_owned_state = {
+		for_each_loop = { array = POL_arr_state_LEG_parties_support_pct
 			index = i	value = v
 
-			set_variable = { POL_arr_nat_LEG_parties_support_K^i = manpower }
-			multiply_variable = { POL_arr_nat_LEG_parties_support_K^i = POL_arr_nat_LEG_parties_support_pct^i }
+			set_variable = { POL_arr_state_LEG_parties_support_K^i = state_population_k }
+			multiply_variable = { POL_arr_state_LEG_parties_support_K^i = POL_arr_state_LEG_parties_support_pct^i }
+			log = "[?i], [?v], [?POL_arr_state_LEG_parties_support_K^i]"
 		}
 	}
 }
 # national - get state population arrays, add them up, divide by total population,
 POL_se_LEG_elections_national_support = {
+	#clear_array = POL_arr_nat_LEG_parties_support_K
+	clear_array = POL_arr_nat_LEG_parties_support_pct
 
+	every_owned_state = {
+		for_each_loop = { array = POL_arr_state_LEG_parties_support_pct 
+			index = i	value = v
+
+			set_variable = { PREV.POL_arr_nat_LEG_parties_support_K^i = 0 }
+		}
+
+		for_each_loop = { array = POL_arr_state_LEG_parties_support_pct 
+		index = i	value = v
+
+			add_to_variable = { PREV.POL_arr_nat_LEG_parties_support_K^i = POL_arr_state_LEG_parties_support_K^i }
+			log = "[?i], [?v]; [?POL_arr_state_LEG_parties_support_K^i]"
+		}
+	}
+	for_each_loop = { array = POL_arr_nat_LEG_parties
+		index = i	value = v
+	
+		set_variable = { POL_arr_nat_LEG_parties_support_pct^i = POL_arr_nat_LEG_parties_support_K^i }
+		divide_variable = { POL_arr_nat_LEG_parties_support_pct^i = max_manpower_k }
+		log = "[?i], [?v]; [?POL_arr_nat_LEG_parties_support_pct^i], [?POL_arr_nat_LEG_parties_support_K^i]" 
+	}
 }
 #			 save division to national percentage array, then update party popularities
 #			 or think of a way to override that variable idk
