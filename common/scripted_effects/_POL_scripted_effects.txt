@@ -72,23 +72,13 @@ POL_se_LEG_elections_seat_allocation = {
 	IF = { limit = { check_variable = { POL_var_nat_LEG_seats_total = 0 } }
 		set_variable = { POL_var_nat_LEG_seats_total = 350 } }
 
-	for_each_loop = { array = POL_arr_nat_LEG_parties 
+	for_each_loop = { array = POL_arr_nat_LEG_parties 	# assign support pct to vote pct
 		index = i	value = v
 
 		set_variable = { POL_arr_nat_LEG_votes_pct^i = POL_arr_nat_LEG_parties_electorate_support_pct^i }
 	}
-	#set_variable = { POL_arr_nat_LEG_votes_pct^0 = party_popularity@communism }	# com
-	#set_variable = { POL_arr_nat_LEG_votes_pct^1 = party_popularity@soc }
-	#set_variable = { POL_arr_nat_LEG_votes_pct^2 = party_popularity@democratic }	# prog
-	#set_variable = { POL_arr_nat_LEG_votes_pct^3 = party_popularity@soclib }
-	#set_variable = { POL_arr_nat_LEG_votes_pct^4 = party_popularity@marktlib }
-	#set_variable = { POL_arr_nat_LEG_votes_pct^5 = party_popularity@con }
-	#set_variable = { POL_arr_nat_LEG_votes_pct^6 = party_popularity@neutrality }	# pat
-	#set_variable = { POL_arr_nat_LEG_votes_pct^7 = party_popularity@desp }
-	#set_variable = { POL_arr_nat_LEG_votes_pct^8 = party_popularity@nat }
-	#set_variable = { POL_arr_nat_LEG_votes_pct^9 = party_popularity@fascism }	# fasc
 
-	for_each_loop = { array = POL_arr_nat_LEG_parties
+	for_each_loop = { array = POL_arr_nat_LEG_parties	# calc seats
 		index = i	value = v
 
 		set_variable = { POL_arr_nat_LEG_seats^i = POL_var_nat_LEG_seats_total }

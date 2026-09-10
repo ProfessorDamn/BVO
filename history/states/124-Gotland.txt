@@ -16,13 +16,13 @@ state=
 		# ECONS
 		set_variable = { ECON_var_state_GDP_nominal_B = 2 }
 		# POLITS
-		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.017 } # com
-		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.208 } # soc
-		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.3600 } # prog
-		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.149 } # soclib
-		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.1426 } # marktlib
-		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.100 } # con
-		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.015 } # pat
+		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.0 } # com
+		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.0 } # soc
+		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.4020 } # prog
+		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.1520 } # soclib
+		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.1520 } # marktlib
+		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.1520 } # con
+		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0.005 } # pat
 		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0 } # desp
 		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0 } # nat
 		add_to_array = { POL_arr_state_LEG_parties_electorate_support_pct = 0 } # fasc
