@@ -1,7 +1,7 @@
 on_actions = {
 	on_startup = {
 		effect = {
-			every_country = { POL_se_LEG_elections_state_support = yes }
+			every_country = { states_se_convert_party_support = yes }
 		}
 	}
 }

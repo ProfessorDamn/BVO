@@ -1,0 +1,20 @@
+states_se_convert_party_support = {
+
+	every_owned_state = {
+		for_each_loop = { array = POL_arr_state_LEG_parties_electorate_support_pct
+			index = i	value = v
+
+			set_variable = { POL_arr_state_LEG_parties_electorate_support_K^i = state_population_K }
+			multiply_variable = { POL_arr_state_LEG_parties_electorate_support_K^i = POL_arr_state_LEG_parties_electorate_support_pct^i }
+		}
+	}
+
+	for_each_loop = { array = POL_arr_nat_LEG_parties
+		index = i	value = v
+		
+		set_variable = { POL_arr_nat_LEG_parties_electorate_support_K^i = 0 }
+		every_owned_state = { add_to_variable = { PREV.POL_arr_nat_LEG_parties_electorate_support_K^i = POL_arr_state_LEG_parties_electorate_support_K^i } }
+		set_variable = { POL_arr_nat_LEG_parties_electorate_support_pct^i = POL_arr_nat_LEG_parties_electorate_support_K^i }
+		divide_variable = { POL_arr_nat_LEG_parties_electorate_support_pct^i = max_manpower_k }
+	}
+}
