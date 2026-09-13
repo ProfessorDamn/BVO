@@ -1,4 +1,162 @@
 guiTypes = {
+	# start of 1.0
+	containerWindowType = { name = "ECON_cWT"
+		position = { x = 540 y = 100 }	size = { width = 800 height = 600 }
+		fade_time = 1000	fade_type = accelerated
+		orientation = UPPER_LEFT	origo = upper_left
+		moveable = yes
+
+		background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+		
+		# TOPBAR
+			buttonType = { name = "ECON_cWT_topbar_exit_button"
+				position = { x = 5 y = 5 }	orientation = UPPER_LEFT	
+				spriteType = "GFX_MOD_cWT_DOS_btn_25x25"
+
+				shortcut = "ESCAPE"
+				
+				buttonFont = "DOSVGA_16"	format = centre
+				buttonText = "X"
+			}
+			instantTextBoxType = { name = "ECON_cWT_topbar_title"
+				position = { x = -75 y = 10 }	orientation = CENTER_UP
+
+				font = "DOSVGA_20bold"	format = centre
+				text = "ECONOMY"
+			}
+		# SIDEBAR
+			buttonType = { name = "ECON_cWT_sidebar_overview_button"
+				position = { x = 5 y = 60 }	size = { width = 150 height = 50 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_16"	format = centre
+				buttonText = "OVERVIEW"
+			}
+			buttonType = { name = "ECON_cWT_sidebar_macro_button"
+				position = { x = 5 y = 110 }	size = { width = 150 height = 50 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_16"	format = centre
+				buttonText = "MACROECONOMICS"
+			}
+			buttonType = { name = "ECON_cWT_sidebar_allocation_button"
+				position = { x = 5 y = 160 }	size = { width = 150 height = 50 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_16"	format = centre
+				buttonText = "ALLOCATION"
+			}
+	}
+		containerWindowType = { name = "ECON_cWT_content_overview"	
+			position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+			background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+		}
+		containerWindowType = { name = "ECON_cWT_content_macro"	
+			position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+			background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+			buttonType = { name = "ECON_cWT_sidebar_macro_gdp_button"
+				position = { x = 4 y = 10 }	size = { width = 100 height = 30 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_12"	format = centre
+				buttonText = "GDP"
+			}
+			buttonType = { name = "ECON_cWT_sidebar_macro_inflation_button"
+				position = { x = 104 y = 10 }	size = { width = 100 height = 30 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_12"	format = centre
+				buttonText = "INFLATION"
+			}
+			buttonType = { name = "ECON_cWT_sidebar_macro_debt_to_gdp_button"
+				position = { x = 204 y = 10 }	size = { width = 100 height = 30 }	orientation = UPPER_LEFT	
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+				
+				buttonFont = "DOSVGA_12"	format = centre
+				buttonText = "DEBT TO GDP"
+			}
+		}
+			containerWindowType = { name = "ECON_cWT_content_macro_graph"
+				position = { x = 160 y = 100 }	size = { width = 300 height = 225 }	orientation = UPPER_LEFT
+				clipping = no
+				background = { name = "POL_cWT_content_legislature_Wminster_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+
+				instantTextBoxType = { name = "del"
+					position = { x = 0 y = 0 }	orientation = LEFT	
+
+					font = "DOSVGA_12"	format = centre
+					text = "this is a graph"
+				}
+			}
+
+			containerWindowType = { name = "ECON_cWT_content_macro_window"
+				position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+				#background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_rGDP_text"
+					position = { x = 5 y = 270 }	maxWidth = 100	orientation = LEFT	
+
+					font = "DOSVGA_16"	format = right
+					text = "GDP"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_rGDP"
+					position = { x = 115 y = 270 }	maxWidth = 200	orientation = LEFT	
+
+					font = "DOSVGA_20"	format = left
+					text = "[?ECON_arr_nat_GDP_B^1|+2] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_nom_growth_text"
+					position = { x = 5 y = 295 }	maxWidth = 100	orientation = LEFT	
+
+					font = "DOSVGA_12"	format = right
+					text = "Nom. growth"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_nom_growth"
+					position = { x = 115 y = 295 }	maxWidth = 200	orientation = LEFT	
+
+					font = "DOSVGA_15"	format = left
+					text = "[?ECON_arr_nat_GDP_growth_pct^0|+%]"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation_text"
+					position = { x = 5 y = 315 }	maxWidth = 100	orientation = LEFT	
+
+					font = "DOSVGA_12"	format = right
+					text = "Inflation"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation"
+					position = { x = 115 y = 315 }	maxWidth = 200	orientation = LEFT	
+
+					font = "DOSVGA_15"	format = left
+					text = "[?ECON_arr_nat_inflation_pct_monthly^1|-%]"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation_rule"
+					position = { x = 115 y = 320 }	maxWidth = 100
+					format = left font = Arial12
+					text = "________________"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_real_growth_text"
+					position = { x = 5 y = 335 }	maxWidth = 100	orientation = LEFT	
+
+					font = "DOSVGA_12"	format = right
+					text = "Real growth"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_real_growth"
+					position = { x = 115 y = 335 }	maxWidth = 200	orientation = LEFT	
+
+					font = "DOSVGA_16"	format = left
+					text = "[?ECON_arr_nat_GDP_growth_pct^1|+%]"
+				}
+			}
+		containerWindowType = { name = "ECON_cWT_content_allocation"
+			position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+			background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+		}
+
+
+
+	# end of 1.0
 	containerWindowType = { name = "MOD_cWT"
 		position = { x = 0 y = -335 }
 		size = { width = 690 height = 30 }
@@ -44,7 +202,7 @@ guiTypes = {
 		}
 	}
 	
-	containerWindowType = { name = "ECON_cWT"
+	containerWindowType = { name = "ECON_cWT_old"
 		position = { x = 0 y = 40 }
 		size = { width = 100% height = 100% }
 		orientation = UPPER_LEFT

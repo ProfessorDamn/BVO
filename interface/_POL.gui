@@ -13,6 +13,14 @@ guiTypes = {
 			buttonFont = "DOSVGA_16"
 			buttonText = "ow"
 		}
+		buttonType = { name = "ECON_cWT_toggle_button"
+			position = { x = 172 y = 40 }
+			quadTextureSprite = "GFX_MOD_cWT_DOS_btn_100x25"
+			orientation = UPPER_LEFT
+			
+			buttonFont = "DOSVGA_16"
+			buttonText = "waaaaaaa"
+		}
 	}
 
 	containerWindowType = { name = "POL_cWT"

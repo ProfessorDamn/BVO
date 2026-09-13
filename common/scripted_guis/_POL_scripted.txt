@@ -9,6 +9,10 @@ scripted_gui = {
 				IF = { limit = { check_variable = { MOD_cWT_var_POL_toggle = 1 } } set_variable = { MOD_cWT_var_POL_toggle = 0 } }
 				ELSE = { set_variable = { MOD_cWT_var_POL_toggle = 1 } }
 			}
+			ECON_cWT_toggle_button_click = {
+				IF = { limit = { check_variable = { MOD_cWT_var_ECON_toggle = 1 } } set_variable = { MOD_cWT_var_ECON_toggle = 0 } }
+				ELSE = { set_variable = { MOD_cWT_var_ECON_toggle = 1 } }
+			}
 		}
 		triggers = {
 

@@ -1,4 +1,70 @@
 scripted_gui = {
+	# start of 1.0
+	
+	ECON_cWT = { window_name = "ECON_cWT"
+		context_type = player_context
+
+		visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 } }
+
+		effects = {
+			ECON_cWT_topbar_exit_button_click = { set_variable = { MOD_cWT_var_ECON_toggle = 0 } }
+			ECON_cWT_sidebar_overview_button_click = { set_variable = { MOD_cWT_var_ECON_sub = 0 } }
+			ECON_cWT_sidebar_macro_button_click = { set_variable = { MOD_cWT_var_ECON_sub = 1 } }
+			ECON_cWT_sidebar_allocation_button_click = { set_variable = { MOD_cWT_var_ECON_sub = 2 } }
+		}
+	}
+		ECON_cWT_content_overview = { window_name = "ECON_cWT_content_overview"
+			context_type = player_context	parent_window_name = "ECON_cWT"
+
+			visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 0 } }
+
+			effects = {
+				
+			}
+			triggers = {
+
+			}
+		}
+		ECON_cWT_content_macro = { window_name = "ECON_cWT_content_macro"
+			context_type = player_context	parent_window_name = "ECON_cWT"
+
+			visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 1 } }
+
+			effects = {
+				ECON_cWT_sidebar_macro_gdp_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
+				ECON_cWT_sidebar_macro_inflation_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 1 } }
+				ECON_cWT_sidebar_macro_debt_to_gdp_button = { set_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
+			}
+			triggers = {
+
+			}
+		}
+			ECON_cWT_content_macro_graph = { window_name = "ECON_cWT_content_macro_graph"
+				context_type = player_context	parent_window_name = "ECON_cWT"
+
+				visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 1 } }
+			}
+			ECON_cWT_content_macro_window = { window_name = "ECON_cWT_content_macro_window" 
+				context_type = player_context	parent_window_name = "ECON_cWT"
+
+				visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 1 }	check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
+			}
+		ECON_cWT_content_allocation = { window_name = "ECON_cWT_content_allocation"
+			context_type = player_context	parent_window_name = "ECON_cWT"
+
+			visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 0 } }
+
+			effects = {
+				
+			}
+			triggers = {
+
+			}
+		}
+
+
+
+	# end of 1.0
 	MOD_cWT = { window_name = "MOD_cWT"
 		context_type = player_context	parent_window_token = trade_tab
 
@@ -16,7 +82,7 @@ scripted_gui = {
 		}
 	}
 
-	ECON_cWT = { window_name = "ECON_cWT"
+	ECON_cWT_old = { window_name = "ECON_cWT_old"
 		context_type = player_context	parent_window_token = trade_tab
 
 		visible = { check_variable = { MOD_cWT_var_ECON_menu_type = 1 } }
