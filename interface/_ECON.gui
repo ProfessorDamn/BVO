@@ -69,12 +69,12 @@ guiTypes = {
 				buttonFont = "DOSVGA_12"	format = centre
 				buttonText = "INFLATION"
 			}
-			buttonType = { name = "ECON_cWT_sidebar_macro_debt_to_gdp_button"
+			buttonType = { name = "ECON_cWT_sidebar_macro_budget_button"
 				position = { x = 204 y = 10 }	size = { width = 100 height = 30 }	orientation = UPPER_LEFT	
 				quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
 				
 				buttonFont = "DOSVGA_12"	format = centre
-				buttonText = "DEBT TO GDP"
+				buttonText = "BUDGET"
 			}
 		}
 			containerWindowType = { name = "ECON_cWT_content_macro_graph"
@@ -91,7 +91,7 @@ guiTypes = {
 				}
 			}
 
-			containerWindowType = { name = "ECON_cWT_content_macro_window"
+			containerWindowType = { name = "ECON_cWT_content_macro_gdp_window"
 				position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
 				#background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 
@@ -149,9 +149,314 @@ guiTypes = {
 					text = "[?ECON_arr_nat_GDP_growth_pct^1|+%]"
 				}
 			}
+			containerWindowType = { name = "ECON_cWT_content_macro_inflation_window"
+				position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+				#background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation_text"
+					position = { x = 5 y = 270 }	maxWidth = 100	orientation = LEFT	
+
+					font = "DOSVGA_16"	format = right
+					text = "INFLATION"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation"
+					position = { x = 115 y = 270 }	maxWidth = 200	orientation = LEFT	
+
+					font = "DOSVGA_20"	format = left
+					text = "[?ECON_arr_nat_inflation_pct_monthly^1|-%]"
+				}
+				instantTextBoxType = { name = "ECON_cWT_inflation_set_text"
+					position = { x = 5 y = 295 }	maxWidth = 100
+					format = right font = "DOSVGA_12"
+					text = "Set rate:"
+				}
+				instantTextBoxType = { name = "ECON_cWT_inflation_set"
+					position = { x = 115 y = 295 }	maxWidth = 100
+					format = left font = "DOSVGA_15"
+					text = "[?ECON_arr_nat_inflation_pct_monthly^0|-%]"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_inflation_mult_text"
+					position = { x = 5 y = 315 }	maxWidth = 100
+					format = right font = "DOSVGA_12"
+					text = "Multiplier:"
+				}
+				instantTextBoxType = { name = "ECON_cWT_inflation_mult"
+					position = { x = 115 y = 315 }	maxWidth = 100
+					format = left font = "DOSVGA_15"
+					text = "[?ECON_arr_nat_inflation_modifier_pct_monthly^0|-]x"
+				}
+			}
+			containerWindowType = { name = "ECON_cWT_content_macro_budget_window"
+				position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
+				#background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_budget_text"
+					position = { x = 5 y = 270 }	maxWidth = 100	orientation = LEFT	
+
+					font = "DOSVGA_16"	format = right
+					text = "NET"
+				}
+				instantTextBoxType = { name = "ECON_cWT_content_macro_window_budget"
+					position = { x = 115 y = 270 }	maxWidth = 200	orientation = LEFT	
+
+					font = "DOSVGA_20"	format = left
+					text = "[?ECON_var_nat_RSV_budget_B|+^] B"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_revenue_text"
+					position = { x = 5 y = 295 }	maxWidth = 100
+					format = right font = "DOSVGA_12"
+					text = "Revenue:"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_revenue"
+					position = { x = 115 y = 295 }	maxWidth = 90
+					format = left font = "DOSVGA_15"
+					text = "[?ECON_var_nat_REV_B|+^] B"
+					pdx_tooltip = "ECON_tt_RSV_revenue"	pdx_tooltip_delayed = "ECON_tt_RSV_revenue_delayed"
+				}
+
+				instantTextBoxType = { name = "ECON_cWT_RSV_expense_text"
+					position = { x = 5 y = 315 }	maxWidth = 100
+					format = right font = "DOSVGA_12"
+					text = "Expense:"
+				}
+				instantTextBoxType = { name = "ECON_cWT_RSV_expense"
+					position = { x = 115 y = 315 }	maxWidth = 90
+					format = left font = "DOSVGA_15"
+					text = "[?ECON_var_nat_EXP_B|-^] B"
+					pdx_tooltip = "ECON_tt_RSV_spending"	pdx_tooltip_delayed = "ECON_tt_RSV_spending_delayed"
+				}
+			}
 		containerWindowType = { name = "ECON_cWT_content_allocation"
 			position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT
 			background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+			
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_total_text"
+				position = { x = 15 y = 90 }	maxWidth = 100
+				format = right font = "DOSVGA_12"
+				text = "Production Units"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_total"
+				position = { x = 125 y = 88 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+				buttonFont = "DOSVGA_16"	buttonText = "[?ECON_var_nat_PU_total]"
+				pdx_tooltip = "ECON_tt_GDP_PU_distrib_menu_total"
+				pdx_tooltip_delayed = "ECON_tt_GDP_PU_distrib_menu_total_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_consumer_goods_text"
+				position = { x = 15 y = 115 }	maxWidth = 100
+				format = right font = "DOSVGA_12"
+				text = "Consumer Goods"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_consumer_goods"
+				position = { x = 125 y = 113 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+				buttonFont = "DOSVGA_16"	buttonText = "[?ECON_arr_nat_PU_assignment^5]"
+				pdx_tooltip = "ECON_tt_GDP_PU_distrib_menu_consumer_goods"
+				pdx_tooltip_delayed = "ECON_tt_GDP_PU_distrib_menu_consumer_goods_delayed"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_line_text_because_reasons"
+				position = { x = 125 y = 135 }	maxWidth = 50
+				format = left font = "DOSVGA_12"
+				text = "________"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_unassigned_text"
+				position = { x = 15 y = 154 }	maxWidth = 100
+				format = right font = "DOSVGA_12"
+				text = "Not Assigned"
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_unassigned"
+				position = { x = 125 y = 150 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+				buttonFont = "DOSVGA_16"	buttonText = "[?ECON_arr_nat_PU_assignment^0]"
+			}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_text"
+				position = { x = 195 y = 45 }	maxWidth = 100
+				format = right font = "DOSVGA_12"
+				text = "Assign to Civ."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ"
+				position = { x = 305 y = 43 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+				buttonFont = "DOSVGA_16"	buttonText = "[?ECON_arr_nat_PU_assignment^2]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_1"
+					position = { x = 370 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_2"
+					position = { x = 405 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_5"
+					position = { x = 440 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_plus_10"
+					position = { x = 475 y = 30 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_1"
+					position = { x = 370 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_2"
+					position = { x = 405 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_5"
+					position = { x = 440 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_civ_minus_10"
+					position = { x = 475 y = 54 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-10"
+				}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_text"
+				position = { x = 195 y = 125 }	maxWidth = 100
+				format = right font = "DOSVGA_12"
+				text = "Assign to Mil."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil"
+				position = { x = 305 y = 123 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+				buttonFont = "DOSVGA_16"	buttonText = "[?ECON_arr_nat_PU_assignment^3]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_1"
+					position = { x = 370 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_2"
+					position = { x = 405 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_5"
+					position = { x = 440 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_plus_10"
+					position = { x = 475 y = 110 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_1"
+					position = { x = 370 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_2"
+					position = { x = 405 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_5"
+					position = { x = 440 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_mil_minus_10"
+					position = { x = 475 y = 134 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-10"
+				}
+
+			instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_text"
+				position = { x = 195 y = 205 }	maxWidth = 100
+				format = right font = "DOSVGA_12"
+				text = "Assign to Dock."
+			}
+			buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav"
+				position = { x = 305 y = 203 }	size = { width = 40 height = 20 } 
+				quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+				buttonFont = "DOSVGA_16"	buttonText = "[?ECON_arr_nat_PU_assignment^4]"
+			}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_1"
+					position = { x = 370 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_2"
+					position = { x = 405 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_5"
+					position = { x = 440 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_plus_10"
+					position = { x = 475 y = 190 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "+10"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_1"
+					position = { x = 370 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-1"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_2"
+					position = { x = 405 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-2"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_5"
+					position = { x = 440 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-5"
+				}
+				buttonType = { name = "ECON_cWT_GDP_PU_distrib_menu_nav_minus_10"
+					position = { x = 475 y = 214 }	size = { width = 30 height = 20 } 
+					quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+					buttonFont = "DOSVGA_12"	buttonText = "-10"
+				}
 		}
 
 

@@ -42,6 +42,21 @@ spriteTypes = {
 		textureFile = "gfx/interface/MOD_cWT_DOS_btn_100x25.dds"
 	}
     corneredTileSpriteType = {
+        name = "GFX_MOD_cWT_DOS_btn_txt"
+        texturefile = "gfx/interface/MOD_cWT_DOS_txt_27x20.dds"
+        size = {
+            x = 25
+            y = 18
+        }
+        borderSize = {
+            x = 2
+            y = 2
+        }
+        
+        allwaystransparent = no
+        tilingCenter = yes
+    }
+    corneredTileSpriteType = {
         name = "GFX_MOD_cWT_DOS_bgr"
         texturefile = "gfx/interface/MOD_cWT_DOS_bgr.dds"
         size = {
