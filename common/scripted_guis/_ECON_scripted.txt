@@ -58,6 +58,166 @@ scripted_gui = {
 				context_type = player_context	parent_window_name = "ECON_cWT"
 
 				visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 1 }	check_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
+			
+				effects = {
+					ECON_cWT_RSV_civ_spending_reset_button_click = { set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = ECON_arr_nat_REV_tax_rates_pct^1 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = ECON_arr_nat_REV_tax_rates_pct^2 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = ECON_arr_nat_REV_tax_rates_pct^3 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = ECON_arr_nat_REV_tax_rates_pct^4 } }
+					# Income tax
+						# Cut
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.001	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.001 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.2%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.002	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.002 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.005	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.005 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.01	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.01 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.05	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.05 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_10%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.1	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.1 } } }
+						# Raise
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.999	compare = less_than_or_equals } } 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.001 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.2%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.998	compare = less_than_or_equals } } 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.002 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.995	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.005 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.99	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.01 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.95	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.05 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_10%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^1	value = 0.9	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = 0.1 } } }
+					# Impoverished income tax
+						# Cut
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.001	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.001 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.2%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.002	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.002 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.005	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.005 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.01	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.01 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.05	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.05 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_10%_click" = { 
+								IF = { limit = { check_variable = {	var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.1	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.1 } } }
+						# Raise
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.999	compare = less_than_or_equals } } 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.001 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.2%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.998	compare = less_than_or_equals } } 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.002 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.995	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.005 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.99	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.01 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.95	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.05 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_10%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^2	value = 0.9	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = 0.1 } } }
+					# Business tax
+						# Cut
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.001	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.001 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.2%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.002	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.002 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.005	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.005 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.01	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.01 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.05	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.05 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_10%_click" = { 
+								IF = { limit = { check_variable = {	var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.1	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.1 } } }
+						# Raise
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.999	compare = less_than_or_equals } } 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.001 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.2%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.998	compare = less_than_or_equals } } 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.002 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.995	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.005 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.99	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.01 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.95	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.05 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_10%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^3	value = 0.9	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = 0.1 } } }
+					# taeriff
+						# Cut
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.001	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.001 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.2%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.002	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.002 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.005	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.005 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.01	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.01 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.05	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.05 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_10%_click" = { 
+								IF = { limit = { check_variable = {	var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.1	compare = greater_than_or_equals } } 
+									subtract_from_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.1 } } }
+						# Raise
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.999	compare = less_than_or_equals } } 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.001 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.2%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.998	compare = less_than_or_equals } } 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.002 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.995	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.005 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_1%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.99	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.01 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_5%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.95	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.05 } } }
+							"ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_10%_click" = { 
+								IF = { limit = { check_variable = { var = ECON_arr_nat_REV_tax_rates_proposal_pct^4	value = 0.9	compare = less_than_or_equals }	} 
+									add_to_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = 0.1 } } }
+				}
 			}
 		ECON_cWT_content_allocation = { window_name = "ECON_cWT_content_allocation"
 			context_type = player_context	parent_window_name = "ECON_cWT"
