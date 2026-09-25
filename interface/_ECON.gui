@@ -82,12 +82,110 @@ guiTypes = {
 				clipping = no
 				background = { name = "POL_cWT_content_legislature_Wminster_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 
+				containerWindowType = {
+					name = "line_graph_sample_gui"
+					position = { x = 0 y = 0 }	
+					size = { width = 300 height = 225 }
+					orientation = center
+					origo = center
+					moveable = yes
+					
+					background = {
+						name = "background"		
+						quadTextureSprite = "GFX_MOD_cWT_DOS_bgr"
+					}
 
-				instantTextBoxType = { name = "del"
-					position = { x = 0 y = 0 }	orientation = LEFT	
+					# Chart background
+					iconType = {
+						name = "chart"
+						spriteType = "GFX_Line_Graph_Chart"
+						position = { x = 50 y = 41 }
+					}
 
-					font = "DOSVGA_12"	format = centre
-					text = "this is a graph"
+					# Container which will hold each of our line segments
+					gridboxtype = {
+						name = "line_segments"
+						position = { x = 59 y = 35 }
+						size = { width = 0 height = 200 }
+						slotsize = { width = 10 height = 200 }
+						max_slots_horizontal = 20
+						add_horizontal = yes
+					}
+
+					# y-axis labels, very optional
+					instantTextboxType = {
+						name = "100pct"
+						position = { x= -6 y = 35}
+						font = "DOSVGA_12"
+						text = "100%"
+						maxWidth = 50
+						format = right
+					}
+					instantTextboxType = {
+						name = "80pct"
+						position = { x= -6 y = 55}
+						font = "DOSVGA_12"
+						text = "80%"
+						maxWidth = 50
+						format = right
+					}
+					instantTextboxType = {
+						name = "60pct"
+						position = { x= -6 y = 75}
+						font = "DOSVGA_12"
+						text = "60%"
+						maxWidth = 50
+						format = right
+					}
+					instantTextboxType = {
+						name = "40pct"
+						position = { x= -6 y = 95}
+						font = "DOSVGA_12"
+						text = "40%"
+						maxWidth = 50
+						format = right
+					}
+					instantTextboxType = {
+						name = "20pct"
+						position = { x= -6 y = 115}
+						font = "DOSVGA_12"
+						text = "20%"
+						maxWidth = 50
+						format = right
+					}
+					instantTextboxType = {
+						name = "0pct"
+						position = { x= -6 y = 135}
+						font = "DOSVGA_12"
+						text = "0%"
+						maxWidth = 50
+						format = right
+					}
+				}
+
+				# Line segment container, very important
+				containerWindowType = {
+					name = "line_graph_line_segment"
+					size = { width = 10 height = 200 }
+					position = { x = 0 y = 0 }
+
+					# Line segment progress bar, using our custom asset with custom shader
+					iconType = {
+						name = "segment"
+						spriteType = "GFX_Line_Segment"
+						position = { x = 0 y = 0 }
+						frame = 57
+					}
+
+					# Optional, x-axis label which corresponds to the value of this segment
+					instantTextboxType = {
+						name = "label"
+						position = { x = -15 y = 112}
+						font = "DOSVGA_10"
+						text = "line_graph_data_label"
+						maxWidth = 30
+						format = center
+					}
 				}
 			}
 

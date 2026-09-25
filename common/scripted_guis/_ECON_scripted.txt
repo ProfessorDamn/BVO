@@ -31,7 +31,8 @@ scripted_gui = {
 			visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 1 } }
 
 			effects = {
-				ECON_cWT_sidebar_macro_gdp_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
+				ECON_cWT_sidebar_macro_gdp_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 0 }
+															set_variable = { ECON_var_nat_GRAPH_redraw = 1 }	ECON_sE_chart = yes }
 				ECON_cWT_sidebar_macro_inflation_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 1 } }
 				ECON_cWT_sidebar_macro_budget_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
 			}
@@ -43,6 +44,39 @@ scripted_gui = {
 				context_type = player_context	parent_window_name = "ECON_cWT"
 
 				visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 1 } }
+
+				effects = {
+					close_button_click = {
+						clr_country_flag = open_line_gui
+					}
+					add_button_click = {
+						# Invoke scripted effect to add a random point to the line
+						# See scripted effect file
+
+						SAMPLE_add_random_point_to_line = yes
+					}
+				}
+				
+				dynamic_lists = {
+					line_segments = {
+						array = ECON_chart_graph_offsets
+						change_scope = no
+						entry_container = line_graph_line_segment
+						index = segment_idx
+					}
+				}
+
+				properties = {
+					segment = {
+						# Sets they position of the line segment to the graph offset
+						# Equal to -y1
+						y = ECON_chart_graph_offsets^segment_idx
+
+						# Tells the shader how steep to draw the line
+						# Must be equal to (y2 - y1) / 2 + 50
+						frame = ECON_chart_graph_slopes^segment_idx
+					}
+				}
 			}
 			ECON_cWT_content_macro_gdp_window = { window_name = "ECON_cWT_content_macro_gdp_window" 
 				context_type = player_context	parent_window_name = "ECON_cWT"

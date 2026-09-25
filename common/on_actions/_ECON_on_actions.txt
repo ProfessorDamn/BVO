@@ -98,7 +98,9 @@ on_actions = {
 			ECON_sE_GDP_rate = yes
 
 			ECON_sE_PUs = yes
-		
+
+
+			ECON_sE_chart = yes
 		} 
 	} }
 	on_daily = { 
@@ -116,5 +118,8 @@ on_actions = {
 		ECON_sE_GDP_rate = yes
 
 		ECON_sE_PUs = yes
+
+
+		ECON_sE_chart = yes
 	} }
 }

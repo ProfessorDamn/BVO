@@ -1,10 +1,3 @@
-ECON_sE_PU_civ_allocate_1 = {
-	FROM = { subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = 1 }
-			 add_to_variable = { ECON_arr_nat_PU_assignment^1 = 1 } add_to_variable = { ECON_arr_nat_PU_assignment^2 = 1 }
-
-			 add_offsite_building = { type = industrial_complex level = 1 } } }
-
-
 ECON_sE_init = {
 	IF = { limit = { check_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0 } }	set_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0.2 } }
 	IF = { limit = { check_variable = { ECON_var_nat_EXP_interest_pct = 0 } } set_variable = { ECON_var_nat_EXP_interest_pct = 0.005 } }	# REPLACE WITH SET CREDIT RATING LATER
@@ -715,7 +708,7 @@ ECON_sE_GDP = { # GROSS DOMESTIC PRODUCT _ the metric of growth
 	divide_variable = { ECON_var_nat_GDP_capita_K = max_manpower_k }	# 10^9 / 10^3 = 10^6 (mln)
 	multiply_variable = { ECON_var_nat_GDP_capita_K = 1000 }	# 10^6 / 10^3 = 10^3 (tho)
 
-	clamp_variable = { var = ECON_arr_nat_GDP_B^1 min = 0 }
+	#clamp_variable = { var = ECON_arr_nat_GDP_B^1 min = 0 }
 }
 
 ECON_sE_PUs = { # PRODUCTION UNITS _ usual overcomplicating oversimplification
@@ -770,4 +763,118 @@ ECON_sE_PUs = { # PRODUCTION UNITS _ usual overcomplicating oversimplification
 
 	subtract_from_variable = { ECON_arr_nat_PU_assignment^0 = ECON_arr_nat_PU_assignment^1 }	
 	clamp_variable = { var = ECON_arr_nat_PU_assignment^0	min = 0 }
+}
+
+## chart
+# todo: switch chart (not make 3 different ones, make one so that it can recreate whatever fed into it)
+#		make chart respond better to variables > 0 and < 100.
+ECON_sE_chart_debug_del = {
+	clear_array = ECON_chart_graph_offsets
+	clear_array = ECON_chart_graph_slopes
+	clear_array = ECON_chart_numbers
+	set_variable = { ECON_chart_count  = 0 }
+}
+
+ECON_sE_chart = {	
+	IF = { limit = { check_variable = { ECON_var_nat_GRAPH_redraw = 1 } } 
+		ECON_sE_chart_debug_del = yes
+		
+		for_each_loop = { array = ECON_arr_nat_GDP_B_hist
+			value = v	index = i
+			
+			ECON_sE_chart_draw = yes
+		}
+
+		set_variable = { ECON_var_nat_GRAPH_redraw = 0 }
+	}
+	ELSE = {
+		# GDP
+			add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+
+		set_temp_variable = { i = ECON_arr_nat_GDP_B_hist^num }
+		subtract_from_temp_variable = { i = 1 }
+		clamp_variable = { var = i	min = 0 }
+
+		ECON_sE_chart_draw = yes
+	}
+}
+ECON_sE_chart_draw = {
+	# This count is displayed as an x-axis label, increment it
+	add_to_variable = { ECON_chart_count = 1 }
+
+	# We keep track of the last y position so we can calculate the slope
+	set_variable = { ECON_chart_last_y_position = ECON_chart_y_position }
+	
+	# Random new y position, 10-90
+	set_variable = { ECON_chart_y_position = ECON_arr_nat_GDP_B_hist^i }
+	#multiply_variable = { ECON_chart_y_position = 80 }
+	#add_to_variable = { ECON_chart_y_position = 10 }
+	round_variable = ECON_chart_y_position
+
+	# Prune arrays so they hold at most 20 elements
+	if = {
+		limit = {
+			check_variable = { ECON_chart_count > 20 }
+		}
+		remove_from_array = { array = ECON_chart_graph_offsets index = 0 }
+		remove_from_array = { array = ECON_chart_graph_slopes index = 0 }
+		remove_from_array = { array = ECON_chart_numbers index = 0 }
+	}
+
+	# The y position offset is the inverse of the y position
+	set_temp_variable = { offset = ECON_chart_last_y_position }
+	multiply_temp_variable = { offset = -1 }
+	add_to_array = { ECON_chart_graph_offsets = offset }
+
+	# The 'slope' here is simply the difference between the current y value and the last one, divided by 2 plus 50
+	# These last two changes are needed for the shader
+	set_temp_variable = { diff = ECON_chart_y_position }
+	subtract_from_temp_variable = { diff = ECON_chart_last_y_position }
+	divide_temp_variable = { diff = 2 }
+	add_to_temp_variable = { diff = 50 }
+	add_to_array = { ECON_chart_graph_slopes = diff }
+	
+	add_to_array = { ECON_chart_numbers = ECON_chart_count }
+
+	log = "[?ECON_chart_count^num], [?ECON_chart_count^i] ... [?ECON_chart_graph_offsets^num], [?ECON_chart_graph_offsets^i] ... [?ECON_arr_nat_GDP_B_hist^num], [?ECON_arr_nat_GDP_B_hist^i]"
+}
+SAMPLE_add_random_point_to_line = {
+	# Adds a random point to the line graph
+
+	# This count is displayed as an x-axis label, increment it
+	add_to_variable = { SAMPLE_count = 1 }
+
+	# We keep track of the last y position so we can calculate the slope
+	set_variable = { SAMPLE_last_y_position = SAMPLE_y_position }
+	
+	# Random new y position, 10-90
+	set_variable = { SAMPLE_y_position = random }
+	multiply_variable = { SAMPLE_y_position = 80 }
+	add_to_variable = { SAMPLE_y_position = 10 }
+	round_variable = SAMPLE_y_position
+
+	# Prune arrays so they hold at most 20 elements
+	if = {
+		limit = {
+			check_variable = { SAMPLE_count > 20 }
+		}
+		remove_from_array = { array = SAMPLE_graph_offsets index = 0 }
+		remove_from_array = { array = SAMPLE_graph_slopes index = 0 }
+		remove_from_array = { array = SAMPLE_numbers index = 0 }
+	}
+
+	# The y position offset is the inverse of the y position
+	set_temp_variable = { offset = SAMPLE_last_y_position }
+	multiply_temp_variable = { offset = -1 }
+	add_to_array = { SAMPLE_graph_offsets = offset }
+
+	# The 'slope' here is simply the difference between the current y value and the last one, divided by 2 plus 50
+	# These last two changes are needed for the shader
+	set_temp_variable = { diff = SAMPLE_y_position }
+	subtract_from_temp_variable = { diff = SAMPLE_last_y_position }
+	divide_temp_variable = { diff = 2 }
+	add_to_temp_variable = { diff = 50 }
+	add_to_array = { SAMPLE_graph_slopes = diff }
+	
+	add_to_array = { SAMPLE_numbers = SAMPLE_count }
 }
