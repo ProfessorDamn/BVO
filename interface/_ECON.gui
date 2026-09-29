@@ -82,6 +82,47 @@ guiTypes = {
 				clipping = no
 				background = { name = "POL_cWT_content_legislature_Wminster_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 
+				instantTextBoxType = { name = "debug0"
+					position = { x = 310 y = 40 }	maxWidth = 100
+					font = Arial12	format = left
+					text = "chart y [?ECON_chart_y_position]"
+				}
+				instantTextBoxType = { name = "debug1"
+					position = { x = 310 y = 60 }	maxWidth = 100
+					font = Arial12	format = left
+					text = "centrepoint [?centrepoint]"
+				}
+				instantTextBoxType = { name = "debug2"
+					position = { x = 310 y = 80 }	maxWidth = 100
+					font = Arial12	format = left
+					text = "pre-division [?centrepoint_debug]"
+				}
+				instantTextBoxType = { name = "debug3"
+					position = { x = 310 y = 100 }	maxWidth = 100
+					font = Arial12	format = left
+					text = "offset 18 [?ECON_chart_graph_offsets^17]"
+				}
+				instantTextBoxType = { name = "debug4"
+					position = { x = 310 y = 120 }	maxWidth = 100
+					font = Arial12	format = left
+					text = "offset 19 [?ECON_chart_graph_offsets^18]"
+				}
+				instantTextBoxType = { name = "debug5"
+					position = { x = 310 y = 140 }	maxWidth = 100
+					font = Arial12	format = left
+					text = "offset 20 [?ECON_chart_graph_offsets^19]"
+				}
+				instantTextBoxType = { name = "debug6"
+					position = { x = 310 y = 160 }	maxWidth = 100
+					font = Arial12	format = left
+					text = "last considered [?last_considered_hist]"
+				}
+				
+
+				
+
+				
+
 				containerWindowType = {
 					name = "line_graph_sample_gui"
 					position = { x = 0 y = 0 }	

@@ -1,0 +1,5 @@
+on_actions = {
+	on_startup = {
+		effect = { every_country = { ECON_sE_chart_debug_add_values = yes } }
+	}
+}
