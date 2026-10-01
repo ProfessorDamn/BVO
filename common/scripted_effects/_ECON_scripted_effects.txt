@@ -778,6 +778,7 @@ ECON_sE_chart_debug_del = {
 ECON_sE_chart_debug_add_values = {
 	clear_array = ECON_arr_nat_GDP_B_hist
 	clear_array = ECON_arr_nat_inflation_pct_hist
+	clear_array = ECON_arr_nat_RSV_liquid_B_hist
 
 	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
 		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
@@ -828,20 +829,56 @@ ECON_sE_chart_debug_add_values = {
 		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
 		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
 		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
-		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
-
-	set_variable = { ECON_var_nat_GRAPH_redraw = 1 }	ECON_sE_chart = yes
+	add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+		add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
+	
+		set_variable = { ECON_var_nat_GRAPH_redraw = 1 }	ECON_sE_chart = yes
 }
 
 ECON_sE_chart = {	
 	IF = { limit = { check_variable = { ECON_var_nat_GRAPH_redraw = 1 } } 
 		ECON_sE_chart_debug_del = yes
-		
-		for_each_loop = { array = ECON_arr_nat_GDP_B_hist
-			value = v	index = i
-			
-			ECON_sE_chart_draw = yes
-		}
+		IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
+			for_each_loop = { array = ECON_arr_nat_GDP_B_hist
+				value = v	index = i
+				
+				ECON_sE_chart_draw = yes
+			} }
+		ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 1 } }
+			for_each_loop = { array = ECON_arr_nat_inflation_pct_hist
+				value = v	index = i
+				
+				ECON_sE_chart_draw = yes
+			} }
+		ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
+			for_each_loop = { array = ECON_arr_nat_RSV_liquid_B_hist
+				value = v	index = i
+				
+				ECON_sE_chart_draw = yes
+			} }
 
 		set_variable = { ECON_var_nat_GRAPH_redraw = 0 }
 	}
@@ -850,22 +887,39 @@ ECON_sE_chart = {
 			add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
 		# inflation
 			add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		# reserves 
+			add_to_array = { ECON_arr_nat_RSV_liquid_B_hist = ECON_var_nat_RSV_liquid_B }
 
 		IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
 			set_temp_variable = { i = ECON_arr_nat_GDP_B_hist^num } }
 		ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 1 } }
 			set_temp_variable = { i = ECON_arr_nat_inflation_pct_hist^num } }
+		ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
+			set_temp_variable = { i = ECON_arr_nat_RSV_liquid_B_hist^num } }
 		subtract_from_temp_variable = { i = 1 }
 		clamp_variable = { var = i	min = 0 }
 
 		ECON_sE_chart_draw = yes
 		
 		ECON_sE_chart_debug_del = yes
-		for_each_loop = { array = ECON_arr_nat_GDP_B_hist
-			value = v	index = i
-			
-			ECON_sE_chart_draw = yes
-		}
+		IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
+			for_each_loop = { array = ECON_arr_nat_GDP_B_hist
+				value = v	index = i
+				
+				ECON_sE_chart_draw = yes
+			} }
+		ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 1 } }
+			for_each_loop = { array = ECON_arr_nat_inflation_pct_hist
+				value = v	index = i
+				
+				ECON_sE_chart_draw = yes
+			} }
+		ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
+			for_each_loop = { array = ECON_arr_nat_RSV_liquid_B_hist
+				value = v	index = i
+				
+				ECON_sE_chart_draw = yes
+			} }
 	}
 }
 ECON_sE_chart_draw = {
@@ -912,12 +966,29 @@ ECON_sE_chart_draw = {
 				set_variable = { last_considered_hist = ECON_arr_nat_inflation_pct_hist^x }	}
 			ELSE = { set_temp_variable = { b = 1 } }
 		} }
+	ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
+		for_each_loop = { array = ECON_arr_nat_RSV_liquid_B_hist
+			index = x	break = b
+
+			set_temp_variable = { limit = ECON_arr_nat_RSV_liquid_B_hist^num }
+				subtract_from_temp_variable = { limit = ECON_chart_graph_offsets^num }
+
+			add_to_temp_variable = { x = limit }
+			
+			#log = "init [?x], [?limit] / [?b]"
+
+			IF = { limit = { check_variable = { x < ECON_arr_nat_RSV_liquid_B_hist^num } } 
+				add_to_variable = { centrepoint = ECON_arr_nat_RSV_liquid_B_hist^x }
+				set_variable = { last_considered_hist = ECON_arr_nat_RSV_liquid_B_hist^x }	}
+			ELSE = { set_temp_variable = { b = 1 } }
+		} }
 	
 	set_variable = { centrepoint_debug = centrepoint }
 	divide_variable = { centrepoint = ECON_chart_graph_offsets^num }
 
 	IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } } set_variable = { ECON_chart_y_position = ECON_arr_nat_GDP_B_hist^i } }
 	ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 1 } } set_variable = { ECON_chart_y_position = ECON_arr_nat_inflation_pct_hist^i } }
+	ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 2 } } set_variable = { ECON_chart_y_position = ECON_arr_nat_RSV_liquid_B_hist^i } }
 		divide_variable = { ECON_chart_y_position = centrepoint }
 		#subtract_from_variable = { ECON_chart_y_position = 1 }
 		multiply_variable = { ECON_chart_y_position = 50 }

@@ -35,7 +35,8 @@ scripted_gui = {
 															set_variable = { ECON_var_nat_GRAPH_redraw = 1 }	ECON_sE_chart = yes }
 				ECON_cWT_sidebar_macro_inflation_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 1 }
 															set_variable = { ECON_var_nat_GRAPH_redraw = 1 }	ECON_sE_chart = yes }
-				ECON_cWT_sidebar_macro_budget_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
+				ECON_cWT_sidebar_macro_budget_button_click = { set_variable = { MOD_cWT_var_ECON_macro_sub = 2 }
+															set_variable = { ECON_var_nat_GRAPH_redraw = 1 }	ECON_sE_chart = yes }
 			}
 			triggers = {
 
