@@ -118,11 +118,6 @@ guiTypes = {
 					text = "last considered [?last_considered_hist]"
 				}
 				
-
-				
-
-				
-
 				containerWindowType = {
 					name = "line_graph_sample_gui"
 					position = { x = 0 y = 0 }	
@@ -146,7 +141,7 @@ guiTypes = {
 					# Container which will hold each of our line segments
 					gridboxtype = {
 						name = "line_segments"
-						position = { x = 59 y = 35 }
+						position = { x = 59 y = 40 }
 						size = { width = 0 height = 200 }
 						slotsize = { width = 10 height = 200 }
 						max_slots_horizontal = 20
@@ -175,6 +170,14 @@ guiTypes = {
 						position = { x= -6 y = 75}
 						font = "DOSVGA_12"
 						text = "60%"
+						maxWidth = 50
+						format = right
+					}
+					instantTextboxType = {
+						name = "50pct"
+						position = { x= -6 y = 85}
+						font = "DOSVGA_12"
+						text = "[?centrepoint|2]"
 						maxWidth = 50
 						format = right
 					}

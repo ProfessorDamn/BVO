@@ -1,4 +1,5 @@
 ECON_sE_init = {
+	IF = { limit = { check_variable = { ECON_arr_nat_inflation_pct_monthly^0 = 0 } } set_variable = { ECON_arr_nat_inflation_pct_monthly^0 = 0.005 } }
 	IF = { limit = { check_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0 } }	set_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0.2 } }
 	IF = { limit = { check_variable = { ECON_var_nat_EXP_interest_pct = 0 } } set_variable = { ECON_var_nat_EXP_interest_pct = 0.005 } }	# REPLACE WITH SET CREDIT RATING LATER
 	# ARMED FORCES MAINTENANCE
@@ -776,31 +777,59 @@ ECON_sE_chart_debug_del = {
 }
 ECON_sE_chart_debug_add_values = {
 	clear_array = ECON_arr_nat_GDP_B_hist
+	clear_array = ECON_arr_nat_inflation_pct_hist
 
 	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
-	add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+	add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
+		add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
 
-	set_variable = { ECON_var_nat_GRAPH_redraw = 1 }	ECON_sE_chart = yes
-}
-ECON_sE_chart_debug = {
 	set_variable = { ECON_var_nat_GRAPH_redraw = 1 }	ECON_sE_chart = yes
 }
 
@@ -819,16 +848,19 @@ ECON_sE_chart = {
 	ELSE = {
 		# GDP
 			add_to_array = { ECON_arr_nat_GDP_B_hist = ECON_arr_nat_GDP_B^1 }
+		# inflation
+			add_to_array = { ECON_arr_nat_inflation_pct_hist = ECON_arr_nat_inflation_pct_monthly^1 }
 
-		set_temp_variable = { i = ECON_arr_nat_GDP_B_hist^num }
+		IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
+			set_temp_variable = { i = ECON_arr_nat_GDP_B_hist^num } }
+		ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 1 } }
+			set_temp_variable = { i = ECON_arr_nat_inflation_pct_hist^num } }
 		subtract_from_temp_variable = { i = 1 }
 		clamp_variable = { var = i	min = 0 }
 
 		ECON_sE_chart_draw = yes
-		#
 		
 		ECON_sE_chart_debug_del = yes
-		
 		for_each_loop = { array = ECON_arr_nat_GDP_B_hist
 			value = v	index = i
 			
@@ -848,27 +880,46 @@ ECON_sE_chart_draw = {
 	# questions: what should be 0%/100%? to make the chart work must prev chart positions be deducted according to cur chart position? what the fuck?
 	log = "-----"
 	clear_variable = centrepoint	# experiment worked - now expand centrepoints to every single graph offset and voila!
-	for_each_loop = { array = ECON_arr_nat_GDP_B_hist
-		index = x	break = b
+	IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
+		for_each_loop = { array = ECON_arr_nat_GDP_B_hist
+			index = x	break = b
 
-		set_temp_variable = { limit = ECON_arr_nat_GDP_B_hist^num }
-			subtract_from_temp_variable = { limit = ECON_chart_graph_offsets^num }
+			set_temp_variable = { limit = ECON_arr_nat_GDP_B_hist^num }
+				subtract_from_temp_variable = { limit = ECON_chart_graph_offsets^num }
 
-		add_to_temp_variable = { x = limit }
-		
-		#log = "init [?x], [?limit] / [?b]"
+			add_to_temp_variable = { x = limit }
+			
+			#log = "init [?x], [?limit] / [?b]"
 
-		IF = { limit = { check_variable = { x < ECON_arr_nat_GDP_B_hist^num } } 
-			add_to_variable = { centrepoint = ECON_arr_nat_GDP_B_hist^x }
-			set_variable = { last_considered_hist = ECON_arr_nat_GDP_B_hist^x }	}
-		ELSE = { set_temp_variable = { b = 1 } }
-	}
+			IF = { limit = { check_variable = { x < ECON_arr_nat_GDP_B_hist^num } } 
+				add_to_variable = { centrepoint = ECON_arr_nat_GDP_B_hist^x }
+				set_variable = { last_considered_hist = ECON_arr_nat_GDP_B_hist^x }	}
+			ELSE = { set_temp_variable = { b = 1 } }
+		} }
+	ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 1 } } 
+		for_each_loop = { array = ECON_arr_nat_inflation_pct_hist
+			index = x	break = b
+
+			set_temp_variable = { limit = ECON_arr_nat_inflation_pct_hist^num }
+				subtract_from_temp_variable = { limit = ECON_chart_graph_offsets^num }
+
+			add_to_temp_variable = { x = limit }
+			
+			#log = "init [?x], [?limit] / [?b]"
+
+			IF = { limit = { check_variable = { x < ECON_arr_nat_inflation_pct_hist^num } } 
+				add_to_variable = { centrepoint = ECON_arr_nat_inflation_pct_hist^x }
+				set_variable = { last_considered_hist = ECON_arr_nat_inflation_pct_hist^x }	}
+			ELSE = { set_temp_variable = { b = 1 } }
+		} }
 	
 	set_variable = { centrepoint_debug = centrepoint }
 	divide_variable = { centrepoint = ECON_chart_graph_offsets^num }
 
-	set_variable = { ECON_chart_y_position = ECON_arr_nat_GDP_B_hist^i }
+	IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } } set_variable = { ECON_chart_y_position = ECON_arr_nat_GDP_B_hist^i } }
+	ELSE_IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 1 } } set_variable = { ECON_chart_y_position = ECON_arr_nat_inflation_pct_hist^i } }
 		divide_variable = { ECON_chart_y_position = centrepoint }
+		#subtract_from_variable = { ECON_chart_y_position = 1 }
 		multiply_variable = { ECON_chart_y_position = 50 }
 
 	# Prune arrays so they hold at most 20 elements
@@ -885,26 +936,6 @@ ECON_sE_chart_draw = {
 
 	set_temp_variable = { offset = ECON_chart_last_y_position }
 	multiply_temp_variable = { offset = -1 }
-	for_each_loop = { array = ECON_arr_nat_GDP_B_hist 
-		index = x	break = b
-
-		#set_temp_variable = { limit = ECON_arr_nat_GDP_B_hist^num }
-		#	subtract_from_temp_variable = { limit = ECON_chart_graph_offsets^num }
-
-		add_to_temp_variable = { x = limit }
-
-		set_temp_variable = { x1 = x }	subtract_from_temp_variable = { x1 = 1 }
-		
-		#log = "offset [?limit], [?x], [?x1] / [?b]"
-
-		IF = { limit = { check_variable = { x < ECON_arr_nat_GDP_B_hist^num } } 
-			set_temp_variable = { offset_mult = ECON_arr_nat_GDP_B_hist^x }
-			divide_temp_variable = { offset_mult = ECON_arr_nat_GDP_B_hist^x1 }
-			#multiply_temp_variable = { offset = offset_mult }
-			#log = "[?ECON_arr_nat_GDP_B_hist^x], [?ECON_arr_nat_GDP_B_hist^x1] / [?offset_mult]"
-			}
-		ELSE = { set_temp_variable = { b = 1 } }
-	}
 	add_to_array = { ECON_chart_graph_offsets = offset }
 	
 
