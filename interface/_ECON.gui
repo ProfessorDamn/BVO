@@ -368,7 +368,8 @@ guiTypes = {
 					text = "[?ECON_var_nat_EXP_B|-^] B"
 					pdx_tooltip = "ECON_tt_RSV_spending"	pdx_tooltip_delayed = "ECON_tt_RSV_spending_delayed"
 				}
-
+				
+				containerWindowType = { name = "del"	hide = yes
 				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_text"
 					position = { x = 20 y = 17 }	maxWidth = 100
 					format = right	font = Arial12
@@ -814,6 +815,7 @@ guiTypes = {
 					
 					buttonFont = hoi_16mbs
 					buttonText = "Exec."
+				}
 				}
 			}
 		containerWindowType = { name = "ECON_cWT_content_allocation"

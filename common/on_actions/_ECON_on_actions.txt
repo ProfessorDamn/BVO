@@ -16,6 +16,7 @@
 
 # ECON_var_nat_RSV_liquid_B [Hard Solid Green Cash]
 	# ECON_var_nat_RSV_liquid_malus_pct
+	# ECON_var_nat_RSV_debt_per_GDP_pct [only counts debt / gdp]
 # ECON_var_nat_RSV_budget_B [REV - EXP]
 	# ECON_var_nat_RSV_budget_per_GDP_pct [positive (budget / gdp)]
 		# ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct
