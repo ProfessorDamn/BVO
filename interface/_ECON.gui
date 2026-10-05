@@ -153,26 +153,26 @@ guiTypes = {
 						name = "100pct"
 						position = { x= -6 y = 35}
 						font = "DOSVGA_12"
-						text = "100%"
+						text = "[?centrepoint_100pct|2]"
 						maxWidth = 50
 						format = right
 					}
 					instantTextboxType = {
-						name = "80pct"
-						position = { x= -6 y = 55}
+						name = "75pct"
+						position = { x= -6 y = 60}
 						font = "DOSVGA_12"
-						text = "80%"
+						text = "[?centrepoint_75pct|2]"
 						maxWidth = 50
 						format = right
 					}
-					instantTextboxType = {
-						name = "60pct"
-						position = { x= -6 y = 75}
-						font = "DOSVGA_12"
-						text = "60%"
-						maxWidth = 50
-						format = right
-					}
+					#instantTextboxType = {
+					#	name = "60pct"
+					#	position = { x= -6 y = 75}
+					#	font = "DOSVGA_12"
+					#	text = "60%"
+					#	maxWidth = 50
+					#	format = right
+					#}
 					instantTextboxType = {
 						name = "50pct"
 						position = { x= -6 y = 85}
@@ -181,19 +181,19 @@ guiTypes = {
 						maxWidth = 50
 						format = right
 					}
+					#instantTextboxType = {
+					#	name = "40pct"
+					#	position = { x= -6 y = 95}
+					#	font = "DOSVGA_12"
+					#	text = "40%"
+					#	maxWidth = 50
+					#	format = right
+					#}
 					instantTextboxType = {
-						name = "40pct"
-						position = { x= -6 y = 95}
+						name = "25pct"
+						position = { x= -6 y = 110}
 						font = "DOSVGA_12"
-						text = "40%"
-						maxWidth = 50
-						format = right
-					}
-					instantTextboxType = {
-						name = "20pct"
-						position = { x= -6 y = 115}
-						font = "DOSVGA_12"
-						text = "20%"
+						text = "[?centrepoint_25pct|2]"
 						maxWidth = 50
 						format = right
 					}
@@ -201,7 +201,7 @@ guiTypes = {
 						name = "0pct"
 						position = { x= -6 y = 135}
 						font = "DOSVGA_12"
-						text = "0%"
+						text = "[?centrepoint_1pct|2]"
 						maxWidth = 50
 						format = right
 					}
@@ -238,54 +238,54 @@ guiTypes = {
 				#background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_rGDP_text"
-					position = { x = 5 y = 270 }	maxWidth = 100	orientation = LEFT	
+					position = { x = 305 y = 75 }	maxWidth = 100	orientation = LEFT	
 
 					font = "DOSVGA_16"	format = right
 					text = "GDP"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_rGDP"
-					position = { x = 115 y = 270 }	maxWidth = 200	orientation = LEFT	
+					position = { x = 435 y = 75 }	maxWidth = 200	orientation = LEFT	
 
 					font = "DOSVGA_20"	format = left
 					text = "[?ECON_arr_nat_GDP_B^1|+2] B"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_nom_growth_text"
-					position = { x = 5 y = 295 }	maxWidth = 100	orientation = LEFT	
+					position = { x = 305 y = 100 }	maxWidth = 100	orientation = LEFT	
 
 					font = "DOSVGA_12"	format = right
 					text = "Nom. growth"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_nom_growth"
-					position = { x = 115 y = 295 }	maxWidth = 200	orientation = LEFT	
+					position = { x = 435 y = 100 }	maxWidth = 200	orientation = LEFT	
 
 					font = "DOSVGA_15"	format = left
 					text = "[?ECON_arr_nat_GDP_growth_pct^0|+%]"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation_text"
-					position = { x = 5 y = 315 }	maxWidth = 100	orientation = LEFT	
+					position = { x = 305 y = 115 }	maxWidth = 100	orientation = LEFT	
 
 					font = "DOSVGA_12"	format = right
 					text = "Inflation"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation"
-					position = { x = 115 y = 315 }	maxWidth = 200	orientation = LEFT	
+					position = { x = 435 y = 115 }	maxWidth = 200	orientation = LEFT	
 
 					font = "DOSVGA_15"	format = left
 					text = "[?ECON_arr_nat_inflation_pct_monthly^1|-%]"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation_rule"
-					position = { x = 115 y = 320 }	maxWidth = 100
+					position = { x = 435 y = 120 }	maxWidth = 100
 					format = left font = Arial12
 					text = "________________"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_real_growth_text"
-					position = { x = 5 y = 335 }	maxWidth = 100	orientation = LEFT	
+					position = { x = 305 y = 135 }	maxWidth = 100	orientation = LEFT	
 
 					font = "DOSVGA_12"	format = right
 					text = "Real growth"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_real_growth"
-					position = { x = 115 y = 335 }	maxWidth = 200	orientation = LEFT	
+					position = { x = 435 y = 135 }	maxWidth = 200	orientation = LEFT	
 
 					font = "DOSVGA_16"	format = left
 					text = "[?ECON_arr_nat_GDP_growth_pct^1|+%]"
@@ -296,35 +296,35 @@ guiTypes = {
 				#background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation_text"
-					position = { x = 5 y = 270 }	maxWidth = 100	orientation = LEFT	
+					position = { x = 305 y = 75 }	maxWidth = 100	orientation = LEFT	
 
 					font = "DOSVGA_16"	format = right
 					text = "INFLATION"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_inflation"
-					position = { x = 115 y = 270 }	maxWidth = 200	orientation = LEFT	
+					position = { x = 435 y = 75 }	maxWidth = 200	orientation = LEFT	
 
 					font = "DOSVGA_20"	format = left
 					text = "[?ECON_arr_nat_inflation_pct_monthly^1|-%]"
 				}
 				instantTextBoxType = { name = "ECON_cWT_inflation_set_text"
-					position = { x = 5 y = 295 }	maxWidth = 100
+					position = { x = 305 y = 100 }	maxWidth = 100
 					format = right font = "DOSVGA_12"
 					text = "Set rate:"
 				}
 				instantTextBoxType = { name = "ECON_cWT_inflation_set"
-					position = { x = 115 y = 295 }	maxWidth = 100
+					position = { x = 435 y = 100 }	maxWidth = 100
 					format = left font = "DOSVGA_15"
 					text = "[?ECON_arr_nat_inflation_pct_monthly^0|-%]"
 				}
 
 				instantTextBoxType = { name = "ECON_cWT_inflation_mult_text"
-					position = { x = 5 y = 315 }	maxWidth = 100
+					position = { x = 305 y = 115 }	maxWidth = 100
 					format = right font = "DOSVGA_12"
 					text = "Multiplier:"
 				}
 				instantTextBoxType = { name = "ECON_cWT_inflation_mult"
-					position = { x = 115 y = 315 }	maxWidth = 100
+					position = { x = 435 y = 115 }	maxWidth = 100
 					format = left font = "DOSVGA_15"
 					text = "[?ECON_arr_nat_inflation_modifier_pct_monthly^0|-]x"
 				}
@@ -334,489 +334,504 @@ guiTypes = {
 				#background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
 
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_budget_text"
-					position = { x = 5 y = 270 }	maxWidth = 100	orientation = LEFT	
+					position = { x = 305 y = 75 }	maxWidth = 100	orientation = LEFT	
 
 					font = "DOSVGA_16"	format = right
 					text = "NET"
 				}
 				instantTextBoxType = { name = "ECON_cWT_content_macro_window_budget"
-					position = { x = 115 y = 270 }	maxWidth = 200	orientation = LEFT	
+					position = { x = 435 y = 75 }	maxWidth = 200	orientation = LEFT	
 
 					font = "DOSVGA_20"	format = left
 					text = "[?ECON_var_nat_RSV_budget_B|+^] B"
 				}
 				instantTextBoxType = { name = "ECON_cWT_RSV_revenue_text"
-					position = { x = 5 y = 295 }	maxWidth = 100
+					position = { x = 305 y = 100 }	maxWidth = 100
 					format = right font = "DOSVGA_12"
 					text = "Revenue:"
 				}
 				instantTextBoxType = { name = "ECON_cWT_RSV_revenue"
-					position = { x = 115 y = 295 }	maxWidth = 90
+					position = { x = 435 y = 100 }	maxWidth = 90
 					format = left font = "DOSVGA_15"
 					text = "[?ECON_var_nat_REV_B|+^] B"
 					pdx_tooltip = "ECON_tt_RSV_revenue"	pdx_tooltip_delayed = "ECON_tt_RSV_revenue_delayed"
 				}
 
 				instantTextBoxType = { name = "ECON_cWT_RSV_expense_text"
-					position = { x = 5 y = 315 }	maxWidth = 100
+					position = { x = 305 y = 115 }	maxWidth = 100
 					format = right font = "DOSVGA_12"
 					text = "Expense:"
 				}
 				instantTextBoxType = { name = "ECON_cWT_RSV_expense"
-					position = { x = 115 y = 315 }	maxWidth = 90
+					position = { x = 435 y = 115 }	maxWidth = 90
 					format = left font = "DOSVGA_15"
 					text = "[?ECON_var_nat_EXP_B|-^] B"
 					pdx_tooltip = "ECON_tt_RSV_spending"	pdx_tooltip_delayed = "ECON_tt_RSV_spending_delayed"
 				}
 				
-				containerWindowType = { name = "del"	hide = yes
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_text"
-					position = { x = 20 y = 17 }	maxWidth = 100
-					format = right	font = Arial12
-					text = "Income"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income"
-					position = { x = 130 y = 15 }	size = { width = 60 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^1|+^] B"
-				}
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_text"
-					position = { x = 200 y = 17 }	maxWidth = 30
-					format = right	font = Arial12
-					text = "> rate"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate"
-					position = { x = 240 y = 15 }	size = { width = 50 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^1|1+%]"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan"
-					position = { x = 425 y = 15 }	size = { width = 50 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^1|1+%]"	# display variable to be modified & sent to execute here
-				}
-					# cut taxes
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.1%"
-							position = { x = 320 y = 5 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.2%"
-							position = { x = 355 y = 5 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.2"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.5%"
-							position = { x = 390 y = 5 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_1%"
-							position = { x = 320 y = 25 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_5%"
-							position = { x = 355 y = 25 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_10%"
-							position = { x = 390 y = 25 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-10"
-						}
-					# raise taxes
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.1%"
-							position = { x = 480 y = 5 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.2%"
-							position = { x = 515 y = 5 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.2"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.5%"
-							position = { x = 550 y = 5 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_1%"
-							position = { x = 480 y = 25 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_5%"
-							position = { x = 515 y = 25 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_10%"
-							position = { x = 550 y = 25 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+10"
-						}
-				
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_text"
-					position = { x = 20 y = 67 }	maxWidth = 100
-					format = right	font = Arial12
-					text = "Poverty effective"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty"
-					position = { x = 130 y = 65 }	size = { width = 60 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^2|+^] B"
-				}
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_text"
-					position = { x = 200 y = 67 }	maxWidth = 30
-					format = right	font = Arial12
-					text = "> rate"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate"
-					position = { x = 240 y = 65 }	size = { width = 50 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^2|1+%]"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan"
-					position = { x = 425 y = 65 }	size = { width = 50 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^2|1+%]"	# display variable to be modified & sent to execute here
-				}
-					# cut taxes
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.1%"
-							position = { x = 320 y = 55 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.2%"
-							position = { x = 355 y = 55 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.2"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.5%"
-							position = { x = 390 y = 55 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_1%"
-							position = { x = 320 y = 75 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_5%"
-							position = { x = 355 y = 75 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_10%"
-							position = { x = 390 y = 75 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-10"
-						}
-					# raise taxes
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.1%"
-							position = { x = 480 y = 55 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.2%"
-							position = { x = 515 y = 55 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.2"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.5%"
-							position = { x = 550 y = 55 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_1%"
-							position = { x = 480 y = 75 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_5%"
-							position = { x = 515 y = 75 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_10%"
-							position = { x = 550 y = 75 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+10"
-						}
-
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_text"
-					position = { x = 20 y = 117 }	maxWidth = 100
-					format = right	font = Arial12
-					text = "Business"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business"
-					position = { x = 130 y = 115 }	size = { width = 60 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^3|+^] B"
-				}
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_text"
-					position = { x = 200 y = 117 }	maxWidth = 30
-					format = right	font = Arial12
-					text = "> rate"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate"
-					position = { x = 240 y = 115 }	size = { width = 50 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^3|1+%]"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan"
-					position = { x = 425 y = 115 }	size = { width = 50 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^3|1+%]"	# display variable to be modified & sent to execute here
-				}
-					# cut taxes
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.1%"
-							position = { x = 320 y = 105 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.2%"
-							position = { x = 355 y = 105 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.2"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.5%"
-							position = { x = 390 y = 105 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_1%"
-							position = { x = 320 y = 125 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_5%"
-							position = { x = 355 y = 125 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_10%"
-							position = { x = 390 y = 125 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-10"
-						}
-					# raise taxes
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.1%"
-							position = { x = 480 y = 105 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.2%"
-							position = { x = 515 y = 105 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.2"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.5%"
-							position = { x = 550 y = 105 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_1%"
-							position = { x = 480 y = 125 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_5%"
-							position = { x = 515 y = 125 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_10%"
-							position = { x = 550 y = 125 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+10"
-						}
-
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_text"
-					position = { x = 20 y = 167 }	maxWidth = 100
-					format = right	font = Arial12
-					text = "Tariff"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_income"
-					position = { x = 130 y = 165 }	size = { width = 60 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^4|+^] B"
-				}
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate_text"
-					position = { x = 200 y = 167 }	maxWidth = 30
-					format = right	font = Arial12
-					text = "> rate"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate"
-					position = { x = 240 y = 165 }	size = { width = 50 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^4|1+%]"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate_plan"
-					position = { x = 425 y = 165 }	size = { width = 50 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^4|1+%]"	# display variable to be modified & sent to execute here
-				}
-					# cut taxes
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.1%"
-							position = { x = 320 y = 155 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.2%"
-							position = { x = 355 y = 155 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.2"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.5%"
-							position = { x = 390 y = 155 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-0.5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_1%"
-							position = { x = 320 y = 175 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_5%"
-							position = { x = 355 y = 175 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_10%"
-							position = { x = 390 y = 175 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "-10"
-						}
-					# raise taxes
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.1%"
-							position = { x = 480 y = 155 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.2%"
-							position = { x = 515 y = 155 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.2"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.5%"
-							position = { x = 550 y = 155 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+0.5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_1%"
-							position = { x = 480 y = 175 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+1"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_5%"
-							position = { x = 515 y = 175 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+5"
-						}
-						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_10%"
-							position = { x = 550 y = 175 }	size = { width = 30 height = 20 } 
-							quadTextureSprite = "GFX_ECON_cWT_btn"	orientation = UPPER_LEFT
-
-							buttonFont = Arial12	buttonText = "+10"
-						}
-
-				instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_line_text_because_reasons"
-					position = { x = 20 y = 190 }	maxWidth = 175
-					format = left font = Arial12
-					text = "_____________________________"
-				}
-
-				instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_misc_text"
-					position = { x = 20 y = 217 }	maxWidth = 100
-					format = right	font = Arial12
-					text = "Miscellaneous"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_misc_income"
-					position = { x = 130 y = 215 }	size = { width = 60 height = 20 }
-					quadTextureSprite = "GFX_ECON_cWT_txt"	orientation = UPPER_LEFT
-
-					buttonFont = hoi_16mbs	buttonText = "[?ECON_arr_nat_REV_sources_B^4|+^] B"
-				}
-				
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_reset_button"
-					position = { x = 418 y = 215 }
-					quadTextureSprite = "GFX_ECON_cWT_btn"
-					orientation = UPPER_LEFT
+				# menu buttons
+					buttonType = { name = "ECON_cWT_RSV_spending_scollbox_button"
+						position = { x = 310 y = 240 }	size = { width = 90 height = 25 }	orientation = UPPER_LEFT	
+						quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+						
+						buttonFont = "DOSVGA_12"	format = centre
+						buttonText = "Taxes"
+					}
+
+				# menus
+					containerWindowType = { name = "ECON_cWT_RSV_spending_scrollbox"
+						position = { x = 5 y = 270 }	size = { width = 630	height = 260 }
+						background = { name = "ECON_cWT_bg"	quadTextureSprite = "GFX_MOD_cWT_DOS_bgr" }
+
+						clipping = yes	verticalScrollbar = "left_vertical_slider"	autohide_scrollbars = yes	#margin = { bottom = 10 }
 					
-					buttonFont = hoi_16mbs
-					buttonText = "Reset"
-				}
-				buttonType = { name = "ECON_cWT_RSV_civ_spending_exec_button"	# Send to Central Bank? Voted through Parliament? Both?
-					position = { x = 525 y = 215 }
-					quadTextureSprite = "GFX_ECON_cWT_btn"
-					orientation = UPPER_LEFT
-					
-					buttonFont = hoi_16mbs
-					buttonText = "Exec."
-				}
-				}
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_text"
+							position = { x = 0 y = 22 }	maxWidth = 100
+							format = right	font = DOSVGA_12
+							text = "Income"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income"
+							position = { x = 105 y = 20 }	size = { width = 90 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_sources_B^1|+^] B"
+						}
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_text"
+							position = { x = 195 y = 22 }	maxWidth = 40
+							format = right	font = DOSVGA_10
+							text = "> rate"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate"
+							position = { x = 240 y = 20 }	size = { width = 50 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^1|1+%]"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan"
+							position = { x = 425 y = 20 }	size = { width = 50 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^1|1+%]"	# display variable to be modified & sent to execute here
+						}
+							# cut taxes
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.1%"
+									position = { x = 320 y = 10 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.2%"
+									position = { x = 355 y = 10 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.2"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_.5%"
+									position = { x = 390 y = 10 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_1%"
+									position = { x = 320 y = 30 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_5%"
+									position = { x = 355 y = 30 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_minus_10%"
+									position = { x = 390 y = 30 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-10"
+								}
+							# raise taxes
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.1%"
+									position = { x = 480 y = 10 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.2%"
+									position = { x = 515 y = 10 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.2"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_.5%"
+									position = { x = 550 y = 10 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_1%"
+									position = { x = 480 y = 30 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_5%"
+									position = { x = 515 y = 30 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_rate_plan_plus_10%"
+									position = { x = 550 y = 30 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+10"
+								}
+						
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_text"
+							position = { x = 0 y = 72 }	maxWidth = 100
+							format = right	font = DOSVGA_12
+							text = "(poverty)"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty"
+							position = { x = 105 y = 70 }	size = { width = 90 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_sources_B^2|+^] B"
+						}
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_text"
+							position = { x = 195 y = 72 }	maxWidth = 40
+							format = right	font = DOSVGA_10
+							text = "> rate"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate"
+							position = { x = 240 y = 70 }	size = { width = 50 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^2|1+%]"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan"
+							position = { x = 425 y = 70 }	size = { width = 50 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^2|1+%]"	# display variable to be modified & sent to execute here
+						}
+							# cut taxes
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.1%"
+									position = { x = 320 y = 60 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.2%"
+									position = { x = 355 y = 60 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.2"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_.5%"
+									position = { x = 390 y = 60 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_1%"
+									position = { x = 320 y = 80 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_5%"
+									position = { x = 355 y = 80 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_minus_10%"
+									position = { x = 390 y = 80 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-10"
+								}
+							# raise taxes
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.1%"
+									position = { x = 480 y = 60 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.2%"
+									position = { x = 515 y = 60 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.2"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_.5%"
+									position = { x = 550 y = 60 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_1%"
+									position = { x = 480 y = 80 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_5%"
+									position = { x = 515 y = 80 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_income_poverty_rate_plan_plus_10%"
+									position = { x = 550 y = 80 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+10"
+								}
+
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_text"
+							position = { x = 0 y = 122 }	maxWidth = 100
+							format = right	font = DOSVGA_12
+							text = "Business"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business"
+							position = { x = 105 y = 120 }	size = { width = 90 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_sources_B^3|+^] B"
+						}
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_text"
+							position = { x = 195 y = 122 }	maxWidth = 40
+							format = right	font = DOSVGA_10
+							text = "> rate"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate"
+							position = { x = 240 y = 120 }	size = { width = 50 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^3|1+%]"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan"
+							position = { x = 425 y = 120 }	size = { width = 50 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^3|1+%]"	# display variable to be modified & sent to execute here
+						}
+							# cut taxes
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.1%"
+									position = { x = 320 y = 110 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.2%"
+									position = { x = 355 y = 110 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.2"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_.5%"
+									position = { x = 390 y = 110 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_1%"
+									position = { x = 320 y = 130 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_5%"
+									position = { x = 355 y = 130 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_minus_10%"
+									position = { x = 390 y = 130 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-10"
+								}
+							# raise taxes
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.1%"
+									position = { x = 480 y = 110 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.2%"
+									position = { x = 515 y = 110 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.2"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_.5%"
+									position = { x = 550 y = 110 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_1%"
+									position = { x = 480 y = 130 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_5%"
+									position = { x = 515 y = 130 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_business_rate_plan_plus_10%"
+									position = { x = 550 y = 130 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+10"
+								}
+
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_text"
+							position = { x = 0 y = 172 }	maxWidth = 100
+							format = right	font = DOSVGA_12
+							text = "Tariff"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_income"
+							position = { x = 105 y = 170 }	size = { width = 90 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_sources_B^4|+^] B"
+						}
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate_text"
+							position = { x = 195 y = 172 }	maxWidth = 40
+							format = right	font = DOSVGA_10
+							text = "> rate"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate"
+							position = { x = 240 y = 170 }	size = { width = 50 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_tax_rates_pct^4|1+%]"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_tariff_rate_plan"
+							position = { x = 425 y = 170 }	size = { width = 50 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_tax_rates_proposal_pct^4|1+%]"	# display variable to be modified & sent to execute here
+						}
+							# cut taxes
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.1%"
+									position = { x = 320 y = 160 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.2%"
+									position = { x = 355 y = 160 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.2"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_.5%"
+									position = { x = 390 y = 160 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-0.5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_1%"
+									position = { x = 320 y = 180 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_5%"
+									position = { x = 355 y = 180 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_minus_10%"
+									position = { x = 390 y = 180 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "-10"
+								}
+							# raise taxes
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.1%"
+									position = { x = 480 y = 160 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.2%"
+									position = { x = 515 y = 160 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.2"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_.5%"
+									position = { x = 550 y = 160 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+0.5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_1%"
+									position = { x = 480 y = 180 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+1"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_5%"
+									position = { x = 515 y = 180 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+5"
+								}
+								buttonType = { name = "ECON_cWT_RSV_civ_spending_taxation_tariff_rate_plan_plus_10%"
+									position = { x = 550 y = 180 }	size = { width = 30 height = 20 } 
+									quadTextureSprite = "GFX_MOD_cWT_DOS_btn"	orientation = UPPER_LEFT
+
+									buttonFont = DOSVGA_12	buttonText = "+10"
+								}
+
+						instantTextBoxType = { name = "ECON_cWT_GDP_PU_distrib_menu_line_text_because_reasons"
+							position = { x = 20 y = 195 }	maxWidth = 175
+							format = left font = Arial12
+							text = "_____________________________"
+						}
+
+						instantTextBoxType = { name = "ECON_cWT_RSV_civ_spending_taxation_misc_text"
+							position = { x = 0 y = 222 }	maxWidth = 100
+							format = right	font = DOSVGA_12
+							text = "Miscellaneous"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_misc_income"
+							position = { x = 105 y = 220 }	size = { width = 90 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn_txt"	orientation = UPPER_LEFT
+
+							buttonFont = DOSVGA_16	buttonText = "[?ECON_arr_nat_REV_sources_B^4|+^] B"
+						}
+						
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_reset_button"
+							position = { x = 418 y = 220 }	size = { width = 60 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+							orientation = UPPER_LEFT
+							
+							buttonFont = DOSVGA_16
+							buttonText = "Reset"
+						}
+						buttonType = { name = "ECON_cWT_RSV_civ_spending_exec_button"	# Send to Central Bank? Voted through Parliament? Both?
+							position = { x = 525 y = 220 }	size = { width = 60 height = 20 }
+							quadTextureSprite = "GFX_MOD_cWT_DOS_btn"
+							orientation = UPPER_LEFT
+							
+							buttonFont = DOSVGA_16
+							buttonText = "Exec."
+						}
+					}				
 			}
 		containerWindowType = { name = "ECON_cWT_content_allocation"
 			position = { x = 155 y = 60 }	size = { width = 640 height = 535 }	orientation = UPPER_LEFT

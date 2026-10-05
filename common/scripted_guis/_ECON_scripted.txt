@@ -96,6 +96,8 @@ scripted_gui = {
 				visible = { check_variable = { MOD_cWT_var_ECON_toggle = 1 }	check_variable = { MOD_cWT_var_ECON_sub = 1 }	check_variable = { MOD_cWT_var_ECON_macro_sub = 2 } }
 			
 				effects = {
+					ECON_cWT_RSV_spending_scrollbox_click = {  }
+
 					ECON_cWT_RSV_civ_spending_reset_button_click = { set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^1 = ECON_arr_nat_REV_tax_rates_pct^1 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^2 = ECON_arr_nat_REV_tax_rates_pct^2 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^3 = ECON_arr_nat_REV_tax_rates_pct^3 }	set_variable = { ECON_arr_nat_REV_tax_rates_proposal_pct^4 = ECON_arr_nat_REV_tax_rates_pct^4 } }
 					# Income tax
 						# Cut

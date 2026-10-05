@@ -1,3 +1,85 @@
+# Please base all _pcts on actual mathematical percentages (100% != 100)!
+# _B means bln. USD (or any other standard accounting unit) at starting year. I AM NOT DOING ANY MORE MATHS, PERIOD.
+
+# ECON VARS & SYSTEM OUTLINE - TNO-ish I know hadn't taken A/AS econ classes yet calm down
+# ECON_arr_nat_GDP_B [^1 = [GDP (real)]
+	# ECON_arr_nat_GDP_growth_pct [^0 [monthly (nominal)], ^1 [monthly (real)], ^2 [yearly (displayed)], ^3 [yearly (calculated)], ^5 [monthly (base)]]
+	# ECON_var_nat_GDP_capita_K [GDP/capita, based on ECON_arr_nat_GDP_B^1]
+# ECON_arr_nat_inflation_pct_monthly [^0 [set], ^1 [final]]
+	# ECON_arr_nat_inflation_modifier_pct_monthly [^0 [sum], ^1 [random], ^2 [others]]
+# ECON_var_state_GDP_nominal_B [State GDP]
+
+# ECON_var_nat_PU_total [total PUs]
+	# ECON_arr_nat_PU_assignment [^0 [not assigned], ^1 [assigned], ^2 [civilian], ^3 [military], ^4 [naval], ^5 [goods]]
+		# ECON_arr_nat_PU_consumer_goods_pct [^0 [expected (assigned by laws)], ^1 modifier]
+	# ECON_var_nat_PU_threshold_B [GDP/PU conv threshold]
+
+# ECON_var_nat_RSV_liquid_B [Hard Solid Green Cash]
+	# ECON_var_nat_RSV_liquid_malus_pct
+	# ECON_var_nat_RSV_debt_per_GDP_pct [only counts debt / gdp]
+# ECON_var_nat_RSV_budget_B [REV - EXP]
+	# ECON_var_nat_RSV_budget_per_GDP_pct [positive (budget / gdp)]
+		# ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct
+# ECON_var_nat_REV_B [Gov't. Income]
+	# ECON_arr_nat_REV_sources_B [^0 [ECON_var_nat_REV_B], ^1 [income tax], ^2 [impoverished effective income], ^3 [business], ^4 [tariff], ^5 [misc]]
+		# ECON_arr_nat_REV_tax_rates_pct [^0 [= 0 buffer], ^1 [income], ^2 [impoverished effective income], ^3 [business], ^4 [tariff]]
+			# ECON_arr_nat_REV_tax_rates_proposal_pct [used in ECON.gui]
+			# ECON_arr_nat_REV_tax_rates_modifier_pct [^0 [general], ^1 [income], ^2 [impoverished effective income]]
+			# ECON_arr_nat_REV_tax_GDP_malus_pct [^1 [income], ^3 [business]]
+				# ECON_arr_nat_REV_tax_GDP_malus_modifier_pct [link to credit rating]
+		# ECON_var_nat_RSV_weimar_B [goes to ^5]
+			# ECON_var_nat_RSV_weimar_per_gdp_pct [goes to inflation]
+# ECON_var_nat_EXP_B [Gov't. Expenditures]
+	# ECON_arr_nat_EXP_sources_B [^0 [civilian spending], ^1 [military spending], ^2 [debt servicing], ^3 [misc]]
+			# ECON_arr_nat_EXP_SEC_B [^99 [sum], ^5 [policing], ^6 [prison]]
+				# ECON_arr_nat_EXP_SEC_capita
+				# POLICIES_arr_nat_SEC_spending_modifier_pct
+			# ECON_arr_nat_EXP_SOCL_B [^99 [sum], ^0 [education], ^1 [healthcare], ^2 [pension], ^3 [(unemployment) benefits]]
+				# ECON_arr_nat_EXP_SOCL_capita
+				# POLICIES_arr_nat_SOCL_spending_modifier_pct
+		# ECON_arr_nat_EXP_military_B [^0 [ground], ^1 [naval], ^2 [air]]
+			# ECON_arr_nat_EXP_military_GROUND_sorted_B [ref POLICIES_arr_nat_ARM_spending_unit_K]
+			# ECON_arr_nat_EXP_military_NAVAL_sorted_B [ref POLICIES_arr_nat_ARM_spending_ship_K]
+			# ECON_arr_nat_EXP_military_AIR_sorted_B [ref POLICIES_arr_nat_ARM_spending_air_per_wing_K]
+		# ECON_var_nat_EXP_debt_servicing_B [debt / 100 * interest (pct)]
+			# ECON_var_nat_EXP_interest_pct
+		# ECON_var_nat_EXP_misc_B [miscellaneaous expenditure]
+			# ECON_arr_nat_EXP_import_B [^0 [total import costs _B], ^1 [resource import total cost _B], ^2 [resource import cost per unit _B], ...]
+
+# please think of how to implement these properly
+# ECON_var_nat_MISC_unemployment_pct [obviously unique to every single country]
+	# ECON_var_nat_MISC_unemployment_change_pct
+	# ECON_var_nat_MISC_unemployment_K
+# ECON_var_nat_MISC_poverty_rate_pct [the lowest 20%?]
+	# ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC	[let's just say 20%]
+	# ECON_var_nat_MISC_poverty_change_pct
+	# ECON_var_nat_MISC_poverty_K
+	# ECON_var_nat_MISC_poverty_NOT_K
+# ECON_var_nat_MISC_pensioners_pct [retirees]
+	# ECON_var_nat_MISC_pensioners_change_pct
+	# ECON_var_nat_MISC_pensioners_K
+
+# THINGS THAT MAY BE RELEVANT OUTLINE - if it is involved here...
+# POLICIES_arr_nat_SEC_progress_level [^5 [policing], ^6 [prison]]
+	# POLICIES_arr_nat_SEC_spending_capita_K
+# POLICIES_arr_nat_SOCL_progress_level [^0 [education], ^1 [healthcare], ^2 [pensions], ^3 [(unemployment) benefits]]
+	# POLICIES_arr_nat_SOCL_spending_capita_K
+	# POLICIES_arr_nat_SOCL_tax_rate_modifier_pct
+# POLICIES_arr_nat_ARM_progress_level [^0 [maintenance]]
+	# POLICIES_arr_nat_ARM_spending_K [^0 [ground], ^1 [naval], ^2 [air]]	monthly
+		# maybe a bit of cost should be controlled by equipment idk
+		# also cost may have to be multiplied by factors of 5-10 for realism idkaw
+		# POLICIES_arr_nat_ARM_spending_unit_K [^0 [infantry & inf spt bn (50K)], ^1 [cav, light infantry & irregulars bn (40K)], ^2 [ground SF bn (75K)], ^3 [mot & mot inf spt bn (60K)], ^4 [APC bn (70K)], ^5 [IFV bn (130K)], ^6 [MBT bn (250K)], ^7 [heli spt coys (50K)], ^8 [other spt coys (10K)]] FIXED
+			# POLICIES_arr_nat_ARM_sorted_units
+			# POLICIES_arr_nat_ARM_spending_unit_modifier_pct [^99 [general]]
+		# POLICIES_arr_nat_ARM_spending_ship_K [^0 [submarines (30K)], ^1 [corvettes & frigates (20K)], ^2 [destroyers (50K)], ^3 [cruisers (100K)], ^4 [battle -cruisers & -ships (250K)], ^5 [aircraft carriers (500K)]]
+			# POLICIES_arr_nat_ARM_sorted_ships
+			# POLICIES_arr_nat_ARM_spending_ships_modifier_pct [^99 [general]]
+		# POLICIES_arr_nat_ARM_spending_air_K [^0 [fighter (3K)], ^1 [attacker (3K)], ^2 [int (4K)], ^3 [nav (4K)], ^4 [multirole (6K)], ^5 [tac (10K)], ^6 [strat (20K)], ^7 [transport (10K)]]
+			# POLICIES_arr_nat_ARM_sorted_aircrafts
+			# POLICIES_arr_nat_ARM_spending_air_modifier_pct [^99 [general]]
+
+# Could use https://hoi4.paradoxwikis.com/Effect#log if things start fucking up w'o reason.
 ECON_sE_init = {
 	IF = { limit = { check_variable = { ECON_arr_nat_inflation_pct_monthly^0 = 0 } } set_variable = { ECON_arr_nat_inflation_pct_monthly^0 = 0.005 } }
 	IF = { limit = { check_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0 } }	set_variable = { ECON_var_nat_MISC_poverty_income_as_pct_of_GDPC = 0.2 } }
@@ -381,6 +463,8 @@ ECON_sE_accounting = { # RESERVE, REVENUE, EXPENDITURE _ Greece, 2011
 				add_to_variable = { ECON_arr_nat_REV_sources_B^0 = ECON_arr_nat_REV_sources_B^4 }
 		# Misc
 			set_variable = { ECON_arr_nat_REV_sources_B^5 = 0 }
+			# Money printing/Weimaring
+				add_to_variable = { ECON_arr_nat_REV_sources_B^5 = ECON_var_nat_RSV_weimar_B }
 		set_variable = { ECON_var_nat_REV_B = ECON_arr_nat_REV_sources_B^0 }	# redundant but ORDNUNG MUSS SEIN!
 	# Expenditure
 		# Civilian
@@ -641,11 +725,11 @@ ECON_sE_final_GDP_mods = { # GROSS DOMESTIC PRODUCT #2 _ things that can only be
 		set_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = ECON_var_nat_RSV_budget_B }
 		multiply_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = -1 }
 		divide_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = ECON_arr_nat_GDP_B^1 }
-		divide_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = 10 }
+		divide_variable = { ECON_var_nat_RSV_deficit_spending_GDP_bonus_pct = 100 }
 	# Surplus GDP malus
 		set_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_var_nat_RSV_liquid_B }
 		divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = ECON_arr_nat_GDP_B^1 }
-		divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = 10 }
+		divide_variable = { ECON_var_nat_RSV_liquid_malus_pct = 100 }
 	# Weimar GDP malus
 		set_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = ECON_var_nat_RSV_weimar_B }
 		divide_variable = { ECON_var_nat_RSV_weimar_per_gdp_pct = ECON_arr_nat_GDP_B^1 }
@@ -931,7 +1015,7 @@ ECON_sE_chart = {
 			} }
 	}
 }
-ECON_sE_chart_draw = {
+ECON_sE_chart_draw = {	# CALLED WITHIN ECON_sE_chart
 	# This count is displayed as an x-axis label, increment it
 	add_to_variable = { ECON_chart_count = 1 }
 
@@ -1019,6 +1103,12 @@ ECON_sE_chart_draw = {
 
 	set_temp_variable = { offset = ECON_chart_last_y_position }
 	multiply_temp_variable = { offset = -1 }
+	IF = { limit = { check_variable = { offset < -100 } }
+		set_variable = { y_overflow = offset }
+		add_to_variable = { y_overflow = 100 }
+		add_to_temp_variable = { offset = y_overflow }
+	 }
+	clamp_variable = { var = offset	max = 0 }
 	add_to_array = { ECON_chart_graph_offsets = offset }
 	
 
@@ -1031,6 +1121,17 @@ ECON_sE_chart_draw = {
 	add_to_array = { ECON_chart_graph_slopes = diff }
 	
 	add_to_array = { ECON_chart_numbers = ECON_chart_count }
+
+
+	# display once again
+	set_variable = { centrepoint_1pct = centrepoint }
+		divide_variable = { centrepoint_1pct = 50 }
+		set_variable = { centrepoint_25pct = centrepoint_1pct }
+			multiply_variable = { centrepoint_25pct = 25 }
+		set_variable = { centrepoint_75pct = centrepoint_1pct }
+			multiply_variable = { centrepoint_75pct = 75 }
+		set_variable = { centrepoint_100pct = centrepoint_1pct }
+			multiply_variable = { centrepoint_100pct = 100 }
 }
 SAMPLE_add_random_point_to_line = {
 	# Adds a random point to the line graph
