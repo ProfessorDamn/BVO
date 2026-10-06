@@ -1023,9 +1023,6 @@ ECON_sE_chart_draw = {	# CALLED WITHIN ECON_sE_chart
 	set_variable = { ECON_chart_last_y_position = ECON_chart_y_position }
 	
 	# new y position, 10-90
-	# goal: clamp everything down to a 100% representation. argh fuck
-	# questions: what should be 0%/100%? to make the chart work must prev chart positions be deducted according to cur chart position? what the fuck?
-	log = "-----"
 	clear_variable = centrepoint	# experiment worked - now expand centrepoints to every single graph offset and voila!
 	IF = { limit = { check_variable = { MOD_cWT_var_ECON_macro_sub = 0 } }
 		for_each_loop = { array = ECON_arr_nat_GDP_B_hist
@@ -1085,6 +1082,8 @@ ECON_sE_chart_draw = {	# CALLED WITHIN ECON_sE_chart
 		divide_variable = { ECON_chart_y_position = centrepoint }
 		#subtract_from_variable = { ECON_chart_y_position = 1 }
 		multiply_variable = { ECON_chart_y_position = 50 }
+		#IF = { limit = { check_variable = { ECON_chart_y_position > 100 } }	# UNRELIABLE
+		#	set_variable = { ECON_chart_y_position = 100 } }
 		IF = { limit = { check_variable = { centrepoint < 0 } } 	# UNRELIABLE	
 			multiply_variable = { ECON_chart_y_position = -1 }
 			add_to_variable = { ECON_chart_y_position = 80 } }
@@ -1103,11 +1102,6 @@ ECON_sE_chart_draw = {	# CALLED WITHIN ECON_sE_chart
 
 	set_temp_variable = { offset = ECON_chart_last_y_position }
 	multiply_temp_variable = { offset = -1 }
-	IF = { limit = { check_variable = { offset < -100 } }
-		set_variable = { y_overflow = offset }
-		add_to_variable = { y_overflow = 100 }
-		add_to_temp_variable = { offset = y_overflow }
-	 }
 	clamp_variable = { var = offset	max = 0 }
 	add_to_array = { ECON_chart_graph_offsets = offset }
 	

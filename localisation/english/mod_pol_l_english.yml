@@ -42,5 +42,7 @@
     POL_tt_content_legislative_coalitions_law_index_1:0 "SFS [GetYear]:5u5 Bill"
      POL_tt_content_legislative_coalitions_law_name_1:0 "Among Us Instrumentality"
       POL_tt_content_legislative_coalitions_law_content_1:0 "1. Among Us shall be legalised throughout the country. Anyone who refuses to play Among Us shall be sent to prison. Among Us supremacy shall be enshrined in the constitution. You must accept Among Us. You must accept. You must;\n2. Authorities of the State shall be conferred to the Lord of the Sus, and the Nation shall be known as the Sus Domain of [THIS.GetName]."
-    
+    POL_tt_content_legislative_coalitions_law_index_3:0 "[GetTag] NUMBERING SYSTEM REQUIRED"
+     POL_tt_content_legislative_coalitions_law_name_3:0 "[GetYear] Budget Proposal"
+      POL_tt_content_legislative_coalitions_law_content_3:0 "Taxation changes:\nIncome [?ECON_arr_nat_REV_tax_rates_pct^1|%] >> [?ECON_arr_nat_REV_tax_rates_proposal_pct^1|%]\nImpoverished income [?ECON_arr_nat_REV_tax_rates_pct^2|%] >> [?ECON_arr_nat_REV_tax_rates_proposal_pct^2|%]\nBusiness [?ECON_arr_nat_REV_tax_rates_pct^3|%] >> [?ECON_arr_nat_REV_tax_rates_proposal_pct^3|%]\nTariff [?ECON_arr_nat_REV_tax_rates_pct^4|%] >> [?ECON_arr_nat_REV_tax_rates_proposal_pct^4|%]"
     

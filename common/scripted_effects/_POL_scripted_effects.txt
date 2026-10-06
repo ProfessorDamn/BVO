@@ -190,6 +190,7 @@ POL_se_LEG_set_up_coalitions = {
 
 # call this to initiate parliamentary votes
 POL_se_LEG_vote = {
+	IF = { limit = { NOT = { has_country_flag = is_voting } } 
 	# define two things first:
 		# - bill index (POL_arr_nat_LEG_laws_index)	[do NOT bypass]
 		# - passing threshold (POL_var_nat_LEG_laws_threshold_pct) [can bypass if threshold = 0.5]
@@ -207,7 +208,8 @@ POL_se_LEG_vote = {
 	  		set_variable = { POL_var_nat_LEG_seats_pass_required = POL_var_nat_LEG_seats_total }
 			multiply_variable = { POL_var_nat_LEG_seats_pass_required = POL_arr_nat_LEG_laws_threshold_pct }	round_variable = POL_var_nat_LEG_seats_pass_required
 	    	activate_mission = POL_mission_LEG_vote_timeout
-	  
+	}
+	ELSE = { log = "[?TAG] is already having a vote." }
 }
 # everything during the vote goes into another scripted effect
 
@@ -235,6 +237,15 @@ POL_se_LEG_vote_finished = {
 					ELSE_IF = { limit = { check_variable = { POL_arr_nat_LEG_laws_index^i = 2 } } 
 						THIS = { POL_policies_se_set = yes }
 					}
+				# new tax plan
+					ELSE_IF = { limit = { check_variable = { POL_arr_nat_LEG_laws_index^i = 3 } } 
+						THIS = { custom_effect_tooltip = budget_passes
+							set_variable = { ECON_arr_nat_REV_tax_rates_pct^1 = ECON_arr_nat_REV_tax_rates_proposal_set_pct^1 }	# income
+							set_variable = { ECON_arr_nat_REV_tax_rates_pct^2 = ECON_arr_nat_REV_tax_rates_proposal_set_pct^2 }	# impoverished income
+							set_variable = { ECON_arr_nat_REV_tax_rates_pct^3 = ECON_arr_nat_REV_tax_rates_proposal_set_pct^3 }	# business
+							set_variable = { ECON_arr_nat_REV_tax_rates_pct^4 = ECON_arr_nat_REV_tax_rates_proposal_set_pct^4 }	# tariff
+						}
+					}
 			}
 		# test law
 		#	IF = { limit = { check_variable = { POL_var_nat_LEG_laws_index = 1 } }
@@ -259,13 +270,17 @@ POL_se_LEG_vote_finished = {
 					ELSE_IF = { limit = { check_variable = { POL_arr_nat_LEG_laws_index^i = 2 } } 
 						THIS = { custom_effect_tooltip = haha }
 					}
+				# new tax plan
+					ELSE_IF = { limit = { check_variable = { POL_arr_nat_LEG_laws_index^i = 3 } } 
+						THIS = { custom_effect_tooltip = budget_fails }
+					}
 			}
 		# test law
 		#	IF = { limit = { check_variable = { POL_var_nat_LEG_laws_index = 1 } }
 		#		THIS = { add_political_power = -100 }
 		#	}
 		}
-	clear_variable = POL_var_nat_LEG_laws_index
+	clear_array = POL_arr_nat_LEG_laws_index
 	clear_variable = POL_arr_nat_LEG_laws_threshold_pct
 	clear_variable = POL_var_nat_LEG_laws_days_voting
 
@@ -274,7 +289,7 @@ POL_se_LEG_vote_test_cursed = {
 	clear_array = POL_arr_nat_LEG_laws_index
 
 	add_to_array = { POL_arr_nat_LEG_laws_index = 1 }
-	add_to_array = { POL_arr_nat_LEG_laws_index = 3 }
+	add_to_array = { POL_arr_nat_LEG_laws_index = 2 }
 	#set_variable = { POL_var_nat_LEG_laws_index = 1 } 
 	set_variable = { POL_arr_nat_LEG_laws_threshold_pct = 0.5 }
 	POL_se_LEG_vote = yes }

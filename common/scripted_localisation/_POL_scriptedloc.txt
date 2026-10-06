@@ -1,16 +1,28 @@
 defined_text = { name = POL_cWT_content_legislative_coalitions_law_number
 	text = { trigger = { check_variable = { POL_arr_nat_LEG_laws_index^0 = 1 } } 
 		localization_key = POL_tt_content_legislative_coalitions_law_index_1 }
+	text = { trigger = { check_variable = { POL_arr_nat_LEG_laws_index^0 = 3 } } 
+		localization_key = POL_tt_content_legislative_coalitions_law_index_3 }
+	text = { trigger = { NOT = { check_variable = { POL_arr_nat_LEG_laws_index^0 = 0 } } }	# bin collection for no loc
+		localization_key = "NO LOCALISATION" }
 	text = { localization_key = "..." }
 }
 defined_text = { name = POL_cWT_content_legislative_coalitions_law_name
 	text = { trigger = { check_variable = { POL_arr_nat_LEG_laws_index^0 = 1 } } 
 		localization_key = POL_tt_content_legislative_coalitions_law_name_1 }
+	text = { trigger = { check_variable = { POL_arr_nat_LEG_laws_index^0 = 3 } } 
+		localization_key = POL_tt_content_legislative_coalitions_law_name_3 }
+	text = { trigger = { NOT = { check_variable = { POL_arr_nat_LEG_laws_index^0 = 0 } } }	# bin collection for no loc
+		localization_key = "NO LOCALISATION" }
 	text = { localization_key = "..." }
 }
 defined_text = { name = POL_cWT_content_legislative_coalitions_law_content	# FACTOR THESE INTO CUSTOM GUI SLOTS?
 	text = { trigger = { check_variable = { POL_arr_nat_LEG_laws_index^MOD_cWT_var_POL_LEG_coalitions_sub_legislation = 1 } } 
 		localization_key = POL_tt_content_legislative_coalitions_law_content_1 }
+	text = { trigger = { check_variable = { POL_arr_nat_LEG_laws_index^MOD_cWT_var_POL_LEG_coalitions_sub_legislation = 3 } } 
+		localization_key = POL_tt_content_legislative_coalitions_law_content_3 }
+	text = { trigger = { NOT = { check_variable = { POL_arr_nat_LEG_laws_index^0 = 0 } } }	# bin collection for no loc
+		localization_key = "NO LOCALISATION" }
 	text = { localization_key = "No bills are currently being voted on." }
 }
 
